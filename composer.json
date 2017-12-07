@@ -1,0 +1,36 @@
+{
+    "name": "manzoli2122/atendimento",
+    "description": "Pacote Laravel",
+    "keywords": ["laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bruno Manzoli do Nascimento",
+            "email": "manzoli2122@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/console": "~5.0",
+        "illuminate/support": "~5.0",       
+        "laravelcollective/html": "^5.4.0",
+        "manzoli2122/all": "v1.2.1"
+    },
+    
+    "autoload": {
+        
+        "psr-4": {
+            "Manzoli2122\\Salao\\Atendimento\\": "src/Atendimento/"
+        }
+    },
+    "extra":{
+        "laravel":{
+            "providers":[
+                "Manzoli2122\\Salao\\Atendimento\\AtendimentoServiceProvider"
+            ]
+            
+        }
+    }
+    
+    
+}
