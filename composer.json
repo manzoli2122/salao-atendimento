@@ -8,7 +8,7 @@
             "name": "Bruno Manzoli do Nascimento",
             "email": "manzoli2122@gmail.com"
         }
-    ],
+    ], 
     "require": {
         "php": ">=7.0.0",        
         "manzoli2122/salao-cadastro": "1.*"
