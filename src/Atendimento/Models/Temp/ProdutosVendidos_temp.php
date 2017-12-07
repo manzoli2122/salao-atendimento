@@ -3,7 +3,7 @@
 namespace Manzoli2122\Salao\Atendimento\Models\Temp;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Config;
 class ProdutosVendidos_temp extends Model
 {
    

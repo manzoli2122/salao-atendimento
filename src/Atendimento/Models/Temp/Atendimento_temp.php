@@ -4,7 +4,7 @@ namespace Manzoli2122\Salao\Atendimento\Models\Temp;
 
 use Illuminate\Database\Eloquent\Model;
 use Manzoli2122\Salao\Atendimento\Models\Pagamento;
-
+use Illuminate\Support\Facades\Config;
 
 class Atendimento_temp extends Model
 {

@@ -5,7 +5,7 @@ namespace Manzoli2122\Salao\Atendimento\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Manzoli2122\Salao\Atendimento\Models\Pagamento;
-
+use Illuminate\Support\Facades\Config;
 class Atendimento extends Model
 {
     use SoftDeletes;
