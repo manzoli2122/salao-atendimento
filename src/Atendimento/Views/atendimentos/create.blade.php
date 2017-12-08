@@ -124,7 +124,25 @@
                                 document.getElementById("parcelas").required = false ;
                                 document.getElementById("bandeira").required = true ;
                 }                           
-                if(val == 'dinheiro' or val == 'Transferência Bancária' or val == 'Pic Pay'){
+                if(val == 'dinheiro' ){
+                                document.getElementById("form-operadora").hidden = true ;
+                                document.getElementById("form-parcelas").hidden = true ;
+                                document.getElementById("form-bandeira").hidden = true ;
+
+                                document.getElementById("operadora_id").required = false ;
+                                document.getElementById("parcelas").required = false ;
+                                document.getElementById("bandeira").required = false ;
+                }
+                if(val == 'Transferência Bancária' ){
+                                document.getElementById("form-operadora").hidden = true ;
+                                document.getElementById("form-parcelas").hidden = true ;
+                                document.getElementById("form-bandeira").hidden = true ;
+
+                                document.getElementById("operadora_id").required = false ;
+                                document.getElementById("parcelas").required = false ;
+                                document.getElementById("bandeira").required = false ;
+                }
+                if( val == 'Pic Pay'){
                                 document.getElementById("form-operadora").hidden = true ;
                                 document.getElementById("form-parcelas").hidden = true ;
                                 document.getElementById("form-bandeira").hidden = true ;
