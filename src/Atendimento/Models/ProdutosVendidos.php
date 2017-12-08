@@ -9,9 +9,18 @@ class ProdutosVendidos extends Model
 {    
     use SoftDeletes ;
 
-    public function __construct(){
-        $this->table = Config::get('atendimento.atendimentos_produtos_table' , 'atendimentos_produtos') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return  Config::get('atendimento.atendimentos_produtos_table' , 'atendimentos_produtos') ;  
+    }
+
 
 
     protected $fillable = [

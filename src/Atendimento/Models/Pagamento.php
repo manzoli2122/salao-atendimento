@@ -9,9 +9,19 @@ class Pagamento extends Model
 {
     use SoftDeletes;
 
-    public function __construct(){
-        $this->table = Config::get('atendimento.pagamentos_table' , 'pagamentos') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return  Config::get('atendimento.pagamentos_table' , 'pagamentos') ;  
+    }
+
+
     
     
     protected $fillable = [

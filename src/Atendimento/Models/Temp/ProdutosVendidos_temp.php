@@ -6,11 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 class ProdutosVendidos_temp extends Model
 {
-   
-
-    public function __construct(){
-        $this->table = Config::get('atendimento.atendimentos_produtos_temp_table' , 'atendimentos_produtos_temp') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return  Config::get('atendimento.atendimentos_produtos_temp_table' , 'atendimentos_produtos_temp') ;
+    }
+
 
     
    

@@ -9,9 +9,18 @@ class AtendimentoFuncionario extends Model
 {
     use SoftDeletes;
 
-    public function __construct(){
-        $this->table = Config::get('atendimento.atendimento_funcionarios_table' , 'atendimento_funcionarios') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return   Config::get('atendimento.atendimento_funcionarios_table' , 'atendimento_funcionarios') ;
+    }
+
     
     protected $fillable = [
         'valor', 'cliente_id', 'funcionario_id' , 'atendimento_id' , 'servico_id' , 'salario_id' , 

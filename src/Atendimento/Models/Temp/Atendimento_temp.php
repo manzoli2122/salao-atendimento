@@ -9,10 +9,18 @@ use Illuminate\Support\Facades\Config;
 class Atendimento_temp extends Model
 {
     
-
-    public function __construct(){
-        $this->table = Config::get('atendimento.atendimento_temp_table' , 'atendimentos_temp') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return  Config::get('atendimento.atendimento_temp_table' , 'atendimentos_temp') ; 
+    }
+
 
     
     

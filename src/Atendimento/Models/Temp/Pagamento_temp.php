@@ -8,10 +8,18 @@ class Pagamento_temp extends Model
 {
 
 
-
-    public function __construct(){
-        $this->table = Config::get('atendimento.pagamentos_temp_table' , 'pagamentos_temp') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return  Config::get('atendimento.pagamentos_temp_table' , 'pagamentos_temp') ;    
+    }
+
 
     
     

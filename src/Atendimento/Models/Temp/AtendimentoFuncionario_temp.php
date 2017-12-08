@@ -7,10 +7,19 @@ use Illuminate\Support\Facades\Config;
 class AtendimentoFuncionario_temp extends Model
 {
     
-
-    public function __construct(){
-        $this->table = Config::get('atendimento.atendimento_funcionarios_temp_table' , 'atendimento_funcionarios_temp') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return  Config::get('atendimento.atendimento_funcionarios_temp_table' , 'atendimento_funcionarios_temp') ;
+    }
+
+
 
     
     protected $fillable = [

@@ -8,9 +8,19 @@ use Illuminate\Support\Facades\Config;
 class Funcionario extends Model 
 {
 
-    public function __construct(){
-        $this->table = Config::get('atendimento.funcionario_table' , 'users') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return  Config::get('atendimento.funcionario_table' , 'users') ;  
+    }
+
+
 
       
     protected $fillable = [

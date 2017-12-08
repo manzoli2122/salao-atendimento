@@ -8,9 +8,18 @@ use Illuminate\Support\Facades\Config;
 
 class Cliente extends Model
 {
-    public function __construct(){
-        $this->table = Config::get('atendimento.cliente_table' , 'users') ;    
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = parent::newInstance($attributes, $exists);    
+        $model->setTable($this->getTable());    
+        return $model;
     }
+
+    public function getTable()
+    {
+        return Config::get('atendimento.cliente_table' , 'users') ;
+    }
+
     
 
     protected $fillable = [

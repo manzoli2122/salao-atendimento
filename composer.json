@@ -11,7 +11,7 @@
     ], 
     "require": {
         "php": ">=7.0.0",        
-        "manzoli2122/salao-cadastro": "0.0.9"
+        "manzoli2122/salao-cadastro": "1.0.1"
     },
     
     "autoload": {
