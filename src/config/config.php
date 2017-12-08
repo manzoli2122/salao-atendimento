@@ -19,7 +19,7 @@ return [
 
     'atendimento_funcionarios_table' => 'atendimento_funcionarios',
 
-    'pagamentos_table' => 'pagamentos_temp',
+    'pagamentos_table' => 'pagamentos',
 
     'atendimentos_produtos_table' => 'atendimentos_produtos',
     

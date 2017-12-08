@@ -22,6 +22,8 @@
                                 <select class="form-control" name="formaPagamento" required onchange="myFunction(this.value)">
                                         <option value="">Selecione a forma de pagamento</option>                               
                                         <option value="dinheiro"> Dinheiro  </option>
+                                        <option value="Pic Pay"> Pic Pay  </option>
+                                        <option value="Transferência Bancária"> Transferência Bancária  </option>
                                         <option value="credito"> Credito  </option>
                                         <option value="debito"> Debito  </option>
                                         <option value="cheque"> Cheque  </option>    

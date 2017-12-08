@@ -102,7 +102,7 @@
 										<td> {{$model->name}} </td>	
 
 										<td>
-											@if( App\Modules\Atendimento\Models\Pagamento::where('cliente_id', $model->id )->where('formaPagamento', 'fiado' )->count() > 0  )
+											@if( Manzoli2122\Salao\Atendimento\Models\Pagamento::where('cliente_id', $model->id )->where('formaPagamento', 'fiado' )->count() > 0  )
 												@permissao('atendimentos-cadastrar')
 												<a class="btn btn-danger btn-sm" href="{{route("atendimentos.cadastrar", $model->id)}}" >
 													<i class="fa fa-money" aria-hidden="true"></i>

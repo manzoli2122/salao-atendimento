@@ -73,7 +73,9 @@ class Atendimento extends Model
 
     public function pagamentosFiadosQuitados()
     {        
-        return $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Pagamento', 'atendimento_id')->where('formaPagamento','fiado')->whereNotNull('atendimento_quitacao_id')->onlyTrashed();
+        //return $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Pagamento', 'atendimento_id')->where('formaPagamento','fiado')->whereNotNull('atendimento_quitacao_id')->onlyTrashed();
+        return $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Pagamento', 'atendimento_id')->whereNotNull('deleted_at')->where('formaPagamento','fiado')->whereNotNull('atendimento_quitacao_id');
+        
     }
 
 
@@ -86,7 +88,8 @@ class Atendimento extends Model
 
     public function pagamentosQuitadosAqui()
     {        
-        return  $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Pagamento', 'atendimento_quitacao_id')->where('formaPagamento','fiado')->onlyTrashed();
+        return  $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Pagamento', 'atendimento_quitacao_id')->where('formaPagamento','fiado')->whereNotNull('deleted_at') ;  //->onlyTrashed();
+        //return  $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Pagamento', 'atendimento_quitacao_id')->where('formaPagamento','fiado')->onlyTrashed();
     }
 
 

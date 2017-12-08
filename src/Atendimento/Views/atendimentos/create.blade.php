@@ -7,7 +7,155 @@
 
   
 @section( Config::get('atendimento.templateMasterScript' , 'script')  )
-        <script src="{{url('/js/app.js')}}"></script>			
+        <script src="{{url('/js/app.js')}}"></script>	
+        <script>
+            function finalizarSend(val) {
+                
+                var atendimento = val.elements['total_atendimento'].value
+                var pagamento = val.elements['total_pagamento'].value
+                var dif = atendimento - pagamento ;
+                
+                if(dif > 0.09) {
+                    alert('O valor total do atendimento que é R$' + atendimento + 
+                    ' não confere com o do pagamento que é R$' + pagamento  );
+                    return false;
+                }
+                return true;
+            }
+
+        
+
+            function produtoFunction(form) {
+                                    
+                var max = parseFloat( form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].text );
+            
+                var quantidade = parseInt(form.elements['quantidade'].value);
+
+                var desconto_maximo =  parseInt(form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].dataset['maximo']);
+
+                form.elements['desconto'].max = ( desconto_maximo * max / 100); 
+
+                if( max != 0.0 ){
+                    form.elements['acrescimo'].max = max ;   
+                }
+            
+
+
+                if(form.elements['desconto'].value == '')
+                    form.elements['desconto'].value = 0.0;
+                var desconto =  parseFloat( form.elements['desconto'].value) ;
+                
+                
+                if(form.elements['acrescimo'].value == '')
+                    form.elements['acrescimo'].value = 0.0;
+                var acrescimo = parseFloat( form.elements['acrescimo'].value );
+
+            
+            
+                var valor_unitario = max - desconto + acrescimo ;  
+
+                var valor_total = valor_unitario * quantidade;           
+
+                form.elements['valor-produto-unitario'].value = valor_unitario;
+
+                form.elements['valor-produto-total'].value = valor_total;
+
+            }
+
+
+
+            function servicoFunction(form) {
+
+                var max = parseFloat( form.elements['servico_id'].options[form.elements['servico_id'].selectedIndex].text );
+            
+                var quantidade = parseInt(form.elements['quantidade'].value);
+
+                //alert(quantidade);
+                var desconto_maximo =  parseInt(form.elements['servico_id'].options[form.elements['servico_id'].selectedIndex].dataset['maximo']);
+
+                form.elements['desconto'].max = ( desconto_maximo * max / 100); 
+
+                form.elements['acrescimo'].max = max ;   
+
+                if(form.elements['desconto'].value == '')
+                    form.elements['desconto'].value = 0.0;
+                var desconto =  parseFloat( form.elements['desconto'].value) ;
+            
+            
+                if(form.elements['acrescimo'].value == '')
+                    form.elements['acrescimo'].value = 0.0;
+                var acrescimo = parseFloat( form.elements['acrescimo'].value );
+                
+                var valor_unitario = max - desconto + acrescimo ;  
+
+                var valor_total = valor_unitario * quantidade;           
+
+                form.elements['valor-produto-unitario'].value = valor_unitario;
+
+                form.elements['valor-produto-total'].value = valor_total;
+
+                //var max = val.options[val.selectedIndex].text;
+                //val.form.elements['desconto'].max = (4 * max / 5 ); 
+            }
+
+
+
+
+
+            function myFunction(val) {
+                            
+                if(val == 'credito'){
+                                document.getElementById("form-operadora").hidden = false ;
+                                document.getElementById("form-parcelas").hidden = false ;
+                                document.getElementById("parcelas").selectedIndex = 1 ;
+                                document.getElementById("form-bandeira").hidden = false ;
+                                
+                                document.getElementById("operadora_id").required = true ;
+                                document.getElementById("parcelas").required = true ;
+                                document.getElementById("bandeira").required = true ;
+
+                }
+                if(val == 'debito'){
+                                document.getElementById("form-operadora").hidden = false ;
+                                document.getElementById("form-parcelas").hidden = true ;
+                                document.getElementById("form-bandeira").hidden = false ;
+
+                                document.getElementById("operadora_id").required = true ;
+                                document.getElementById("parcelas").required = false ;
+                                document.getElementById("bandeira").required = true ;
+                }                           
+                if(val == 'dinheiro' or val == 'Transferência Bancária' or val == 'Pic Pay'){
+                                document.getElementById("form-operadora").hidden = true ;
+                                document.getElementById("form-parcelas").hidden = true ;
+                                document.getElementById("form-bandeira").hidden = true ;
+
+                                document.getElementById("operadora_id").required = false ;
+                                document.getElementById("parcelas").required = false ;
+                                document.getElementById("bandeira").required = false ;
+                }
+                if(val == 'cheque'){
+                                document.getElementById("form-operadora").hidden = true ;
+                                document.getElementById("form-parcelas").hidden = true ;
+                                document.getElementById("form-bandeira").hidden = true ;
+
+                                document.getElementById("operadora_id").required = false ;
+                                document.getElementById("parcelas").required = false ;
+                                document.getElementById("bandeira").required = false ;
+                }
+                if(val == 'fiado'){
+                                document.getElementById("form-operadora").hidden = true ;
+                                document.getElementById("form-parcelas").hidden = true ;
+                                document.getElementById("form-bandeira").hidden = true ;
+
+                                document.getElementById("operadora_id").required = false ;
+                                document.getElementById("parcelas").required = false ;
+                                document.getElementById("bandeira").required = false ;
+                }
+
+
+            
+            }	
+        </script>	
 @endsection
 
 
