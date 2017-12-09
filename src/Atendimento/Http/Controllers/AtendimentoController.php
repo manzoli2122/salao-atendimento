@@ -14,6 +14,7 @@ use Manzoli2122\Salao\Atendimento\Models\Temp\Pagamento_temp;
 use Manzoli2122\Salao\Atendimento\Models\Temp\AtendimentoFuncionario_temp;
 use Manzoli2122\Salao\Atendimento\Models\Temp\ProdutosVendidos_temp;
 
+use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\SoftDeleteController ;
 
 use Illuminate\Http\Request;
 

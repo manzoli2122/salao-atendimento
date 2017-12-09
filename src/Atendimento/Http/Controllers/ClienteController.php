@@ -4,6 +4,7 @@ namespace Manzoli2122\Salao\Atendimento\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Manzoli2122\Salao\Atendimento\Models\Cliente;
+use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\StandardAtivoController ;
 
 class ClienteController extends StandardAtivoController
 {
@@ -89,12 +90,10 @@ class ClienteController extends StandardAtivoController
     {
         $apagados = false; 
         $dataForm = $request->except('_token');
-        if(isset($dataForm['key'])){
-            $models = $this->model->ativo()->where('name','LIKE', "%{$dataForm['key']}%")->orWhere('email','LIKE', "%{$dataForm['key']}%")->ativo()->orderBy('name', 'asc')->paginate($this->totalPage);
-        }
-        else{
+        if(!isset($dataForm['key'])){
             return redirect()->route("{$this->route}.index");            
         }
+        $models = $this->model->ativo()->where('name','LIKE', "%{$dataForm['key']}%")->orWhere('email','LIKE', "%{$dataForm['key']}%")->ativo()->orderBy('name', 'asc')->paginate($this->totalPage);
         return view("{$this->view}.index", compact('models', 'dataForm', 'apagados'));
     }
 

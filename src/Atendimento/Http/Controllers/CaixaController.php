@@ -2,11 +2,6 @@
 
 namespace Manzoli2122\Salao\Atendimento\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
 
 use Manzoli2122\Salao\Atendimento\Models\Atendimento;
 use Manzoli2122\Salao\Atendimento\Models\Caixa;
@@ -14,14 +9,13 @@ use Manzoli2122\Salao\Atendimento\Models\Pagamento;
 use Manzoli2122\Salao\Atendimento\Models\AtendimentoFuncionario;
 use Manzoli2122\Salao\Atendimento\Models\ProdutosVendidos;
 
+use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\Controller ;
+
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class CaixaController extends BaseController
+class CaixaController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-
 
     protected $model;
     protected $pagamento;
