@@ -18,23 +18,12 @@
 
 
 @section( Config::get('atendimento.templateMasterScript' , 'script')  )
-		<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<!-- SlimScroll -->
-		<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-		<!-- FastClick -->
-		<script src="bower_components/fastclick/lib/fastclick.js"></script>
-
+		<script src="{{url('/js/jquery.dataTables.min.js')}}"></script>
+		<script src="{{url('/js/dataTables.bootstrap.min.js')}}"></script>	
 		<script>
 			$(function () {
-				$('#example1').DataTable()
-				$('#example2').DataTable({
-				'paging'      : true,
-				'lengthChange': false,
-				'searching'   : false,
-				'ordering'    : true,
-				'info'        : true,
-				'autoWidth'   : false
+				$('#example1').DataTable({
+					 "dom": '<"top"pf>rt<"bottom"i><"clear">'
 				})
 			})
 		</script>
@@ -43,7 +32,7 @@
 
 
 @section( Config::get('atendimento.templateMasterCss' , 'css')  ) 		
-	<link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="{{url('/css/dataTables.bootstrap.min.css')}}">
 
 
 			<style type="text/css">

@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('clientes/apagados/{id}', 'ClienteController@showApagado')->name('clientes.showapagado');        
         Route::get('clientes/apagados', 'ClienteController@indexApagados')->name('clientes.apagados');
-        Route::get('clientes/pesquisarApagados', 'ClienteController@pesquisarApagados')->name('clientes.pesquisarApagados');
-        Route::get('clientes/pesquisar', 'ClienteController@pesquisar')->name('clientes.pesquisar');
+        //Route::get('clientes/pesquisarApagados', 'ClienteController@pesquisarApagados')->name('clientes.pesquisarApagados');
+        //Route::get('clientes/pesquisar', 'ClienteController@pesquisar')->name('clientes.pesquisar');
         Route::delete('clientes/destroySoft/{id}', 'ClienteController@destroySoft')->name('clientes.destroySoft');
         Route::get('clientes/restore/{id}', 'ClienteController@restore')->name('clientes.restore');
         Route::resource('clientes', 'ClienteController');
