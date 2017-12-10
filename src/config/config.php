@@ -38,6 +38,8 @@ return [
 
     'templateMasterContentTitulo' => 'titulo-page' ,
 
+    'templateMasterContentTituloSmall'=> 'small-titulo-page',
+
     'templateMasterMenuLateral' => 'menuLateral' , 
 
     'templateMasterScript' => 'script' ,

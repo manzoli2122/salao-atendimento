@@ -1,105 +1,129 @@
 
 
-<div class="modal fade bd-example-modal-lg" id="{{$atendimento->id}}atendimentoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="max-width:90%;" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 style="margin-left:50px;" class="modal-title" id="exampleModalLabel">Cliente : <b> {{ $atendimento->cliente->name}} </b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<div class="modal fade  bd-example-modal-lg" id="{{$atendimento->id}}atendimentoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" style="min-width:90%;" role="document">
+        <div class="modal-content ">
+            <div class="modal-header " style="background:green; color:white;">
+                <button style="color:white;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span style="color:white;" aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cliente : <b> {{ $atendimento->cliente->name}}</h4>
             </div>
 
             <div class="modal-body">   
                 
-                <section class="row text-center show-atendimento">
+               
+    <section class="row text-center atendimentos"> 
 
-
-                    <div class="col-12 col-sm-8 placeholder"  >  
-                        <p style="text-align:center;"><b> Itens Inclusos </b>    </p>
-                        <hr>                   
-                        @forelse($atendimento->servicos as $servico)
-                            <p style="text-align:left;"><b>{{$servico->servico->nome}} </b>    </p>
-                            <div class="row" style="text-align:left;">	
-                               
-                                <div class="col-6">			
-                                    <p>por: {{$servico->funcionario->apelido}}</p>		                        
-                                </div>
-                                <div class="col-3 ">			
-                                    <p> Quant.:{{ $servico->quantidade }} </p>						
-                                </div>
-                                <div class="col-3 text-right">			
-                                    <p> Valor R${{ number_format( $servico->valor , 2 , ',' , '' ) }} </p>						
-                                </div>
+        <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px; ">
+           <h3 style=" background:green; color:white;" >Serviços</h3>
+            @forelse($atendimento->servicos as $servico) 
+                <div class="row">        
+                    <div class="col-md-12">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{$servico->servico->nome}}</h3>
+                                                          
+                            </div>                        
+                            <div class="box-body">                               
+                                    <div class="direct-chat-msg">
+                                        
+                                        <div class="direct-chat-info clearfix">                               
+                                            <span class="pull-left">Funcionário: {{$servico->funcionario->apelido}} </span>
+                                            <span class="pull-right badge bg-green"> Total R${{ number_format($servico->valor , 2 ,',', '')}} </span>
+                                        </div>
+                                    </div>
                             </div>
-                            <hr>
-                        @empty			
-                        @endforelse  
-                        
-                         @forelse($atendimento->produtos as $produto)
-                            <div class="row" style="text-align:left;">	
-                                <div class="col-6">			
-                                    <p><b>{{$produto->produto->nome}} </b>    </p>		                        
-                                </div>
-                                <div class="col-3">			
-                                    <p>Quant.: {{ $produto->quantidade }} </p>		                        
-                                </div>
+                        </div>
+                    </div>                    
+                </div>
 
-                                <div class="col-3 text-right">			
-                                    <p> Valor R${{  number_format($produto->valor , 2 , ',' , '')  }} </p>						
-                                </div>
-                            </div>
-                            <hr>
-                        @empty
-                        @endforelse  
-                        <h6 style="text-align:right;">Valor Total R$ {{number_format($atendimento->valor, 2 , ',' , '') }} </h6> 
-                    </div>
+			@empty
+			
+			@endforelse  
+           
+        </div>
         
 
-                    <div class="col-12 col-sm-4 placeholder" >            
-                        <p style="text-align:center;"><b>Pagamentos </b>    </p>
-                        <hr>
-                        @forelse($atendimento->pagamentos as $pagamento)                                        
-                            <div class="row" style="text-align:left;">	                                
-                                <div class="col-3">			
-                                    <p> <b>{{$pagamento->formaPagamento}}</b> </p>					                        
-                                </div>
-                                <div class="col-5 ml-auto text-right">			
-                                    <p> Valor R${{ number_format($pagamento->valor , 2 , ',' , '') }} </p>						
-                                </div>                                
-                            </div>	                    
-                            <hr>	
-                        @empty
-                        @endforelse  
-                        <h6 style="text-align:right;">Total de Pagamento R$ {{number_format($atendimento->valorPagamentos() , 2 , ',' , '')  }} </h6> 
+        
+        <div class="col-12 col-sm-4 produtos" style="margin-bottom:0px;">
+            <h3 style=" background:blue; color:white;" >Produtos</h3>
+            @forelse($atendimento->produtos as $produto)
 
-                        @forelse($atendimento->pagamentosFiadosQuitados as $pagamento)                                        
-                            <div class="row" style="text-align:left; color:red;">	                                
-                                <div class="col-3">			
-                                    <p> <b>{{$pagamento->formaPagamento}}</b> </p>					                        
-                                </div>
-                                <div class="col-4">			
-                                    <p> <b>Quitado em: {{$pagamento->deleted_at->format('d/m/Y')}}</b> </p>					                        
-                                </div>
-                                <div class="col-5 ml-auto text-right">			
-                                    <p> Valor R${{ number_format($pagamento->valor , 2 , ',' , '') }} </p>						
-                                </div>                                
-                            </div>	                    
-                            <hr>	
-                        @empty
-                        @endforelse 
-                    
-                    
-                    
-                    </div>   
+                <div class="row">        
+                    <div class="col-md-12">
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{$produto->produto->nome}}</h3>
+                                                          
+                            </div>                        
+                            <div class="box-body">                               
+                                    <div class="direct-chat-msg">
+                                        
+                                        <div class="direct-chat-info clearfix">                               
+                                            <span class="pull-left"> quant.: {{$produto->quantidade}} </span>
+                                            <span class="pull-right badge bg-blue"> Total R${{ number_format($produto->valor , 2 ,',', '')}} </span>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+               
+			@empty
+			
+			@endforelse  
+            <hr style="margin-top:15px;">
+        </div>
+
+        
+        <div class="col-12 col-sm-4 pagamentos">            
+            <h3 style=" background:orange; color:white;">Pagamentos</h3>
+            @forelse($atendimento->pagamentos as $pagamento)
+                <div class="row">        
+                    <div class="col-md-12">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{$pagamento->formaPagamento}}</h3>                                                          
+                            </div>                        
+                            <div class="box-body">                               
+                                    <div class="direct-chat-msg"> 
+                                        @if($pagamento->formaPagamento == 'credito' or $pagamento->formaPagamento == 'debito')                                       
+                                            <div class="direct-chat-info clearfix">                               
+                                                <span class="pull-left"> @if(isset($pagamento->operadora)) {{ $pagamento->operadora->nome }} @endif </span>
+                                                <span class="pull-right"> {{ $pagamento->bandeira }}  </span>
+                                            </div>
+                                            <div class="direct-chat-info clearfix">                               
+                                                <span class="pull-left">  {{ $pagamento->parcelas }}X </span>
+                                                <span class="pull-right badge bg-orange"> Valor R${{ number_format($pagamento->valor , 2 ,',', '') }} </span>
+                                            </div>
+                                        @else
+                                             <div class="direct-chat-info clearfix">                               
+                                                <span class="pull-left">  </span>
+                                                <span class="pull-right badge bg-orange"> Valor R${{ number_format($pagamento->valor , 2 ,',', '') }} </span>
+                                            </div>
+                                        @endif
+                                       
+                                    </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>                     	
+            @empty			
+			@endforelse 
+
+          
+
+            <hr style="margin-top:15px;"> 
+             <h3 style="text-align:right;">Total R$ {{number_format($atendimento->valor, 2 ,',', '') }} </h3>
+        </div>      
 
 
 
 
+       
+    </section>
 
 
-
-                </section>
 
              </div> 
 
