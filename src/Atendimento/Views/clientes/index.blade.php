@@ -27,6 +27,11 @@
 				})
 			})
 		</script>
+		 <script>
+            function ApagarCliente(val) {
+                return  confirm('Deseja mesmo apagar o cliente?'  );                       
+            }
+		</script>
         <script>$(function(){setTimeout("$('.hide-msg').fadeOut();",5000)});</script>
 @endsection
 
@@ -108,13 +113,13 @@
 												@endpermissao	
 
 												@permissao('clientes-restore')
-													<a target="_blank" class="btn btn-warning btn-sm" href='{{route("clientes.restore", $model->id)}}'>
+													<a class="btn btn-warning btn-sm" href='{{route("clientes.restore", $model->id)}}'>
 														<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>Reativar</a>
 												@endpermissao 														
 														
 												@permissao('clientes-delete-mater-ulta-mega')	
 													<a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="$(this).find('form').submit();" >
-														{!! Form::open(['route' => ['clientes.destroy', $model->id ],  'method' => 'DELETE' ])!!}                                        
+														{!! Form::open(['route' => ['clientes.destroy', $model->id ],  'method' => 'DELETE'  , 'onsubmit' => " return  ApagarCliente(this)"])!!}                                        
 														{!! Form::close()!!}    
 														<i class="fa fa-trash" aria-hidden="true"></i>Extinguir</a> 		        
 													
@@ -132,7 +137,7 @@
 											
 												@permissao('clientes-soft-delete')			
 													<a class="btn btn-danger btn-sm"  href="javascript:void(0);" onclick="$(this).find('form').submit();" >
-															{!! Form::open(['route' => ['clientes.destroySoft', $model->id ],  'method' => 'DELETE' ])!!}                                        
+															{!! Form::open(['route' => ['clientes.destroySoft', $model->id ],  'method' => 'DELETE' , 'onsubmit' => " return  ApagarCliente(this)"  ])!!}                                        
 															{!! Form::close()!!}    
 															<i class="fa fa-trash" aria-hidden="true"></i>Apagar</a>													
 												@endpermissao
