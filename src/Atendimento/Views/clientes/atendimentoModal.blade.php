@@ -111,7 +111,30 @@
             @empty			
 			@endforelse 
 
-          
+            @forelse($atendimento->pagamentosFiadosQuitados as $pagamento) 
+                <div class="row">        
+                    <div class="col-md-12">
+                        <div class="box box-danger">
+                            <div class="box-header  with-border">
+                                <h3 class="box-title">{{$pagamento->formaPagamento}}</h3>                                                          
+                            </div>                        
+                            <div class="box-body">                               
+                                    <div class="direct-chat-msg">                                                                             
+                                            <div class="direct-chat-info clearfix">                               
+                                                <span class="pull-left badge bg-red"> Quitado em:  </span>
+                                                <span class="pull-right badge bg-red"> {{$pagamento->deleted_at->format('d/m/Y')}}  </span>
+                                            </div>
+                                            <div class="direct-chat-info clearfix">                               
+                                                <span class="pull-left">   </span>
+                                                <span class="pull-right badge bg-orange"> Valor R${{ number_format($pagamento->valor , 2 ,',', '') }} </span>
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>    
+            @empty
+            @endforelse 
 
             <hr style="margin-top:15px;"> 
              <h3 style="text-align:right;">Total R$ {{number_format($atendimento->valor, 2 ,',', '') }} </h3>
