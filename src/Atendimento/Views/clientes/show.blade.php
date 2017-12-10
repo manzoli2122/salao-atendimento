@@ -12,8 +12,11 @@
 	<h1>Atendimentos</h1>
 	<section class="row text-center Listagens">
 		
-		 <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px; ">           
+		            
            	@forelse($model->atendimentos as $atendimento)
+
+                <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px; ">
+
                 <div class="row">        
                     <div class="col-md-12">
                         <div class="box box-success">
@@ -36,9 +39,11 @@
                         </div>
                     </div>                    
                 </div>
+
+                 </div>
 			@empty			
 			@endforelse             
-        </div>
+       
     </section>   
 
 	@forelse($model->atendimentos as $atendimento)
