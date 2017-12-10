@@ -29,6 +29,12 @@ class ClienteController extends StandardAtivoController
     }
 
 
+    public function index()
+    {
+        $apagados = false;
+        $models = $this->model->get();
+        return view("{$this->view}.index", compact('models', 'apagados'));
+    }
    
     public function store(Request $request)
     {
