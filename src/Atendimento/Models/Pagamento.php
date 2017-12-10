@@ -52,7 +52,7 @@ class Pagamento extends Model
 
     public function operadora()
     {
-        return $this->belongsTo('Manzoli2122\Salao\Cadastro\Models\OPeradora', 'operadora_id');
+        return $this->belongsTo('Manzoli2122\Salao\Cadastro\Models\Operadora', 'operadora_id');
     }
 
 

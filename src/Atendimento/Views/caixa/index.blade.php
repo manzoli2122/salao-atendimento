@@ -65,11 +65,7 @@
 											<tr>
 												<td> {{ $model->cliente->name }}  </td>						
 												<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>
-												<td>		
-													@permissao('atendimentos-show')								
-														<a class="btn btn-success btn-sm" href='#'><i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>								
-													@endpermissao	
-												</td>
+												<td></td>
 											</tr>
 										@empty									
 										@endforelse
@@ -91,6 +87,14 @@
 									<tr>
 										<td> TOTAL EM DINHEIRO:  </td>						
 										<td>  {{ $caixa->valor_Pagamento_dinheiro() }}  </td>
+									</tr>
+									<tr>
+										<td> TOTAL EM PIC PAY:  </td>						
+										<td>  {{ $caixa->valor_Pagamento_pic_pay() }}  </td>
+									</tr>
+									<tr>
+										<td> TOTAL EM TRANSFERENCIA BANCÁRIA:  </td>						
+										<td>  {{ $caixa->valor_Pagamento_transferencia_bancaria() }}  </td>
 									</tr>
 
 									<tr>

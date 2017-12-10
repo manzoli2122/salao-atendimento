@@ -37,6 +37,17 @@ class Caixa
     {
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'dinheiro' )->sum('valor') , 2 , ',' , '' ) ;        
     }
+    
+    public function valor_Pagamento_pic_pay()
+    {
+        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Pic Pay' )->sum('valor') , 2 , ',' , '' ) ;        
+    }
+
+
+    public function valor_Pagamento_transferencia_bancaria()
+    {
+        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Transferência Bancária' )->sum('valor') , 2 , ',' , '' ) ;        
+    }
 
 
     public function valor_Pagamento_credito()

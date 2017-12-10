@@ -6,7 +6,7 @@
             <div class="modal-header " style="background:green; color:white;">
                 <button style="color:white;" type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span style="color:white;" aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Cliente : <b> {{ $atendimento->cliente->name}}</h4>
+                <h4 class="modal-title">Cliente : <b> {{ $atendimento->cliente->name}} - {{ $atendimento->created_at->format('d/m/Y') }}</h4>
             </div>
 
             <div class="modal-body">   
