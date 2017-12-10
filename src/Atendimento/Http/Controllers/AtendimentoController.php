@@ -130,6 +130,7 @@ class AtendimentoController extends SoftDeleteController
     {
         $model = $this->model->find($id);
 
+        // 
         if($model->pagamentosFiadosQuitados()->count() != 0  ){
             return redirect()->route("{$this->route}.index");    
         }
