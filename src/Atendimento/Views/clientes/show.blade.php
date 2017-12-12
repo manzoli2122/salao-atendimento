@@ -9,7 +9,10 @@
 @endsection
 
 @section( Config::get('atendimento.templateMasterContent' , 'contentMaster')  )
-	<h1>Atendimentos</h1>
+	
+    <?php $title = $model->apelido   ?>
+    
+    <h1>Atendimentos</h1>
 	<section class="row text-center Listagens">
 		
 		            
