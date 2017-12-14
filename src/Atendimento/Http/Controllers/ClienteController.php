@@ -11,7 +11,8 @@ class ClienteController extends StandardAtivoController
     
     protected $model;    
     protected $name = "Cliente";    
-    protected $view = "atendimento::clientes";    
+    protected $view = "atendimento::clientes";  
+    protected $view_apagados = "atendimento::clientes.apagados";  
     protected $route = "clientes";
     protected $totalPage = 10;
 
@@ -29,20 +30,7 @@ class ClienteController extends StandardAtivoController
     }
 
 
-    public function index()
-    {
-        $apagados = false;
-        $models = $this->model->ativo()->get();
-        return view("{$this->view}.index", compact('models', 'apagados'));
-    }
-
-    public function indexApagados()
-    {
-        $apagados = true;
-        $models = $this->model->inativo()->get();
-        return view("{$this->view}.index", compact('models', 'apagados'));
-    }
-
+   
    
     public function store(Request $request)
     {
@@ -96,37 +84,6 @@ class ClienteController extends StandardAtivoController
         }
     }
     
-   
-
-
-     
-    public function pesquisar(Request $request)
-    {
-        $apagados = false; 
-        $dataForm = $request->except('_token');
-        if(!isset($dataForm['key'])){
-            return redirect()->route("{$this->route}.index");            
-        }
-        $models = $this->model->ativo()->where('name','LIKE', "%{$dataForm['key']}%")->orWhere('email','LIKE', "%{$dataForm['key']}%")->ativo()->orderBy('name', 'asc')->paginate($this->totalPage);
-        return view("{$this->view}.index", compact('models', 'dataForm', 'apagados'));
-    }
-
-
-    
-    public function pesquisarApagados(Request $request)
-    {       
-        $apagados = true;  
-        $dataForm = $request->except('_token');       
-        if(!isset($dataForm['key'])){  
-            return redirect()->route("{$this->route}.apagados");            
-        }         
-        $models = $this->model->inativo()->where('name','LIKE', "%{$dataForm['key']}%")->orWhere('email','LIKE', "%{$dataForm['key']}%")->inativo()->orderBy('name', 'asc')->paginate($this->totalPage);       
-        return view("{$this->view}.index", compact('models', 'dataForm', 'apagados'));
-    }
-
-
-
-
 
 
 }
