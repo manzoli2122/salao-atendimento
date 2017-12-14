@@ -5,6 +5,7 @@ namespace Manzoli2122\Salao\Atendimento\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Config;
+use DB;
 
 class Cliente extends Model
 {
@@ -85,8 +86,33 @@ class Cliente extends Model
     
     public function getDatatable()
     {
-        return $this->ativo()->select(['id', 'name',   ]);        
+
+        $teste =DB::table('users')
+        ->where('ativo', 1)
+       
+        ->groupBy('id' , 'name')
+
+        ->leftJoin('pagamentos', function ($join) {
+            $join->on('users.id', '=', 'pagamentos.cliente_id')
+                 ->where('pagamentos.formaPagamento', '=', 'fiado')
+                 ->whereNull('pagamentos.deleted_at');
+        })
+
+        
+        ->select('users.id', 'users.name', DB::raw(  "  concat('R$ ', ROUND  ( SUM( pagamentos.valor) , 2 ) ) as valor" )  )
+        ;
+
+
+        
+
+        return $teste;
+
+        //return $this->ativo()->select(['id', 'name',   ]);     
+        
+        //Manzoli2122\Salao\Atendimento\Models\Pagamento::where("cliente_id", $linha->id )->where("formaPagamento", "fiado" )->count() > 0 
     }
+
+
     
     public function getDatatableApagados()
     {

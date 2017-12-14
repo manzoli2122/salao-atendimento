@@ -29,8 +29,8 @@
                 <thead>
                     <tr>
 						<th>ID</th>
-						<th pesquisavel>Name</th>					
-												
+						<th pesquisavel>Nome</th>
+						<th>Divida</th>
                         <th class="align-center">Ações</th>
                     </tr>
                 </thead>
@@ -55,7 +55,8 @@
 				columns: [
 					{ data: 'id', name: 'id' },
 					{ data: 'name', name: 'name' },
-										
+				
+					{ data: 'valor', name: 'valor', searchable: false,   class: "price"},
 					{ data: 'action', name: 'action', orderable: false, searchable: false, class: 'align-center'}
 				],
 			});

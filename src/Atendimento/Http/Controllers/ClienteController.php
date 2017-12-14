@@ -5,6 +5,8 @@ namespace Manzoli2122\Salao\Atendimento\Http\Controllers;
 use Illuminate\Http\Request;
 use Manzoli2122\Salao\Atendimento\Models\Cliente;
 use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\StandardAtivoController ;
+use DataTables;
+
 
 class ClienteController extends StandardAtivoController
 {
@@ -84,6 +86,36 @@ class ClienteController extends StandardAtivoController
         }
     }
     
+
+
+    
+     
+    /**
+    * Processa a requisição AJAX do DataTable na página de listagem.
+    * Mais informações em: http://datatables.yajrabox.com
+    *
+    * @return \Illuminate\Http\JsonResponse
+    */
+    public function getDatatable()
+    {
+        $models = $this->model->getDatatable();
+        return Datatables::of($models)                
+        ->addColumn('action', function($linha) {        
+            return  
+               
+                           '<a href="'.route("atendimentos.cadastrar", $linha->id).'" class="btn btn-success btn-xs" title="Atender"> <i class="fa fa-money"></i> Atender </a> '
+                            
+                            . '<a href="'.route("{$this->route}.edit", $linha->id).'" class="btn btn-primary btn-xs" title="Editar"> <i class="fa fa-pencil"></i> </a> '
+                            
+                            .'<button data-id="'.$linha->id.'" btn-excluir type="button" class="btn btn-danger btn-xs" title="Excluir"> <i class="fa fa-times"></i> </button> '
+                            
+                            . '<a href="'.route("{$this->route}.show", $linha->id).'" class="btn btn-primary btn-xs" title="Visualizar"> <i class="fa fa-search"></i> </a>'
+                            ;
+                    })
+                    ->make(true);
+    }
+    
+
 
 
 }
