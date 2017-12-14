@@ -1,11 +1,11 @@
-@extends( Config::get('atendimento.templateMaster' , 'templates.templateMaster')  )
+@extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 
 	
-@section( Config::get('atendimento.templateMasterContentTitulo' , 'titulo-page')  )
+@section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )
 			Caixa do dia {{ today()->format('d/m/Y')}}  @if($apagados) Apagados @endif
 @endsection
 
-@section( Config::get('atendimento.templateMasterMenuLateral' , 'menuLateral')  )
+@section( Config::get('app.templateMasterMenuLateral' , 'menuLateral')  )
 			@if($apagados)
 				@permissao('atendimentos')
 					<li><a href="{{ route('atendimentos.index')}}"><i class="fa fa-circle-o text-blue"></i> <span>Atendimentos Ativos</span></a></li>
@@ -20,17 +20,17 @@
 
 
 		
-@section( Config::get('atendimento.templateMasterScript' , 'script')  )
+@push( Config::get('app.templateMasterScript' , 'script')  )
         	<script>$(function(){setTimeout("$('.hide-msg').fadeOut();",5000)});</script>
 			<script>
             function ApagarAtendimento(val) {
                 return  confirm('Deseja mesmo apagar o Atendimento?'  );                       
             }
 		</script>
-@endsection
+@endpush
 
 		
-@section( Config::get('atendimento.templateMasterCss' , 'css')  )			
+@push( Config::get('app.templateMasterCss' , 'css')  )			
 			<style type="text/css">
 					.btn-sm{
 						padding: 1px 10px;
@@ -41,9 +41,9 @@
 						font-size:12px;
 					}
 			</style>
-@endsection
+@endpush
 
-@section( Config::get('atendimento.templateMasterContent' , 'contentMaster')  )
+@section( Config::get('app.templateMasterContent' , 'content')  )
  
 			<section class="row Listagens">
 				<div class="col-12 col-sm-12 lista">		

@@ -1,12 +1,12 @@
-@extends( Config::get('atendimento.templateMaster' , 'templates.templateMaster')  )
+@extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 
 
-@section( Config::get('atendimento.templateMasterContentTitulo' , 'titulo-page')  )			
+@section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )			
 		Cliente : {{ $atendimento->cliente->name}} 
 @endsection
 
   
-@section( Config::get('atendimento.templateMasterScript' , 'script')  )
+@push( Config::get('app.templateMasterScript' , 'script')  )
         <script src="{{url('/js/app.js')}}"></script>	
         <script>
             function finalizarSend(val) {
@@ -174,11 +174,11 @@
             
             }	
         </script>	
-@endsection
+@endpush
 
 
 
-@section( Config::get('atendimento.templateMasterContent' , 'contentMaster')  )
+@section( Config::get('app.templateMasterContent' , 'content')  )
 
     <section class="row text-center errors">
         <div class="col-12 col-sm-12 error">
