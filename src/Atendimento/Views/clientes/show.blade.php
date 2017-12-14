@@ -1,14 +1,14 @@
-@extends( Config::get('atendimento.templateMaster' , 'templates.templateMaster')  )
+@extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 
-@section( Config::get('atendimento.templateMasterContentTitulo' , 'titulo-page')  )			
+@section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )			
 		{{$model->name}}
 @endsection
 
-@section( Config::get('atendimento.templateMasterContentTituloSmall' , 'small-titulo-page')  )			
+@section( Config::get('app.templateMasterContentTituloSmall' , 'small-titulo-page')  )			
 		{{$model->email}} | Celular: {{$model->celular}} | Telefone: {{$model->telefone}} | Endereço: {{$model->endereco}}
 @endsection
 
-@section( Config::get('atendimento.templateMasterContent' , 'contentMaster')  )
+@section( Config::get('app.templateMasterContent' , 'contentMaster')  )
 	
     <?php $title = $model->apelido   ?>
     

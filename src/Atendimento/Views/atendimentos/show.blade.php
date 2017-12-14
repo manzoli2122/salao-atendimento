@@ -1,13 +1,13 @@
-@extends( Config::get('atendimento.templateMaster' , 'templates.templateMaster')  )
+@extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 
 
-@section( Config::get('atendimento.templateMasterContentTitulo' , 'titulo-page')  ) 			
+@section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  ) 			
 		Cliente : <b> {{ $model->cliente->name}}
 @endsection
 
 
 
-@section( Config::get('atendimento.templateMasterContent' , 'contentMaster')  )    
+@section( Config::get('app.templateMasterContent' , 'contentMaster')  )    
     <section class="row text-center atendimentos"> 
 
         <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px;">
