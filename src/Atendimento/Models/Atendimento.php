@@ -5,7 +5,10 @@ namespace Manzoli2122\Salao\Atendimento\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Manzoli2122\Salao\Atendimento\Models\Pagamento;
-use Illuminate\Support\Facades\Config;
+use Config;
+
+use DB ; 
+
 class Atendimento extends Model
 {
     use SoftDeletes;
@@ -156,6 +159,19 @@ class Atendimento extends Model
 
 
 
+
+
+
+    
+    public function getDatatable()
+    {
+        return $this->select(['id',  DB::raw( " created_at as created_at " ) ,   DB::raw("concat( 'R$' , round( valor, 2 )) as valor")   ]);        
+    }
+    
+    public function getDatatableApagados()
+    {
+        return $this->onlyTrashed()->select(['id', 'cliente_id',   DB::raw( " created_at as created_at " ) , DB::raw("concat( 'R$' , round( valor, 2 )) as valor") ]);        
+    }
 
 
     
