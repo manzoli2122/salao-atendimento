@@ -53,12 +53,28 @@
         <div class="col-md-6">
 
 
+            <div class="form-group {{ $errors->has('apelido') ? 'has-error' : ''}}">
+                <label for="apelido">Apelido</label>
+                <input type="text" class="form-control" name="apelido" placeholder="Apelido do Cliente"
+                    value="{{$model->apelido or old('apelido')}}">
+                {!! $errors->first('apelido', '<p class="help-block">:message</p>') !!}
+            </div>
 
+            
+            <div class="form-group {{ $errors->has('endereco') ? 'has-error' : ''}}">
+                <label for="endereco">Endereço</label>
+                <input type="text" class="form-control" name="endereco" placeholder="Endereço do Cliente"
+                    value="{{$model->endereco or old('endereco')}}">
+                {!! $errors->first('endereco', '<p class="help-block">:message</p>') !!}
+            </div>
 
-
-
-
-
+            <div class="form-group {{ $errors->has('telefone') ? 'has-error' : ''}}">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" name="telefone" placeholder="Telefone do Cliente"
+                    value="{{$model->telefone or old('telefone')}}">
+                {!! $errors->first('telefone', '<p class="help-block">:message</p>') !!}
+            </div>
+                        
 
 
 
