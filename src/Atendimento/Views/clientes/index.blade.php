@@ -48,7 +48,7 @@
 	<script>
 		$(document).ready(function() {
 			var dataTable = datatablePadrao('#datatable', {
-				order: [[ 1, "asc" ]],
+				order: [[ 2, "asc" ]],
 				ajax: { 
 					url:'{{ route('clientes.getDatatable') }}'
 				},
