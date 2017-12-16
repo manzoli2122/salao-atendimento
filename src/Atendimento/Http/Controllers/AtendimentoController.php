@@ -264,7 +264,7 @@ class AtendimentoController extends SoftDeleteController
         $clienteId = $atendimento_old->cliente_id ;    
         $atendimento_old->delete();
 
-        return redirect()->route("clientes.show" , ['id' => $clienteId ]);
+        return redirect()->route("{$this->route}.index");
 
     }
 

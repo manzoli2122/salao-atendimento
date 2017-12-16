@@ -31,7 +31,7 @@
 						<th>ID</th>
 						<th pesquisavel>Nome</th>
 						<th>Divida</th>
-                        <th class="align-center" style="width:100px;">Ações</th>
+                        <th class="align-center" style="width:180px;">Ações</th>
                     </tr>
                 </thead>
             </table>
