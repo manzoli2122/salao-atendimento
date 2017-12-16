@@ -14,12 +14,12 @@ use Manzoli2122\Salao\Atendimento\Models\Temp\Pagamento_temp;
 use Manzoli2122\Salao\Atendimento\Models\Temp\AtendimentoFuncionario_temp;
 use Manzoli2122\Salao\Atendimento\Models\Temp\ProdutosVendidos_temp;
 
-use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\SoftDeleteController ;
+use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\Controller ;
 
 use Illuminate\Http\Request;
 
 
-class AtendimentoController extends SoftDeleteController
+class AtendimentoController extends Controller
 {
 
     protected $totalPage = 35;
@@ -54,16 +54,11 @@ class AtendimentoController extends SoftDeleteController
         $this->middleware('auth');
 
 
-        $this->middleware('permissao:atendimentos')->only([ 'index' , 'show' , 'pesquisar' ]) ;
-        
-
+        $this->middleware('permissao:atendimentos')->only([ 'index' , 'show' ]) ;       
         $this->middleware('permissao:atendimentos-soft-delete')->only([ 'destroySoft' ]);
-
-        $this->middleware('permissao:atendimentos-restore')->only([ 'restore' ]);
-        
+        $this->middleware('permissao:atendimentos-restore')->only([ 'restore' ]);        
         $this->middleware('permissao:atendimentos-admin-permanete-delete')->only([ 'destroy' ]);
-
-        $this->middleware('permissao:atendimentos-apagados')->only([ 'indexApagados' , 'showApagado' , 'pesquisarApagados']) ;
+        $this->middleware('permissao:atendimentos-apagados')->only([ 'indexApagados' , 'showApagado' ]) ;
                                
 
         
@@ -72,10 +67,9 @@ class AtendimentoController extends SoftDeleteController
     
 
     public function index()
-    {
-        $apagados = false;
-        $models = $this->model::whereDate('created_at', today() )->paginate($this->totalPage);
-        return view("{$this->view}.index", compact('models', 'apagados'));
+    {       
+        $models = $this->model::whereDate('created_at', today() )->get();
+        return view("{$this->view}.index", compact('models'));
     }
 
 
@@ -91,7 +85,7 @@ class AtendimentoController extends SoftDeleteController
    
 
 
-    
+    /*
     public function restore($id)
     {
         $model = $this->model->withTrashed()->find($id);
@@ -120,7 +114,7 @@ class AtendimentoController extends SoftDeleteController
             return  redirect()->route("{$this->route}.showApagados",['id' => $id])->withErrors(['errors' => 'Falha ao Deletar']);
         }
     }
-
+*/.
 
     
 
@@ -129,22 +123,17 @@ class AtendimentoController extends SoftDeleteController
     public function destroySoft($id)
     {
         $model = $this->model->find($id);
-
-        // 
+        
         if($model->pagamentosFiadosQuitados()->count() != 0  ){
             return redirect()->route("{$this->route}.index");    
-        }
-        
+        }        
 
         foreach($model->pagamentosQuitadosAqui as $pagamentoQuitados){
             $pagamentoQuitados->restore();
             $pagamentoQuitados->atendimento_da_quitacao()->dissociate();
             $pagamentoQuitados->save();
             $model->atualizarValor();
-        }
-
-        
-
+        }       
         
         foreach($model->servicos as $servico){
             $servico->delete();
@@ -301,7 +290,7 @@ class AtendimentoController extends SoftDeleteController
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
         else {
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]));
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
 
     }

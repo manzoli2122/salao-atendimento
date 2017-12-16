@@ -40,12 +40,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-        Route::get('atendimentos/apagados/{id}', 'AtendimentoController@showApagado')->name('atendimentos.showapagado');        
-        Route::get('atendimentos/apagados', 'AtendimentoController@indexApagados')->name('atendimentos.apagados');
-        Route::post('atendimentos/pesquisarApagados', 'AtendimentoController@pesquisarApagados')->name('atendimentos.pesquisarApagados');
-        Route::post('atendimentos/pesquisar', 'AtendimentoController@pesquisar')->name('atendimentos.pesquisar');
-        Route::delete('atendimentos/destroySoft/{id}', 'AtendimentoController@destroySoft')->name('atendimentos.destroySoft');
-        Route::get('atendimentos/restore/{id}', 'AtendimentoController@restore')->name('atendimentos.restore');
+        //Route::get('atendimentos/apagados/{id}', 'AtendimentoController@showApagado')->name('atendimentos.showapagado');        
+       /// Route::get('atendimentos/apagados', 'AtendimentoController@indexApagados')->name('atendimentos.apagados');
+        //Route::post('atendimentos/pesquisarApagados', 'AtendimentoController@pesquisarApagados')->name('atendimentos.pesquisarApagados');
+        //Route::post('atendimentos/pesquisar', 'AtendimentoController@pesquisar')->name('atendimentos.pesquisar');
+        Route::delete('atendimentos/apagados/{id}', 'AtendimentoController@destroySoft')->name('atendimentos.destroySoft');
+        //Route::get('atendimentos/restore/{id}', 'AtendimentoController@restore')->name('atendimentos.restore');
         Route::resource('atendimentos', 'AtendimentoController' , ['except' => [
             'create', 'store' , 'edit' , 'update' , 
         ]] ); 
