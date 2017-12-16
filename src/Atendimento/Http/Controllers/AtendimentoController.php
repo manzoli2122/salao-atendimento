@@ -282,12 +282,10 @@ class AtendimentoController extends SoftDeleteController
         
         if($insert){
             $insert->atendimento->atualizarValor();
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])
-                ->with(['success' => 'Cadastro realizado com sucesso']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])   ;
         }
         else {
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])
-                ->with(['success' => 'Cadastro realizado com erros']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])  ;
         }
 
     }
@@ -300,12 +298,10 @@ class AtendimentoController extends SoftDeleteController
         $delete = $servico->delete();
         if($delete){
             $atendimento->atualizarValor();
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ])
-                ->with(['success' => 'Cadastro realizado com sucesso']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
         else {
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ])
-                ->with(['success' => 'Cadastro realizado com erros']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]));
         }
 
     }
@@ -326,12 +322,10 @@ class AtendimentoController extends SoftDeleteController
         $insert = $this->pagamento_temp->create($dataForm);         
         if($insert){
             //$insert->atendimento->atualizarValor();
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])
-                ->with(['success' => 'Cadastro realizado com sucesso']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')]);
         }
         else {
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])
-                ->with(['success' => 'Cadastro realizado com erros']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')]);
         }
     }
 
@@ -343,12 +337,10 @@ class AtendimentoController extends SoftDeleteController
         $delete = $pagamento->delete();
         if($delete){
             $atendimento->atualizarValor();
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ])
-                ->with(['success' => 'Cadastro realizado com sucesso']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
         else {
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ])
-                ->with(['success' => 'Cadastro realizado com erros']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
 
     }
@@ -369,12 +361,10 @@ class AtendimentoController extends SoftDeleteController
         
         if($insert){
             $insert->atendimento->atualizarValor();
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])
-                ->with(['success' => 'Cadastro realizado com sucesso']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')]);
         }
         else {
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])
-                ->with(['success' => 'Cadastro realizado com erros']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')]);
         }
 
     }
@@ -387,12 +377,10 @@ class AtendimentoController extends SoftDeleteController
         $delete = $produto->delete();
         if($delete){
             $atendimento->atualizarValor();
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ])
-                ->with(['success' => 'Cadastro realizado com sucesso']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
         else {
-            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ])
-                ->with(['success' => 'Cadastro realizado com erros']);
+            return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
 
     }
