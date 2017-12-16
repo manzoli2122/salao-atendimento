@@ -27,7 +27,7 @@
 
             <div class="form-group {{ $errors->has('nascimento') ? 'has-error' : ''}}">
                 <label for="nascimento">Nascimento</label>
-                <input type="text" class="form-control" name="nascimento" placeholder="Nascimento do Cliente"
+                <input type="date" class="form-control" name="nascimento" placeholder="Nascimento do Cliente"
                     value="{{$model->nascimento or old('nascimento')}}">
                 {!! $errors->first('nascimento', '<p class="help-block">:message</p>') !!}
             </div>

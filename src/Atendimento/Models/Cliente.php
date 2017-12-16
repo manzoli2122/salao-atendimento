@@ -40,11 +40,12 @@ class Cliente extends Model
         
     ];
 
+    /*
     public function nascimento()
     {
         return \Carbon\Carbon::createFromFormat('Y-m-d', $this->nascimento );
     }
-
+*/
 
 
     public function scopeAtivo($query)
