@@ -17,19 +17,7 @@
 
 @section( Config::get('app.templateMasterContent' , 'contentMaster')  )
    
-    <section class="row text-center placeholders">
-        <div class="col-12 col-sm-12 placeholder">
-            @if(isset($errors) && count($errors)>0)
-                <div class="alert alert-warning">
-                    @foreach($errors->all() as $erro)
-                        <p>{{$erro}}</p>
-                    @endforeach
-                </div>
-            @endif
-        </div>        
-    </section>
-
-
+   
 
 
     
@@ -49,25 +37,6 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            <div class="form-group">
-                                <label for="name">Nome:</label>
-                                {!! Form::text('name' , null , ['placeholder' => 'Nome', 'class' => 'form-control'])!!}
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                {!! Form::email('email' , null , ['placeholder' => 'Email', 'class' => 'form-control'])!!}
-                            </div>
-
-                            <div class="form-group">
-                                <label for="celular">Celular:</label>
-                                {!! Form::text('celular' , null , ['placeholder' => 'Celular', 'class' => 'form-control'])!!}
-                            </div>
-
-                            <div class="form-group">
-                                <label for="nascimento">Nascimento:</label>
-                                {!! Form::date('nascimento' , null , ['class' => 'form-control'])!!}
-                            </div>
 
                         </div>
 
