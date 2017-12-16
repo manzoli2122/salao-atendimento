@@ -165,12 +165,17 @@ class Atendimento extends Model
     
     public function getDatatable()
     {
-        return $this->select(['id',  DB::raw( " created_at as created_at " ) ,   DB::raw("concat( 'R$' , round( valor, 2 )) as valor")   ]);        
+        return DB::table('atendimentos_view')->whereNull('deleted_at')
+         ->select(['id', 'cliente', 'created_at' ,  'valor'   ]);        
     }
     
+
+
+
     public function getDatatableApagados()
     {
-        return $this->onlyTrashed()->select(['id', 'cliente_id',   DB::raw( " created_at as created_at " ) , DB::raw("concat( 'R$' , round( valor, 2 )) as valor") ]);        
+        return DB::table('atendimentos_view')->whereNotNull('deleted_at')
+        ->select(['id', 'cliente', 'created_at' ,  'valor'   ]);
     }
 
 
