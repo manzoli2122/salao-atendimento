@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
         Route::delete('clientes/apagados/{id}', 'ClienteController@destroySoft')->name('clientes.destroySoft');        
         Route::post('clientes/getDatatable/apagados', 'ClienteController@getDatatableApagados')->name('clientes.getDatatable.apagados');        
         Route::post('clientes/getDatatable', 'ClienteController@getDatatable')->name('clientes.getDatatable');             
-        Route::get('clientes/restore/{id}', 'ClienteController@restore')->name('clientes.restore');
+        Route::get('clientes/restore/{id}', 'ClienteController@restore')->name('clientes.restore');        
+        Route::get('clientes/{id}/atendendo', 'AtendimentoController@create_temp')->name('clientes.atender');
         Route::resource('clientes', 'ClienteController');
 
 
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('atendimentos/cancelar/{id}', 'AtendimentoController@cancelar')->name('atendimentos.cancelar');
         Route::post('atendimentos/finalizar/{id}', 'AtendimentoController@finalizar')->name('atendimentos.finalizar');
         
-        Route::get('atendimentos/cadastrar/usuarios/{id}', 'AtendimentoController@create_temp')->name('atendimentos.cadastrar');
+        
         Route::get('atendimentos/cadastrar/{id}', 'AtendimentoController@adicionarItens_temp')->name('atendimentos.adicionarItens');
         
         Route::post('atendimentos/cadastrar/servico', 'AtendimentoController@adicionarServico')->name('atendimentos.adicionarServico');

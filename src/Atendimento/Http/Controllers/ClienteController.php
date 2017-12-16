@@ -16,18 +16,20 @@ class ClienteController extends StandardAtivoController
     protected $view = "atendimento::clientes";  
     protected $view_apagados = "atendimento::clientes.apagados";  
     protected $route = "clientes";
-    protected $totalPage = 10;
+   
+
+
 
     public function __construct(Cliente $user){
         $this->model = $user; 
 
-        $this->middleware('permissao:clientes')->only([ 'index' , 'show' , 'pesquisar' ]) ;        
+        $this->middleware('permissao:clientes')->only([ 'index' , 'show' ]) ;        
         $this->middleware('permissao:clientes-cadastrar')->only([ 'create' , 'store']);
         $this->middleware('permissao:clientes-editar')->only([ 'edit' , 'update']);
         $this->middleware('permissao:clientes-soft-delete')->only([ 'destroySoft' ]);
         $this->middleware('permissao:clientes-restore')->only([ 'restore' ]);        
         $this->middleware('permissao:clientes-admin-permanete-delete')->only([ 'destroy' ]);
-        $this->middleware('permissao:clientes-apagados')->only([ 'indexApagados' , 'showApagado' , 'pesquisarApagados']) ;
+        $this->middleware('permissao:clientes-apagados')->only([ 'indexApagados' , 'showApagado' ]) ;
                             
     }
 
@@ -101,15 +103,14 @@ class ClienteController extends StandardAtivoController
         $models = $this->model->getDatatable();
         return Datatables::of($models)                
         ->addColumn('action', function($linha) {        
-            return  
-               
-                           '<a href="'.route("atendimentos.cadastrar", $linha->id).'" class="btn btn-success btn-xs" title="Atender"> <i class="fa fa-money"></i> Atender </a> '
+            return                 
+                           '<a href="'.route("{$this->route}.atender", $linha->id).'" class="btn btn-success btn-xs" title="Atender"> <i class="fa fa-money"></i> Atender </a> '
                             
                             . '<a href="'.route("{$this->route}.edit", $linha->id).'" class="btn btn-primary btn-xs" title="Editar"> <i class="fa fa-pencil"></i> </a> '
-                            
-                            .'<button data-id="'.$linha->id.'" btn-excluir type="button" class="btn btn-danger btn-xs" title="Excluir"> <i class="fa fa-times"></i> </button> '
-                            
+                                                        
                             . '<a href="'.route("{$this->route}.show", $linha->id).'" class="btn btn-primary btn-xs" title="Visualizar"> <i class="fa fa-search"></i> </a>'
+                            
+                            .'<button data-id="'.$linha->id.'" btn-excluir type="button" class="btn btn-danger btn-xs" title="Excluir" style="margin-left:3px"> <i class="fa fa-times"></i> </button> '
                             ;
                     })
                     ->make(true);

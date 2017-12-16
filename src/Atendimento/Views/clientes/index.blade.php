@@ -16,13 +16,13 @@
 
 <div class="col-xs-12">
     <div class="box box-success">
-        <div class="box-header align-right">
-			@permissao('produtos-cadastrar')
+		@permissao('clientes-cadastrar')
+        	<div class="box-header align-right">			
 				<a href="{{ route('clientes.create')}}" class="btn btn-success" title="Adicionar um novo clientes">
 					<i class="fa fa-plus"></i> Cadastrar cliente
-				</a>
-			@endpermissao            
-        </div>
+				</a>			            
+        	</div>
+		@endpermissao
 
         <div class="box-body">
             <table class="table table-bordered table-striped table-hover" id="datatable">
@@ -31,7 +31,7 @@
 						<th>ID</th>
 						<th pesquisavel>Nome</th>
 						<th>Divida</th>
-                        <th class="align-center">Ações</th>
+                        <th class="align-center" style="width:100px;">Ações</th>
                     </tr>
                 </thead>
             </table>
