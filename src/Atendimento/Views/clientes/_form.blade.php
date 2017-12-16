@@ -28,25 +28,13 @@
             <div class="form-group {{ $errors->has('nascimento') ? 'has-error' : ''}}">
                 <label for="nascimento">Nascimento</label>
                 <input type="date" class="form-control" name="nascimento" placeholder="Nascimento do Cliente"
-                    value="{{$model->nascimento or old('nascimento')}}">
+                    value="{{$model->nascimento ? $model->nascimento->format('Y-m-d') :  old('nascimento') }}">
                 {!! $errors->first('nascimento', '<p class="help-block">:message</p>') !!}
             </div>
 
 
 
-                         
-
-
-
-
-            
-            <!--div class="form-group {{ $errors->has('valor') ? 'has-error' : ''}}">
-                <label for="valor">Valor</label>
-                <input type="number" step="0.01" class="form-control" name="valor" placeholder="Valor"
-                    value="{{$model->valor or old('valor')}}">
-                {!! $errors->first('valor', '<p class="help-block">:message</p>') !!}
-            </div-->    
-
+             
 
         </div>
 
@@ -77,13 +65,6 @@
                         
 
 
-
-            <!--div class="form-group {{ $errors->has('desconto_maximo') ? 'has-error' : ''}}">
-                <label for="desconto_maximo">Desconto máximo (%)</label>
-                <input type="number" step="0.01" class="form-control" name="desconto_maximo" placeholder="Desconto máximo (%)"
-                    value="{{$model->desconto_maximo or old('desconto_maximo')}}">
-                {!! $errors->first('desconto_maximo', '<p class="help-block">:message</p>') !!}
-            </div-->
         </div> 
        
                      
