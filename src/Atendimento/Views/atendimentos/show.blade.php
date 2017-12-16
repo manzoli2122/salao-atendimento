@@ -2,14 +2,13 @@
 
 
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  ) 			
-		Cliente : <b> {{ $model->cliente->name}}
+		Cliente : <b> {{ $model->cliente->name}} </b>
 @endsection
 
 
 
 @section( Config::get('app.templateMasterContent' , 'contentMaster')  )    
-    <section class="row text-center atendimentos"> 
-
+   
         <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px;">
            <h3>Serviços</h3>
             @forelse($model->servicos as $servico) 
@@ -132,20 +131,9 @@
             @empty
             @endforelse 
 
-            <hr style="margin-top:15px;"> 
-             <h3 style="text-align:right;">Total R$ {{number_format($model->valor, 2 ,',', '') }} </h3>
+           
+            <h3 style="text-align:right;">Total R$ {{number_format($model->valor, 2 ,',', '') }} </h3>
+            <a class="btn btn-warning btn-sm" style="width:100%;" href="{{ URL::previous()}}">Voltar</a>
         </div>      
-
-
-
-
-       
-    </section>
-
-
-
-        <br>
-        <a class="btn btn-warning btn-sm" href="{{ URL::previous()}}">Voltar</a>
-
 
 @endsection

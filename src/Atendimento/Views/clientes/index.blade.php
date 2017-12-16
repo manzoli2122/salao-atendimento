@@ -18,7 +18,7 @@
     <div class="box box-success">
 		@permissao('clientes-cadastrar')
         	<div class="box-header align-right">			
-				<a href="{{ route('clientes.create')}}" class="btn btn-success" title="Adicionar um novo clientes">
+				<a href="{{ route('clientes.create')}}" class="btn btn-success btn-sm" title="Adicionar um novo clientes">
 					<i class="fa fa-plus"></i> Cadastrar cliente
 				</a>			            
         	</div>

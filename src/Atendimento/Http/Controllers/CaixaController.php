@@ -37,7 +37,7 @@ class CaixaController extends Controller
         $this->middleware('auth');
 
 
-        $this->middleware('permissao:atendimentos')->only([ 'index' ]) ;
+        $this->middleware('permissao:caixa')->only([ 'index' , 'pesquisar' ]) ;
         
     }
     
@@ -57,7 +57,7 @@ class CaixaController extends Controller
     {       
         $dataForm = $request->except('_token');
         $dataString = $dataForm['data'];
-        $models = $this->model->whereDate('created_at', $dataString )->get();        
+        $models = $this->model->whereDate('created_at', $dataString )->get();       
         
         $data = Carbon::createFromFormat('Y-m-d', $dataString);
         $caixa = new Caixa;

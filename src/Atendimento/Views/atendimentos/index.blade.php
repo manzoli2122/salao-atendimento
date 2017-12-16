@@ -1,7 +1,7 @@
 @extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 	
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )
-			Atendimentos do dia {{ today()->format('d/m/Y')}}  @if($apagados) Apagados @endif
+			Atendimentos do dia {{ today()->format('d/m/Y')}} 
 @endsection
 
 

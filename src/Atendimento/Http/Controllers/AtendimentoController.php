@@ -114,7 +114,7 @@ class AtendimentoController extends Controller
             return  redirect()->route("{$this->route}.showApagados",['id' => $id])->withErrors(['errors' => 'Falha ao Deletar']);
         }
     }
-*/.
+*/
 
     
 
