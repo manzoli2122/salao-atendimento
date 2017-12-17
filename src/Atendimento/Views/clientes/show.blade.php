@@ -59,9 +59,12 @@
 
         <div class="box-footer align-right" style="background:#ecf0f5">
 
+            <a href="{{route('clientes.atender', $model->id)}}" class="btn btn-success" title="Atender" remover-apos-excluir> 
+                <i class="fa fa-money"></i> Atender
+            </a>         
            
             @permissao('clientes-editar')
-                <a href="{{route('clientes.edit', $model->id)}}" class="btn btn-success" title="Editar" remover-apos-excluir> 
+                <a href="{{route('clientes.edit', $model->id)}}" class="btn btn-info" title="Editar" remover-apos-excluir> 
                     <i class="fa fa-pencil"></i> Editar
                 </a>
             @endpermissao
