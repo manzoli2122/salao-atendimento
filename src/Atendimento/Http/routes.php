@@ -39,6 +39,9 @@ use Illuminate\Support\Facades\Route;
         Route::get('atendimentos/remover/produto/{id}', 'AtendimentoController@removerProduto')->name('atendimentos.removerProduto');
 
 
+        Route::post('atendimentos/{id}/alterar/data', 'AtendimentoController@alterarData')->name('atendimentos.alterarData');
+        
+
 
         //Route::get('atendimentos/apagados/{id}', 'AtendimentoController@showApagado')->name('atendimentos.showapagado');        
        /// Route::get('atendimentos/apagados', 'AtendimentoController@indexApagados')->name('atendimentos.apagados');

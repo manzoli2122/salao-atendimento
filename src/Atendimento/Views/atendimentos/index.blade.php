@@ -25,7 +25,10 @@
 										<td>
 												@permissao('atendimentos')								
 														<a class="btn btn-success btn-sm" href='{{route("atendimentos.show", $model->id)}}'>
-															<i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>								
+															<i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>	
+														 <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alterarDataModal{{$model->id}}" > 
+															Alterar Data
+														</a>							
 												@endpermissao																
 											
 												@permissao('atendimentos-soft-delete')			
@@ -52,8 +55,12 @@
 				</div>
 				<!-- /.box -->
 				</div>
-			
 
+
+	@forelse($models as $model)	
+			@include('atendimento::atendimentos.modalAterarData')
+	@empty									
+	@endforelse
 
 @endsection
 

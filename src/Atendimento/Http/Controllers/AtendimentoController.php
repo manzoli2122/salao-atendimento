@@ -84,6 +84,37 @@ class AtendimentoController extends Controller
     }
    
 
+    public function alterarData(Request $request , $id)
+    {
+        $model = $this->model->find($id);
+
+        $data = $request->input('data');      
+
+           
+        
+        foreach($model->servicos as $servico){
+            $servico->created_at = $data;
+            $servico->save();
+        }
+        foreach($model->pagamentos as $pagamento){
+            $pagamento->created_at = $data;
+            $pagamento->save();
+            
+        }
+        foreach($model->produtos as $produto){
+            $produto->created_at = $data;
+            $produto->save();
+            
+        }
+
+        $model->created_at = $data;
+        $model->save();
+        
+        return redirect()->route('atendimentos.index');
+    }
+
+
+    
 
     /*
     public function restore($id)
