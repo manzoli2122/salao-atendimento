@@ -86,12 +86,9 @@ class AtendimentoController extends Controller
 
     public function alterarData(Request $request , $id)
     {
+
         $model = $this->model->find($id);
-
-        $data = $request->input('data');      
-
-           
-        
+        $data = $request->input('data');           
         foreach($model->servicos as $servico){
             $servico->created_at = $data;
             $servico->save();
@@ -103,13 +100,10 @@ class AtendimentoController extends Controller
         }
         foreach($model->produtos as $produto){
             $produto->created_at = $data;
-            $produto->save();
-            
+            $produto->save();            
         }
-
         $model->created_at = $data;
-        $model->save();
-        
+        $model->save();        
         return redirect()->route('atendimentos.index');
     }
 

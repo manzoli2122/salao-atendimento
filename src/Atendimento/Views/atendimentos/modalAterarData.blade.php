@@ -12,14 +12,14 @@
                 
                 <form method="post" action="{{route('atendimentos.alterarData', $model->id)}}" class="form form-search form-ds">
                           
-                    
+                    {{csrf_field()}}
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
 
                             <div class="form-group">
                                 <label for="funcionario_id">Data:</label>
                                 
-                                <input name="data" value="{{$model->created_at}}" type="date" >
+                                <input name="data" value="{{$model->created_at}}" type="date" class="form-control">
                             </div>
 
                         </div>
