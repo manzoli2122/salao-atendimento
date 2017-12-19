@@ -115,7 +115,7 @@ class AtendimentoController extends Controller
             //$produto->created_at->month = $data->month ;      
             //$produto->created_at->day = $data->day ;
             $produto->save();            
-        }
+        } 
         $model->created_at = $data;
         
        //$model->created_at->year = $data->year ;
