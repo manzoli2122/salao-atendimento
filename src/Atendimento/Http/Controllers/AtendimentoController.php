@@ -88,35 +88,41 @@ class AtendimentoController extends Controller
     {
 
         $model = $this->model->find($id);
-        $data = Carbon::createFromFormat('Y-m-d', $request->input('data') ) ;
+        //$data = Carbon::createFromFormat('Y-m-d', $request->input('data') ) ;
 
-        //$data = $request->input('data');           
+        $data = $request->input('data');           
         foreach($model->servicos as $servico){
-            //$servico->created_at = $data;
-            $servico->created_at->year = $data->year ;
-            $servico->created_at->month = $data->month ;      
-            $servico->created_at->day = $data->day ;
+            $servico->created_at = $data;
+            
+            //$servico->created_at->year = $data->year ;
+            //$servico->created_at->month = $data->month ;      
+            //$servico->created_at->day = $data->day ;
             $servico->save();
         }
         foreach($model->pagamentos as $pagamento){
-            //$pagamento->created_at = $data;
-            $pagamento->created_at->year = $data->year ;
-            $pagamento->created_at->month = $data->month ;      
-            $pagamento->created_at->day = $data->day ;
+            $pagamento->created_at = $data;
+            
+            //$pagamento->created_at->year = $data->year ;
+            //$pagamento->created_at->month = $data->month ;      
+            //$pagamento->created_at->day = $data->day ;
             $pagamento->save();
             
         }
         foreach($model->produtos as $produto){
-           // $produto->created_at = $data;
-            $produto->created_at->year = $data->year ;
-            $produto->created_at->month = $data->month ;      
-            $produto->created_at->day = $data->day ;
+            $produto->created_at = $data;
+            
+           //$produto->created_at->year = $data->year ;
+            //$produto->created_at->month = $data->month ;      
+            //$produto->created_at->day = $data->day ;
             $produto->save();            
         }
-       // $model->created_at = $data;
-        $model->created_at->year = $data->year ;
-        $model->created_at->month = $data->month ;      
-        $model->created_at->day = $data->day ;
+        $model->created_at = $data;
+        
+       //$model->created_at->year = $data->year ;
+        
+        //$model->created_at->month = $data->month ;      
+        //$model->created_at->day = $data->day ;
+        
         $model->save();        
         return redirect()->route('atendimentos.index');
     }
