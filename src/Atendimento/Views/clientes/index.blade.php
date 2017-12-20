@@ -1,7 +1,7 @@
 @extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )
-	Listagem dos Clientes			
+	Clientes			
 @endsection
 
 
@@ -12,20 +12,22 @@
 @endsection
 
 
+@section( Config::get('app.templateMasterContentTituloSmallRigth' , 'small-content-header-right')  )			
+		@permissao('clientes-cadastrar')
+        	<a href="{{ route('clientes.create')}}" class="btn btn-success btn-sm" title="Adicionar um novo clientes">
+					<i class="fa fa-plus"></i> Cadastrar cliente
+				</a>
+		@endpermissao
+@endsection
+
 @section( Config::get('app.templateMasterContent' , 'content')  )
 
 <div class="col-xs-12">
     <div class="box box-success">
-		@permissao('clientes-cadastrar')
-        	<div class="box-header align-right">			
-				<a href="{{ route('clientes.create')}}" class="btn btn-success btn-sm" title="Adicionar um novo clientes">
-					<i class="fa fa-plus"></i> Cadastrar cliente
-				</a>			            
-        	</div>
-		@endpermissao
+		
 
         <div class="box-body">
-            <table class="table table-bordered table-striped table-hover" id="datatable">
+            <table class="table table-bordered table-striped table-hover table-responsive" id="datatable">
                 <thead>
                     <tr>
 						<th>ID</th>
@@ -48,6 +50,13 @@
 	<script>
 		$(document).ready(function() {
 			var dataTable = datatablePadrao('#datatable', {
+					
+				//dom: '<"top"if>rt<"bottom"p><"clear">',
+
+				dom: "<'row'<'col-xs-12'<'col-xs-12'f>>>"+
+            		 "<'row'<'col-xs-12't>>"+
+            		 "<'row'<'col-xs-12'p>>",
+
 				order: [[ 1, "asc" ]],
 				ajax: { 
 					url:'{{ route('clientes.getDatatable') }}'
