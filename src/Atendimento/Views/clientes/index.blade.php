@@ -30,10 +30,10 @@
             <table class="table table-bordered table-striped table-hover table-responsive" id="datatable">
                 <thead>
                     <tr>
-						<th>ID</th>
-						<th pesquisavel>Nome</th>
+						
+						<th>Nome</th>
 						<th>Divida</th>
-                        <th class="align-center" style="width:180px;">Ações</th>
+                        <th class="align-center" style="width:180px;min-width: 160px;">Ações</th>
                     </tr>
                 </thead>
             </table>
@@ -57,12 +57,12 @@
             		 "<'row'<'col-xs-12't>>"+
             		 "<'row'<'col-xs-12'p>>",
 
-				order: [[ 1, "asc" ]],
+				order: [[ 0, "asc" ]],
 				ajax: { 
 					url:'{{ route('clientes.getDatatable') }}'
 				},
 				columns: [
-					{ data: 'id', name: 'id' },
+					
 					{ data: 'name', name: 'name' },
 				
 					{ data: 'valor', name: 'valor', searchable: false,   class: "price"},

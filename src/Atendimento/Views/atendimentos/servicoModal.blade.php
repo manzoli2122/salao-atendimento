@@ -90,19 +90,15 @@
 
 
 
-                    <div class="row">
-                        <div class="col-5 col-md-5">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
+                   
                         
-                        <div class="col-5 col-md-5 ml-auto">
-                            <div class="form-group">
-                                {!! Form::submit('Enviar' , ['class' => 'btn btn-success']) !!}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                       
+                            <input type="submit" name="Enviar" style="float: right;" class="btn btn-success">
+                            
+                           
+                           
+
                 {!! Form::close()!!}
 
       

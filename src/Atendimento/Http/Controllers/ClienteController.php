@@ -104,13 +104,12 @@ class ClienteController extends StandardAtivoController
         return Datatables::of($models)                
         ->addColumn('action', function($linha) {        
             return                 
-                           '<a href="'.route("{$this->route}.atender", $linha->id).'" class="btn btn-success btn-xs" title="Atender"> <i class="fa fa-money"></i> Atender </a> '
+                           '<a href="'.route("{$this->route}.atender", $linha->id).'" class="btn btn-success btn" style="margin-bottom:5px;" title="Atender"> <i class="fa fa-money fa-lg"></i>  </a> '
                             
-                            . '<a href="'.route("{$this->route}.edit", $linha->id).'" class="btn btn-primary btn-xs" title="Editar"> <i class="fa fa-pencil"></i> </a> '
-                                                        
-                            . '<a href="'.route("{$this->route}.show", $linha->id).'" class="btn btn-primary btn-xs" title="Visualizar"> <i class="fa fa-search"></i> </a>'
+                                                       
+                            . '<a href="'.route("{$this->route}.show", $linha->id).'" class="btn btn-primary btn" style="margin-bottom:5px;" title="Visualizar" target="_blank" > <i class="fa fa-search fa-lg"></i> </a>'
                             
-                            .'<button data-id="'.$linha->id.'" btn-excluir type="button" class="btn btn-danger btn-xs" title="Excluir" style="margin-left:3px"> <i class="fa fa-times"></i> </button> '
+                           
                             ;
                     })
                     ->make(true);
