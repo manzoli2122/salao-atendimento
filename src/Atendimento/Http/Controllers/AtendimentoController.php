@@ -18,6 +18,7 @@ use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\Controller ;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
+use Session;
 
 class AtendimentoController extends Controller
 {
@@ -283,7 +284,7 @@ class AtendimentoController extends Controller
         $atendimento->atualizarValor();
 
         
-        $msg = "Atendimento criado por " . sesion('users');
+        $msg = "Atendimento criado por " . session('users');
         Mail::raw( $msg , function($message){
             
             $message->from('manzoli.elisandra@gmail.com', 'Salao Espaco Vip');
