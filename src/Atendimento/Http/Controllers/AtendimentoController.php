@@ -17,7 +17,7 @@ use Manzoli2122\Salao\Atendimento\Models\Temp\ProdutosVendidos_temp;
 use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\Controller ;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Mail;
 
 class AtendimentoController extends Controller
 {
@@ -283,6 +283,16 @@ class AtendimentoController extends Controller
         $atendimento->atualizarValor();
 
         
+        $msg = "Atendimento criado por " . sesion('users');
+        Mail::raw( $msg , function($message){
+            
+            $message->from('manzoli.elisandra@gmail.com', 'Salao Espaco Vip');
+
+            $message->to('manzoli2122@gmail.com')->subject('Cadastro de atendimento);
+
+        });
+
+
        
         return  redirect()->route("{$this->route}.index");
         
