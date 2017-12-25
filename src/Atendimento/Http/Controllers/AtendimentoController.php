@@ -288,7 +288,7 @@ class AtendimentoController extends Controller
             
             $message->from('manzoli.elisandra@gmail.com', 'Salao Espaco Vip');
 
-            $message->to('manzoli2122@gmail.com')->subject('Cadastro de atendimento);
+            $message->to('manzoli2122@gmail.com')->subject('Cadastro de atendimento');
 
         });
 
