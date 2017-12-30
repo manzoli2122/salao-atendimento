@@ -18,6 +18,7 @@ use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\Controller ;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
+use ChannelLog as Log;
 use Session;
 
 class AtendimentoController extends Controller
@@ -37,6 +38,7 @@ class AtendimentoController extends Controller
     protected $view = "atendimento::atendimentos";
     protected $route = "atendimentos";
 
+    protected $logCannel = 'atendimento' ;
     
 
     public function __construct(Pagamento $pagamento , Atendimento $atendimento  , Pagamento_temp $pagamento_temp ,
@@ -91,7 +93,13 @@ class AtendimentoController extends Controller
         $model = $this->model->find($id);
         //$data = Carbon::createFromFormat('Y-m-d', $request->input('data') ) ;
 
-        $data = $request->input('data');           
+        $data = $request->input('data');  
+        $data = $data . " 12:00:00";
+        
+        $msg =  "ATENDIMENTO NÚMERO (ID) ". $model->id  .   " - ALTERAÇÃO DE DATA - DE " . $model->created_at . " PARA " . $data  . ' responsavel: ' . session('users') ;
+        
+
+
         foreach($model->servicos as $servico){
             $servico->created_at = $data;
             
@@ -124,7 +132,10 @@ class AtendimentoController extends Controller
         //$model->created_at->month = $data->month ;      
         //$model->created_at->day = $data->day ;
         
-        $model->save();        
+        $model->save();  
+        
+        Log::write( $this->logCannel , $msg  );
+
         return redirect()->route('atendimentos.index');
     }
 
