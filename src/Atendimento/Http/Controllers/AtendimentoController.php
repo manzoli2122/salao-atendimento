@@ -188,7 +188,7 @@ class AtendimentoController extends Controller
         $delete = $model->delete();
 
         if($delete){
-            
+
             $msg2 =  "DELETEs - " . $this->name . ' apagado(a) com sucesso !! ' . $model . ' responsavel: ' . session('users') ;
             Log::write( $this->logCannel , $msg2  ); 
 
@@ -282,15 +282,20 @@ class AtendimentoController extends Controller
         
         $atendimento->atualizarValor();
 
+
+        $msg =  "CREATEs - " . $this->name . ' Cadastrado(a) com sucesso !! ' . $atendimento . ' responsavel: ' . session('users') ;
+        Log::write( $this->logCannel , $msg  );
         
-        $msg = "Atendimento criado por " . session('users');
-        Mail::raw( $msg , function($message){
+
+
+        //$msg = "Atendimento criado por " . session('users');
+      //  Mail::raw( $msg , function($message){
             
-            $message->from('manzoli.elisandra@gmail.com', 'Salao Espaco Vip');
+        //    $message->from('manzoli.elisandra@gmail.com', 'Salao Espaco Vip');
 
-            $message->to('manzoli2122@gmail.com')->subject('Cadastro de atendimento');
+          //  $message->to('manzoli2122@gmail.com')->subject('Cadastro de atendimento');
 
-        });
+        //});
 
 
        
