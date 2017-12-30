@@ -95,43 +95,26 @@ class AtendimentoController extends Controller
 
         $data = $request->input('data');  
         $data = $data . " 12:00:00";
-        
+
         $msg =  "ATENDIMENTO NÚMERO (ID) ". $model->id  .   " - ALTERAÇÃO DE DATA - DE " . $model->created_at . " PARA " . $data  . ' responsavel: ' . session('users') ;
         
 
 
         foreach($model->servicos as $servico){
             $servico->created_at = $data;
-            
-            //$servico->created_at->year = $data->year ;
-            //$servico->created_at->month = $data->month ;      
-            //$servico->created_at->day = $data->day ;
             $servico->save();
         }
         foreach($model->pagamentos as $pagamento){
             $pagamento->created_at = $data;
-            
-            //$pagamento->created_at->year = $data->year ;
-            //$pagamento->created_at->month = $data->month ;      
-            //$pagamento->created_at->day = $data->day ;
             $pagamento->save();
             
         }
         foreach($model->produtos as $produto){
             $produto->created_at = $data;
-            
-           //$produto->created_at->year = $data->year ;
-            //$produto->created_at->month = $data->month ;      
-            //$produto->created_at->day = $data->day ;
             $produto->save();            
         } 
         $model->created_at = $data;
-        
-       //$model->created_at->year = $data->year ;
-        
-        //$model->created_at->month = $data->month ;      
-        //$model->created_at->day = $data->day ;
-        
+                
         $model->save();  
         
         Log::write( $this->logCannel , $msg  );
