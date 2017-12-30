@@ -114,7 +114,7 @@ class AtendimentoController extends Controller
             $produto->save();            
         } 
         $model->created_at = $data;
-                
+
         $model->save();  
         
         Log::write( $this->logCannel , $msg  );
@@ -186,7 +186,12 @@ class AtendimentoController extends Controller
         }
 
         $delete = $model->delete();
+
         if($delete){
+            
+            $msg2 =  "DELETEs - " . $this->name . ' apagado(a) com sucesso !! ' . $model . ' responsavel: ' . session('users') ;
+            Log::write( $this->logCannel , $msg2  ); 
+
             return redirect()->route("{$this->route}.index");
         }
         else{
