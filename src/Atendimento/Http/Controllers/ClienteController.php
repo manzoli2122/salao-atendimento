@@ -17,12 +17,12 @@ class ClienteController extends StandardAtivoController
     protected $view_apagados = "atendimento::clientes.apagados";  
     protected $route = "clientes";
    
-
+    protected $logCannel;
 
 
     public function __construct(Cliente $user){
         $this->model = $user; 
-
+        $this->logCannel = 'atendimento';
         $this->middleware('permissao:clientes')->only([ 'index' , 'show' ]) ;        
         $this->middleware('permissao:clientes-cadastrar')->only([ 'create' , 'store']);
         $this->middleware('permissao:clientes-editar')->only([ 'edit' , 'update']);
@@ -53,6 +53,8 @@ class ClienteController extends StandardAtivoController
         }        
         $insert = $this->model->create($dataForm);           
         if($insert){
+            $msg =  "CREATEs - " . $this->name . ' Cadastrado(a) com sucesso !! ' . $insert . ' responsavel: ' . session('users') ;
+            Log::write( $this->logCannel , $msg  );
             return redirect()->route("{$this->route}.show", ['id' => $insert->id])->with(['success' => 'Cadastro realizado com sucesso']);
         }
         else {
@@ -81,6 +83,9 @@ class ClienteController extends StandardAtivoController
         }       
         $update = $model->update($dataForm);                
         if($update){
+
+            $msg =  "UPDATEs- " . $this->name . ' alterado(a) com sucesso !! ' . $update . ' responsavel: ' . session('users') ;
+            Log::write( $this->logCannel , $msg  );
             return redirect()->route("{$this->route}.show", ['id'=> $id] )->with(['success' => 'Alteração realizada com sucesso']);
         }        
         else {

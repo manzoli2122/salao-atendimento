@@ -17,7 +17,7 @@ use Manzoli2122\Salao\Atendimento\Models\Temp\ProdutosVendidos_temp;
 use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\Controller ;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Mail;
+//use Mail;
 use ChannelLog as Log;
 use Session;
 
@@ -56,15 +56,11 @@ class AtendimentoController extends Controller
         $this->produtosVendidos = $produtosVendidos;
         $this->middleware('auth');
 
-
         $this->middleware('permissao:atendimentos')->only([ 'index' , 'show' ]) ;       
         $this->middleware('permissao:atendimentos-soft-delete')->only([ 'destroySoft' ]);
         $this->middleware('permissao:atendimentos-restore')->only([ 'restore' ]);        
         $this->middleware('permissao:atendimentos-admin-permanete-delete')->only([ 'destroy' ]);
-        $this->middleware('permissao:atendimentos-apagados')->only([ 'indexApagados' , 'showApagado' ]) ;
-                               
-
-        
+        $this->middleware('permissao:atendimentos-apagados')->only([ 'indexApagados' , 'showApagado' ]) ;      
 
     }
     
@@ -124,40 +120,6 @@ class AtendimentoController extends Controller
 
 
     
-
-    /*
-    public function restore($id)
-    {
-        $model = $this->model->withTrashed()->find($id);
-        $model->atualizarValor();
-
-        if(!$model->arquivado){
-            return redirect()->route("{$this->route}.apagados");    
-        }
-
-
-        foreach( $this->atendimentoFuncionario->withTrashed()->where('atendimento_id' , $id)->get() as $servico){
-            $servico->restore();
-        }
-        foreach($this->pagamento->withTrashed()->where('atendimento_id' , $id)->get() as $pagamento){
-            $pagamento->restore();
-        }
-        foreach($this->produtosVendidos->withTrashed()->where('atendimento_id' , $id)->get() as $produto){
-            $produto->restore();
-        }
-
-        $restore = $model->restore();
-        if($restore){
-            return redirect()->route("{$this->route}.index");
-        }
-        else{
-            return  redirect()->route("{$this->route}.showApagados",['id' => $id])->withErrors(['errors' => 'Falha ao Deletar']);
-        }
-    }
-*/
-
-    
-
 
 
     public function destroySoft($id)
