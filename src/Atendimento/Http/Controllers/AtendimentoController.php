@@ -77,44 +77,53 @@ class AtendimentoController extends Controller
     public function show($id)
     {
         $model = $this->model->find($id);
+        if(!$model){
+            return redirect()->route("{$this->route}.index")->withErrors(['message' => __('msg.erro_nao_encontrado', ['1' => $this->name ])]);
+        } 
+
         if( $model->created_at->isToday() )
             return view("{$this->view}.show", compact('model'));
+
+
         return redirect()->route('atendimentos.index');
     }
    
 
     public function alterarData(Request $request , $id)
     {
-
         $model = $this->model->find($id);
-        //$data = Carbon::createFromFormat('Y-m-d', $request->input('data') ) ;
-
-        $data = $request->input('data');  
-        $data = $data . " 12:00:00";
-
-        $msg =  "ATENDIMENTO NÚMERO (ID) ". $model->id  .   " - ALTERAÇÃO DE DATA - DE " . $model->created_at . " PARA " . $data  . ' responsavel: ' . session('users') ;
         
+        if(!$model){
+            return redirect()->route("{$this->route}.index")->withErrors(['message' => __('msg.erro_nao_encontrado', ['1' => $this->name ])]);
+        } 
 
+        if( $model->created_at->isToday() ){
 
-        foreach($model->servicos as $servico){
-            $servico->created_at = $data;
-            $servico->save();
-        }
-        foreach($model->pagamentos as $pagamento){
-            $pagamento->created_at = $data;
-            $pagamento->save();
+            $data = $request->input('data');  
+            $data = $data . " 12:00:00";
+            $msg =  "ATENDIMENTO NÚMERO (ID) ". $model->id  .   " - ALTERAÇÃO DE DATA - DE " . $model->created_at . " PARA " . $data  . ' responsavel: ' . session('users') ;
+            
+            foreach($model->servicos as $servico){
+                $servico->created_at = $data;
+                $servico->save();
+            }
+            foreach($model->pagamentos as $pagamento){
+                $pagamento->created_at = $data;
+                $pagamento->save();
+                
+            }
+            foreach($model->produtos as $produto){
+                $produto->created_at = $data;
+                $produto->save();            
+            } 
+            $model->created_at = $data;
+    
+            $model->save();  
+            
+            Log::write( $this->logCannel , $msg  );
             
         }
-        foreach($model->produtos as $produto){
-            $produto->created_at = $data;
-            $produto->save();            
-        } 
-        $model->created_at = $data;
-
-        $model->save();  
         
-        Log::write( $this->logCannel , $msg  );
-
         return redirect()->route('atendimentos.index');
     }
 
