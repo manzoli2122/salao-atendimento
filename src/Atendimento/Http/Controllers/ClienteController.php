@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Manzoli2122\Salao\Atendimento\Models\Cliente;
 use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\StandardAtivoController ;
 use DataTables;
-
+use ChannelLog as Log;
 
 class ClienteController extends StandardAtivoController
 {
