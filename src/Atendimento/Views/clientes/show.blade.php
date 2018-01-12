@@ -15,6 +15,11 @@
 <div class="col-md-12">
     <div class="box box-success">
         <div class="box-body" style="background:#ecf0f5">
+
+                <div class="alert alert-default alert-dismissible align-center invisivel" id="divAlerta">
+                        <label>Excluído</label>
+                    </div>
+
             <div class="box-header">			
 				<h2>Atendimentos</h2>
         	</div>
@@ -62,7 +67,13 @@
             <a href="{{route('clientes.atender', $model->id)}}" class="btn btn-success" title="Atender" remover-apos-excluir> 
                 <i class="fa fa-money"></i> Atender
             </a>         
-           
+            
+            <button type="button" class="btn btn-danger" id='btnExcluir' remover-apos-excluir>
+                    <i class="fa fa-times"></i> Excluir
+                </button>
+
+            
+
             @permissao('clientes-editar')
                 <a href="{{route('clientes.edit', $model->id)}}" class="btn btn-info" title="Editar" remover-apos-excluir> 
                     <i class="fa fa-pencil"></i> Editar
@@ -82,3 +93,19 @@
 
 @endsection
 
+
+@push('scripts')
+
+<script>
+    $(document).ready(function() {
+        $('#btnExcluir').click(function (){
+            excluirRecursoPeloId({{$model->id}}, "@lang('msg.conf_excluir_o', ['1' => 'tipo de seção'])", "{{route('clientes.apagados')}}", 
+                function(){
+                    $('[remover-apos-excluir]').remove();
+                    $('#divAlerta').slideDown();
+                }
+            );
+        });
+    });
+</script>
+@endpush
