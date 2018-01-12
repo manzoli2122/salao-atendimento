@@ -94,7 +94,7 @@
 @endsection
 
 
-@push('scripts')
+@push(Config::get('app.templateMasterScript' , 'script'))
 
 <script>
     $(document).ready(function() {
