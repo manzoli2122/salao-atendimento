@@ -62,4 +62,10 @@ class Pagamento extends Model
     }
 
 
+
+    public function getValor()
+    {
+        return "R$" .  number_format($this->valor, 2 , ',' , '' ) ;
+    }
+
 }
