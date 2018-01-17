@@ -68,4 +68,17 @@ class Pagamento extends Model
         return "R$ " .  number_format($this->valor, 2 , ',' , '' ) ;
     }
 
+    public function getDatatable()
+    {
+        return $this->select(['id', 'created_at' ,  'operadora_confirm' , 'formaPagamento' , 
+                        DB::raw(  " concat('R$', ROUND  (valor , 2 ) ) as valor" )   ]);        
+    }
+
+    public function getDatatable1()
+    {
+        return $this->ativo()->select(['id', 'nome',  DB::raw(  " concat('R$', ROUND  (valor , 2 ) ) as valor" )  ,
+        'observacoes' , DB::raw(  " concat( desconto_maximo , '%' ) as desconto_maximo" )  ]);        
+    }
+    
+
 }
