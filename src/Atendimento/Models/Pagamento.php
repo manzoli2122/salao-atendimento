@@ -71,7 +71,7 @@ class Pagamento extends Model
 
     public function getDatatable()
     {
-        return $this->where('operadora_confirm', true )->select(['id',   DB::raw(  " date_format( created_at , '%d-%m-%Y' ) as created_atd" )   ,  'operadora_confirm' , 'formaPagamento' , 
+        return $this->where('operadora_confirm', false )->select(['id',   DB::raw(  " date_format( created_at , '%d-%m-%Y' ) as created_atd" )   ,  'operadora_confirm' , 'formaPagamento' , 
                         DB::raw(  " concat('R$', ROUND  (valor , 2 ) ) as valor" )   ]);        
     }   
 
