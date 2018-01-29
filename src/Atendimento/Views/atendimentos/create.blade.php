@@ -1,17 +1,12 @@
 @extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 
-
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )			
-		Cliente : {{ $atendimento->cliente->name}} 
+	Cliente : {{ $atendimento->cliente->name}} 
 @endsection
 
-
 @section( Config::get('app.templateMasterContent' , 'content')  )
-
-    
-
-    <section class=" text-center buttons" style="margin-bottom:1px;">
-        
+  
+    <section class=" text-center buttons" style="margin-bottom:1px;">        
         <div class="col-12 col-sm-4 button" style="margin-bottom:10px;">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#servicoModal" style="width: 100%;">
                 <b>Adicionar Serviço</b>
@@ -25,27 +20,13 @@
         <div class="col-12 col-sm-4 button" style="margin-bottom:10px;">
              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pagamentoModal" style="width: 100%;">
                 <b>Adicionar Pagamento</b>
-            </button>
-           
-        </div>
-       
+            </button>           
+        </div>       
     </section>
 
-    
-     
-
-
-
-
-
-    
     <section class=" text-center atendimentos"> 
-
-        <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px;">
-           
+        <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px;">           
             @forelse($atendimento->servicos as $servico) 
-
-
                 <div class="row">        
                     <div class="col-md-12">
                         <div class="box box-success">
@@ -56,33 +37,26 @@
                                 </div>                            
                             </div>                        
                             <div class="box-body">                               
-                                    <div class="direct-chat-msg">
-                                        <div class="direct-chat-info clearfix">                               
-                                            <span class="pull-right">Funcionário: {{$servico->funcionario->apelido}}</span>
-                                            <span class="pull-left">R${{   number_format(  $servico->valorUnitario() , 2 ,',', '')  }} / Unid.</span>
-                                        </div>
-                                        <div class="direct-chat-info clearfix">                               
-                                            <span class="pull-left"> quant.: {{$servico->quantidade}} </span>
-                                            <span class="pull-right badge bg-green"> Total R${{ number_format($servico->valor() , 2 ,',', '')}} </span>
-                                        </div>
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-info clearfix">                               
+                                        <span class="pull-right">Funcionário: {{$servico->funcionario->apelido}}</span>
+                                        <span class="pull-left">R${{   number_format(  $servico->valorUnitario() , 2 ,',', '')  }} / Unid.</span>
                                     </div>
+                                    <div class="direct-chat-info clearfix">                               
+                                        <span class="pull-left"> quant.: {{$servico->quantidade}} </span>
+                                        <span class="pull-right badge bg-green"> Total R${{ number_format($servico->valor() , 2 ,',', '')}} </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>                    
                 </div>
-
 			@empty
-			
 			@endforelse  
-           
         </div>
-        
-
-        
-        <div class="col-12 col-sm-4 produtos" style="margin-bottom:0px;">
-                     
+    
+        <div class="col-12 col-sm-4 produtos" style="margin-bottom:0px;">                     
             @forelse($atendimento->produtos as $produto)
-
                 <div class="row">        
                     <div class="col-md-12">
                         <div class="box box-info">
@@ -93,34 +67,26 @@
                                 </div>                            
                             </div>                        
                             <div class="box-body">                               
-                                    <div class="direct-chat-msg">
-                                        <div class="direct-chat-info clearfix">                               
-                                            <span class="pull-left"> R${{   number_format(  $produto->valorUnitario() , 2 ,',', '')  }} / Unid. </span>
-                                            <span class="pull-right"></span>
-                                        </div>
-                                        <div class="direct-chat-info clearfix">                               
-                                            <span class="pull-left"> quant.: {{$produto->quantidade}} </span>
-                                            <span class="pull-right badge bg-blue"> Total R${{ number_format($produto->valor() , 2 ,',', '')}} </span>
-                                        </div>
+                                <div class="direct-chat-msg">
+                                    <div class="direct-chat-info clearfix">                               
+                                        <span class="pull-left"> R${{   number_format(  $produto->valorUnitario() , 2 ,',', '')  }} / Unid. </span>
+                                        <span class="pull-right"></span>
                                     </div>
+                                    <div class="direct-chat-info clearfix">                               
+                                        <span class="pull-left"> quant.: {{$produto->quantidade}} </span>
+                                        <span class="pull-right badge bg-blue"> Total R${{ number_format($produto->valor() , 2 ,',', '')}} </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>                    
-                </div>
-               
-			@empty
-			
+                </div>               
+			@empty			
 			@endforelse  
             <hr style="margin-top:15px;">
         </div>
 
-
-
-
-
-
-        <div class="col-12 col-sm-4 pagamentos">            
-            
+        <div class="col-12 col-sm-4 pagamentos">    
             @forelse($atendimento->pagamentos as $pagamento)
                 <div class="row">        
                     <div class="col-md-12">
@@ -172,12 +138,15 @@
 
                 <div class="col-md-12">
                     <p style="margin-bottom:20px; margin-top:10px">
-                        {!! Form::open(['route' => ["atendimentos.finalizar" , $atendimento->id ], 'class' => 'form form-search form-ds' , 'onsubmit' => " return  finalizarSend(this) "])!!}
-                        {!! Form::submit('Finalizar' , ['class' => 'btn btn-success', 'style' => 'width: 100%;' ]) !!}
-                            {{ Form::hidden('total_atendimento', $atendimento->valor ) }}
-                            {{ Form::hidden('total_pagamento', $atendimento->valorPagamentos() ) }}          
-
-                        {!! Form::close()!!}
+                        <form class="form form-search form-ds" method="post" action="{{route('atendimentos.finalizar', $atendimento->id)}}" onsubmit="return  finalizarSend(this)">
+                            {{csrf_field()}}
+                        
+                            <input name="total_pagamento" value="{{$atendimento->valor}}" type="hidden">
+                            <input name="total_pagamento" value="{{$atendimento->valorPagamentos()}}" type="hidden">
+                            <button type="submit" class="btn btn-success" style="width: 100%;" >
+                                <i class="fa fa-check"></i> Finalizar
+                            </button>
+                        </form>
                     </p>
                 </div>
 
