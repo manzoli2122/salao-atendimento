@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="pagamentoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -7,16 +6,13 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Adicionar Pagamento</h4>                
             </div>
-            <div class="modal-body">        
-                {!! Form::open(['route' => 'atendimentos.adicionarPagamento', 'class' => 'form form-search form-ds'])!!}
-               
-                    {{ Form::hidden('atendimento_id',  $atendimento->id ) }}
-                    {{ Form::hidden('cliente_id',  $atendimento->cliente->id ) }}
-
+            <div class="modal-body">   
+                <form class="form form-search form-ds" method="post" action="{{route('atendimentos.adicionarPagamento')}}" >
+                        {{csrf_field()}}
+                    <input name="atendimento_id" value="{{$atendimento->id}}" type="hidden">
+                    <input name="cliente_id" value="{{$atendimento->cliente->id}}" type="hidden">                 
                     <div class="row">
                         <div class="col-md-6">
-
-
                             <div class="form-group">
                                 <label for="formaPagamento">Pagamento:</label>
                                 <select class="form-control" name="formaPagamento" required onchange="myFunction(this.value)">
@@ -30,9 +26,6 @@
                                         <option value="fiado"> Fiado  </option>                           
                                 </select> 
                             </div>
-
-
-
                             <div class="form-group" id="form-operadora" hidden>
                                 <label for="operadora_id">Operadora:</label>
                                 <select class="form-control" id="operadora_id" name="operadora_id" >
@@ -42,8 +35,6 @@
                                         @endforeach
                                 </select> 
                             </div>
-
-
                             <div class="form-group" id="form-parcelas" hidden>
                                 <label for="parcelas">Parcelas:</label>
                                 <select class="form-control" id="parcelas" name="parcelas" >
@@ -53,15 +44,13 @@
                                         <option value="3"> 3  </option>                               
                                 </select> 
                             </div>
-
                         </div>
-
-
                         <div class="col-md-6">
                    
 
                             <div class="form-group"  >
                                 <label for="valor" class="col-form-label">Valor:</label>
+                                
                                 {!! Form::number('valor', ($atendimento->valor - $atendimento->valorPagamentos()) , ['placeholder' => 'valor', 'step' => '0.01', 'class' => 'form-control', 'required', 'min'=> 0 , 'max' => ($atendimento->valor - $atendimento->valorPagamentos()) ]) !!} 
                             </div>
 

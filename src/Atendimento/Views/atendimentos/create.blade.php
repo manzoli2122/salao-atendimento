@@ -137,7 +137,7 @@
                     <p style="margin-bottom:20px; margin-top:10px">
                         <form class="form form-search form-ds" method="post" action="{{route('atendimentos.finalizar', $atendimento->id)}}" onsubmit="return  finalizarSend(this)">
                             {{csrf_field()}}                        
-                            <input name="total_pagamento" value="{{$atendimento->valor}}" type="hidden">
+                            <input name="total_atendimento" value="{{$atendimento->valor}}" type="hidden">
                             <input name="total_pagamento" value="{{$atendimento->valorPagamentos()}}" type="hidden">
                             <button type="submit" class="btn btn-success" style="width: 100%;" >
                                 <i class="fa fa-check"></i> Finalizar
