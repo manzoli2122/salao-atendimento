@@ -18,7 +18,7 @@
 					@forelse($models as $model)				
 					<tr>
 						<td> {{ $model->cliente->name }}  </td>						
-							<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>
+						<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>
 						<td>
 							@permissao('atendimentos')								
 								<a class="btn btn-success btn-sm" href='{{route("atendimentos.show", $model->id)}}'>
@@ -41,15 +41,13 @@
 					@empty					
 					@endforelse					
 				</table>
-			</div>					<!-- /.box-body -->
-		</div>				<!-- /.box -->
+			</div>					
+		</div>				
 	</div>
-
 	@forelse($models as $model)	
 			@include('atendimento::atendimentos.modalAterarData')
 	@empty									
 	@endforelse
-
 @endsection
 		
 @push( Config::get('app.templateMasterScript' , 'script')  )
@@ -60,9 +58,6 @@
             }
 		</script>
 @endpush
-
-
-
 		
 @push( Config::get('app.templateMasterCss' , 'css')  )			
 			<style type="text/css">
