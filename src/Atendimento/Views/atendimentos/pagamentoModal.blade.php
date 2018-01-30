@@ -48,7 +48,7 @@
                         <div class="col-md-6">
                             <div class="form-group"  >
                                 <label for="valor" class="col-form-label">Valor:</label>
-                                <input placeholder="valor" step="0.01" class="form-control" required="" min="0" max="{{($atendimento->valor - $atendimento->valorPagamentos()) ])}}" name="valor" value="{{($atendimento->valor - $atendimento->valorPagamentos())}}" type="number">
+                                <input placeholder="valor" step="0.01" class="form-control" required="" min="0" max="{{ ($atendimento->valor - $atendimento->valorPagamentos()) }}" name="valor" value="{{($atendimento->valor - $atendimento->valorPagamentos())}}" type="number">
                             </div>
                             <div class="form-group" id="form-bandeira" hidden>
                                 <label for="bandeira">bandeira:</label>
