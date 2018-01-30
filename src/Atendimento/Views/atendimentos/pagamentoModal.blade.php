@@ -46,14 +46,10 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                   
-
                             <div class="form-group"  >
                                 <label for="valor" class="col-form-label">Valor:</label>
-                                
-                                {!! Form::number('valor', ($atendimento->valor - $atendimento->valorPagamentos()) , ['placeholder' => 'valor', 'step' => '0.01', 'class' => 'form-control', 'required', 'min'=> 0 , 'max' => ($atendimento->valor - $atendimento->valorPagamentos()) ]) !!} 
+                                <input placeholder="valor" step="0.01" class="form-control" required="" min="0" max="{{($atendimento->valor - $atendimento->valorPagamentos()) ])}}" name="valor" value="{{($atendimento->valor - $atendimento->valorPagamentos())}}" type="number">
                             </div>
-
                             <div class="form-group" id="form-bandeira" hidden>
                                 <label for="bandeira">bandeira:</label>
                                 <select class="form-control"  id="bandeira" name="bandeira" >
@@ -63,49 +59,28 @@
                                         <option value="mastercard">  MasterCard </option>
                                         <option value="Maestro">  Maestro </option>
                                         <option value="Elo">  Elo </option>
-                                        <option value="outras">  Outras </option>
-                                    
+                                        <option value="outras">  Outras </option>                                    
                                 </select> 
                             </div>
-
                             <div class="form-group">
                                 <label for="observacoes">observacoes:</label>
-                                {!! Form::text('observacoes' , null , ['placeholder' => 'observacoes', 'class' => 'form-control'])!!}
+                                <input placeholder="observacoes" class="form-control" name="observacoes" type="text">                                
                             </div>
-
-
-
                         </div>
-
                     </div>
-
-                    
-
-                    
-
-
 
                     <div class="row">
                         <div class="col-5 col-md-5">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                        
+                        </div>                        
                         <div class="col-5 col-md-5 ml-auto">
                             <div class="form-group">
-                                {!! Form::submit('Enviar' , ['class' => 'btn btn-success']) !!}
+                                <input class="btn btn-success" value="Enviar" type="submit">
                             </div>
                         </div>
-                    </div>
-                    
-                    
-                {!! Form::close()!!}
-
-      
-      
-            </div>
-
-            
+                    </div>                          
+                </form>      
+            </div>            
         </div>
     </div>
 </div>
-
