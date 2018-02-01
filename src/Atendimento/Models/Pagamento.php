@@ -72,7 +72,7 @@ class Pagamento extends Model
     public function getDatatable()
     {
         return DB::table('pagamentos_view')->whereNull('deleted_at')->where('operadora_confirm', false )
-         ->select(['id', 'cliente', 'created_at' ,  'valor' , 'formaPagamento', 'bandeira' , 'nome' , 'operadora_confirm' ]); 
+         ->select(['id', 'cliente', 'created_at' ,  'valor' , 'formaPagamento', 'bandeira' , 'nome' , 'operadora_confirm' , 'operado' ]); 
         //return $this->where('operadora_confirm', false )->select(['id',   DB::raw(  " date_format( created_at , '%d-%m-%Y' ) as created_atd" )   ,  'operadora_confirm' , 'formaPagamento' , 
                         //DB::raw(  " concat('R$', ROUND  (valor , 2 ) ) as valor" )   ]);        
     }   
