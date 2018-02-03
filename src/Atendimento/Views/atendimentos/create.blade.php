@@ -159,8 +159,9 @@
         </div>            
     </section>
 
-    @include('atendimento::atendimentos.servicoModal')                  
-    @include('atendimento::atendimentos.produtoModal')                
+                    
+    @include('atendimento::atendimentos.produtoModal') 
+    @include('atendimento::atendimentos.servicoModal')                
     @include('atendimento::atendimentos.pagamentoModal')
 
 @endsection
