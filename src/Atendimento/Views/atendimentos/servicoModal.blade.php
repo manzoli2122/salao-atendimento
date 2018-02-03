@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-4 col-md-4 ml-auto">
                             <div class="form-group">
-                                <input type="submit" name="Enviar" style="float: right;" class="btn btn-success">
+                                <input type="submit" value="Enviar" class="btn btn-success">
                             </div>
                         </div>
                     </div>                            
