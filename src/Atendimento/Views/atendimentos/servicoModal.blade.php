@@ -64,10 +64,11 @@
                     </div>
                     <div class="row">
                         <div class="col-6 col-md-6">   
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <!--button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button-->
                         </div>
                         <div class="col-6 col-md-6 ml-auto">
-                            <div class="form-group">
+                            <div class="form-group align-right">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right:60px;" >Fechar</button>
                                 <input type="submit" value="Enviar" class="btn btn-success">
                             </div>
                         </div>
