@@ -1,11 +1,9 @@
-<div class="modal fade bd-example-modal-lg" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 style="margin-left:50px;" class="modal-title" id="exampleModalLabel">Adicionar Produto</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Adicionar Produto</h4>                
             </div>
             <div class="modal-body">   
                 <form class="form form-search form-ds" method="post" action="{{route('atendimentos.adicionarProduto')}}" >

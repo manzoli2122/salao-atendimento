@@ -122,7 +122,7 @@
                 </div>                	
             @empty			
 			@endforelse 
-             <div class="row">        
+            <div class="row">        
                 <div class="col-md-12">
                     <hr style="margin-top:15px;"> 
                     <h3 style="text-align:right;">Total de Pagamento R$ {{number_format($atendimento->valorPagamentos(), 2 ,',', '') }} </h3>

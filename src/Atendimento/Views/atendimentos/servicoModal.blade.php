@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Adicionar Serviço</h4>
             </div>
             <div class="modal-body">                     
-                <form method="POST" action="{{route('atendimentos.adicionarServico')}}" accept-charset="UTF-8" class="form form-search form-ds">
+                <form method="POST" action="{{route('atendimentos.adicionarServico')}}"  class="form form-search form-ds">
                     {{csrf_field()}}              
                     <input name="atendimento_id" value="{{ $atendimento->id }}" type="hidden">
                     <div class="row">
@@ -64,10 +64,12 @@
                     </div>
                     <div class="row">
                         <div class="col-4 col-md-4">   
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         </div>
                         <div class="col-4 col-md-4 ml-auto">
-                            <input type="submit" name="Enviar" style="float: right;" class="btn btn-success">
+                            <div class="form-group">
+                                <input type="submit" name="Enviar" style="float: right;" class="btn btn-success">
+                            </div>
                         </div>
                     </div>                            
                 </form>    
