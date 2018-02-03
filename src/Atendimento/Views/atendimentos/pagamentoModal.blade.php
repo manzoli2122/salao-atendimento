@@ -71,7 +71,7 @@
 
                     <div class="row">
                         <div class="col-5 col-md-5">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         </div>                        
                         <div class="col-5 col-md-5 ml-auto">
                             <div class="form-group">
