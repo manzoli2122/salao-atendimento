@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <label for="valor-produto-unitario">Valor Unitário</label>
                                 <input disabled="" class="form-control col-2" step="0.01" name="valor-produto-unitario" value="0.0" type="number">
-                            </div
+                            </div>
                             <div class="form-group">
                                 <label for="valor-produto-total">Valor Total</label>
                                 <input disabled="" class="form-control" step="0.01" name="valor-produto-total" value="0.0" type="number">
@@ -63,10 +63,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 col-md-4">   
+                        <div class="col-6 col-md-6">   
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         </div>
-                        <div class="col-4 col-md-4 ml-auto">
+                        <div class="col-6 col-md-6 ml-auto">
                             <div class="form-group">
                                 <input type="submit" value="Enviar" class="btn btn-success">
                             </div>
