@@ -46,10 +46,10 @@
                          </div>                    
                     </div>
                     <div class="row">
-                        <div class="col-4 col-md-4">
+                        <div class="col-6 col-md-6">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         </div>                        
-                        <div class="col-4 col-md-4 ml-auto">
+                        <div class="col-6 col-md-6 ml-auto">
                             <div class="form-group">
                                 <input class="btn btn-success" value="Enviar" type="submit">
                             </div>
