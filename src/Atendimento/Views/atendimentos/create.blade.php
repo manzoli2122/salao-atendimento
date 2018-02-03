@@ -169,8 +169,14 @@
 @push( Config::get('app.templateMasterScript' , 'script')  )
         <script src="{{url('/js/app.js')}}"></script>	
         <script>
-            $('#editable-select').editableSelect();
             
+            $('#editable-select')
+                .editableSelect()
+                .on('select.editable-select', function (e, li) {
+                    $('#editable-select2').html(
+                        li.val() + '. ' + li.text()
+                    );
+                });
             function finalizarSend(val) {                
                 var atendimento = val.elements['total_atendimento'].value
                 var pagamento = val.elements['total_pagamento'].value
