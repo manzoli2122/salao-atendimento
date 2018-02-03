@@ -63,10 +63,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">   
+                        <div class="col-4 col-md-4">   
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-4 col-md-4 ml-auto">
                             <input type="submit" name="Enviar" style="float: right;" class="btn btn-success">
                         </div>
                     </div>                            
