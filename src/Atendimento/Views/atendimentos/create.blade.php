@@ -173,10 +173,21 @@
             $('#editable-select')
                 .editableSelect()
                 .on('select.editable-select', function (e, li) {
+                    produtoFunction(li );
+                   // $('#editable-select2').html(
+                      //  li.val() + '. ' + li.text() + '.' + li.attr('label')
+                   // );
+                });
+            /*
+            $('#editable-select')
+                .editableSelect()
+                .on('select.editable-select', function (e, li) {
                     $('#editable-select2').html(
                         li.val() + '. ' + li.text()
                     );
                 });
+                */
+
             function finalizarSend(val) {                
                 var atendimento = val.elements['total_atendimento'].value
                 var pagamento = val.elements['total_pagamento'].value
@@ -189,10 +200,18 @@
                 return true;
             }
 
-            function produtoFunction(form) {                                    
-                var max = parseFloat( form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].text );            
-                var quantidade = parseInt(form.elements['quantidade'].value);
-                var desconto_maximo =  parseInt(form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].dataset['maximo']);
+            function produtoFunction(form) {  
+                
+                
+                var max = parseFloat( form.attr('label') );
+                var quantidade = parseInt( document.forms["form-produto"]["quantidade"].value );
+                var desconto_maximo = parseInt( form.attr('data-maximo') );
+
+                document.forms["form-produto"]["desconto"].max = ( desconto_maximo * max / 100); 
+
+                //var max = parseFloat( form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].text );            
+                //var quantidade = parseInt(form.elements['quantidade'].value);
+                //var desconto_maximo =  parseInt(form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].dataset['maximo']);
                 form.elements['desconto'].max = ( desconto_maximo * max / 100); 
                 if( max != 0.0 ){
                     form.elements['acrescimo'].max = max ;   
