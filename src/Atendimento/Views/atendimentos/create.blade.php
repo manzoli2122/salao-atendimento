@@ -170,9 +170,9 @@
         <script src="{{url('/js/app.js')}}"></script>	
         <script>
             
-            $('#editable-select')
+            $('#produto-select')
                 .editableSelect()
-                .on('select.produto-select', function (e, li) {
+                .on('select.editable-select', function (e, li) {
                     produtoFunction(   );                   
             });
            
