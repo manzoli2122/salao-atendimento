@@ -6,34 +6,35 @@
                 <h4 class="modal-title">Adicionar Produto</h4>                
             </div>
             <div class="modal-body">   
-                <form class="form form-search form-ds" method="post" action="{{route('atendimentos.adicionarProduto')}}" >
+                <form id="form-produto" name="form-produto" class="form form-search form-ds form-produto" method="post" action="{{route('atendimentos.adicionarProduto')}}" >
                     {{csrf_field()}}
                     <input name="atendimento_id" value="{{$atendimento->id}}" type="hidden">
                     <input name="cliente_id" value="{{$atendimento->cliente->id}}" type="hidden"> 
+                    <input name="produto_id" value="" type="hidden"> 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label id="editable-select2" for="servico_id">Produto:</label>
-                                <select id="editable-select" class="form-control" name="produto_id" required onchange="produtoFunction(this.form)">
+                            <div id="div-form-produto-produto" class="form-group" >
+                                <label id="editable-select2" for="produto">Produto:</label>
+                                <select id="editable-select" class="form-control" name="produto" required onchange="produtoFunction()">
                                         <option value="">Selecione o Produto</option>
                                         @foreach (Manzoli2122\Salao\Cadastro\Models\Produto::orderBy('nome', 'asc')->get() as $key )
-                                        <option label="{{ $key->valor }}" data-maximo="{{$key->desconto_maximo}}"  value="{{ $key->id }}">{{ $key->nome }} {{ $key->valor }} </option>
+                                        <option label="{{ $key->valor }}" data-maximo="{{$key->desconto_maximo}}"  value="{{ $key->id }}">{{ $key->nome }}  R${{ number_format($key->valor, 2 ,',', '') }}  </option>
                                         @endforeach
                                 </select> 
                             </div>
                             <div class="form-group">
                                 <label for="desconto">Desconto/Unid.:</label>
-                                <input placeholder="desconto" step="0.01" class="form-control" required="" min="0" onchange="produtoFunction(this.form)" name="desconto" value="0" type="number">
+                                <input placeholder="desconto" step="0.01" class="form-control" required="" min="0" onchange="produtoFunction()" name="desconto" value="0" type="number">
                             </div>
                             <div class="form-group">                        
                                 <label for="quantidade">Quantidade:</label>
-                                <input placeholder="quantidade" class="form-control" required="" min="1" max="10" onchange="produtoFunction(this.form)" name="quantidade" value="1" type="number">
+                                <input placeholder="quantidade" class="form-control" required="" min="1" max="10" onchange="produtoFunction()" name="quantidade" value="1" type="number">
                             </div>
                         </div>
                         <div class="col-md-6">                           
                             <div class="form-group">                        
                                 <label for="acrescimo">Acrescimo/Unid:</label>
-                                <input placeholder="acrescimo" step="0.01" class="form-control" required="" min="0" onchange="produtoFunction(this.form)" name="acrescimo" value="0" type="number">
+                                <input placeholder="acrescimo" step="0.01" class="form-control" required="" min="0" onchange="produtoFunction()" name="acrescimo" value="0" type="number">
                             </div>
                             <div class="form-group">
                                 <label for="valor-produto-unitario">Valor Unitário</label>
