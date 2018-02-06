@@ -4,6 +4,22 @@
 	Cliente : {{ $atendimento->cliente->name}} 
 @endsection
 
+
+
+@push( Config::get('app.templateMasterCss' , 'styles')  )
+
+ <style type="text/css">
+    
+
+.ui-autocomplete {
+  z-index:2147483647;
+}
+
+</style>
+
+@endpush
+
+
 @section( Config::get('app.templateMasterContent' , 'content')  )
   
     <section class=" text-center buttons" style="margin-bottom:1px;">        
@@ -167,7 +183,7 @@
 @endsection
   
 @push( Config::get('app.templateMasterScript' , 'script')  )
-        <script src="{{url('/js/app.js')}}"></script>	
+        
 
         
 
@@ -305,7 +321,7 @@
        }
      });
   
-     $( "#servico-select" ).combobox();
+     $( "#servico_id" ).combobox();
      //$( "#toggle" ).on( "click", function() {
     // $( "#categoria" ).toggle();
      //});
@@ -317,7 +333,7 @@
 
 
         <script>
-            
+            /*
             $('#produto-select')
                 .editableSelect()
                 .on('select.editable-select', function (e, li) {
@@ -330,7 +346,7 @@
                     servicoFunction(   );                   
             });
            
-             
+             */
 
             function finalizarSend(val) {                
                 var atendimento = val.elements['total_atendimento'].value
@@ -343,7 +359,7 @@
                 }
                 return true;
             }
-
+/*
             function produtoFunction() {  
 
                 var form = document.forms["form-produto"] ;
@@ -380,6 +396,8 @@
                 //var desconto_maximo =  parseInt(form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].dataset['maximo']);
                 //form.elements['desconto'].max = ( desconto_maximo * max / 100); 
             }
+*/
+
 
             function servicoFunction() {
  
@@ -411,7 +429,7 @@
 
 
 
-                /*
+  /*              
                 var form = document.forms["form-servico"] ;
                 var servico = document.getElementById('div-form-servico-servico').getElementsByClassName("es-visible selected")[0] ;                 
                 var quantidade = parseInt( form["quantidade"].value );                
@@ -436,7 +454,7 @@
 
 
 
-                */
+                
 
 
 
@@ -461,6 +479,8 @@
                 //form.elements['valor-produto-total'].value = valor_total;
                 //var max = val.options[val.selectedIndex].text;
                 //val.form.elements['desconto'].max = (4 * max / 5 ); 
+
+*/
             }
 
 
@@ -534,6 +554,7 @@
                                 document.getElementById("bandeira").required = false ;
                 }            
             }	
+            
         </script>	
 
 

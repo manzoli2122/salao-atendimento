@@ -9,8 +9,6 @@
                 <form id="form-servico" name="form-servico" method="POST" action="{{route('atendimentos.adicionarServico')}}"  class="form form-search form-ds form-servico">
                     {{csrf_field()}}              
                     <input name="atendimento_id" value="{{ $atendimento->id }}" type="hidden">
-                    <input name="servico_id" value="" type="hidden">
-                    
                     
                     <div class="row">
                         <div class="col-md-6">
@@ -25,8 +23,8 @@
                             </div>
 
                             <div id="div-form-servico-servico" class="form-group">
-                                <label for="servico">Serviço:</label>
-                                <select id="servico-select" class="form-control" name="servico-select" required onchange="servicoFunction()">                                   
+                                <label for="servico_id">Serviço:</label>
+                                <select id="servico_id" class="form-control" name="servico_id" required onchange="servicoFunction()">                                   
                                     @foreach (Manzoli2122\Salao\Cadastro\Models\Servico::ativo()->orderBy('nome', 'asc')->get() as $key )
                                     <option label="{{$key->valor}}" data-maximo="{{$key->desconto_maximo}}" value="{{$key->id}}">{{ $key->nome }} R$ {{number_format($key->valor, 2 ,',', '')}}</option>
                                     @endforeach
