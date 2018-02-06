@@ -1,4 +1,4 @@
-<div class="modal fade" id="servicoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="servicoModal" tabindex="-1" role="dialog" aria-labelledby="servicoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,9 +6,12 @@
                 <h4 class="modal-title">Adicionar Serviço</h4>
             </div>
             <div class="modal-body">                     
-                <form method="POST" action="{{route('atendimentos.adicionarServico')}}"  class="form form-search form-ds">
+                <form id="form-servico" name="form-servico" method="POST" action="{{route('atendimentos.adicionarServico')}}"  class="form form-search form-ds form-servico">
                     {{csrf_field()}}              
                     <input name="atendimento_id" value="{{ $atendimento->id }}" type="hidden">
+                    <input name="servico_id" value="" type="hidden">
+                    
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -20,22 +23,23 @@
                                     @endforeach
                                 </select> 
                             </div>
-                            <div class="form-group">
-                                <label for="servico_id">Serviço:</label>
-                                <select class="form-control" name="servico_id" required onchange="servicoFunction(this.form)">
-                                    <option value="">Selecione o Serviço</option>
+
+                            <div id="div-form-servico-servico" class="form-group">
+                                <label for="servico">Serviço:</label>
+                                <select id="servico-select" class="form-control" name="servico-select" required onchange="servicoFunction()">                                   
                                     @foreach (Manzoli2122\Salao\Cadastro\Models\Servico::ativo()->orderBy('nome', 'asc')->get() as $key )
-                                    <option label=" {{ $key->nome }} R${{ number_format($key->valor, 2 ,',', '') }}" data-maximo="{{$key->desconto_maximo}}" value="{{ $key->id }}">{{ $key->valor }}  </option>
+                                    <option label="{{$key->valor}}" data-maximo="{{$key->desconto_maximo}}" value="{{$key->id}}">{{ $key->nome }} R$ {{number_format($key->valor, 2 ,',', '')}}</option>
                                     @endforeach
                                 </select> 
                             </div>
+
                             <div class="form-group">                                
                                 <label for="desconto">Desconto/Unid.:</label>
-                                <input placeholder="desconto" step="0.01" class="form-control" onchange="servicoFunction(this.form)" required="" min="0" name="desconto" value="0" type="number">
+                                <input placeholder="desconto" step="0.01" class="form-control" onchange="servicoFunction()" required="" min="0" name="desconto" value="0" type="number">
                             </div>
                             <div class="form-group">
                                 <label for="quantidade">Quantidade:</label>
-                                <input placeholder="quantidade" onchange="servicoFunction(this.form)" class="form-control" required="" min="1" max="10" name="quantidade" value="1" type="number">
+                                <input placeholder="quantidade" onchange="servicoFunction()" class="form-control" required="" min="1" max="10" name="quantidade" value="1" type="number">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -50,15 +54,15 @@
                             </div>
                             <div class="form-group">                        
                                 <label for="acrescimo">Acrescimo/Unid:</label>
-                                <input placeholder="acrescimo" onchange="servicoFunction(this.form)" step="0.01" class="form-control" required="" min="0" name="acrescimo" value="0" type="number">
+                                <input placeholder="acrescimo" onchange="servicoFunction()" step="0.01" class="form-control" required="" min="0" name="acrescimo" value="0" type="number">
                             </div>
                             <div class="form-group">
-                                <label for="valor-produto-unitario">Valor Unitário</label>
-                                <input disabled="" class="form-control col-2" step="0.01" name="valor-produto-unitario" value="0.0" type="number">
+                                <label for="valor-servico-unitario">Valor Unitário</label>
+                                <input disabled="" class="form-control col-2" step="0.01" name="valor-servico-unitario" value="0.0" type="number">
                             </div>
                             <div class="form-group">
-                                <label for="valor-produto-total">Valor Total</label>
-                                <input disabled="" class="form-control" step="0.01" name="valor-produto-total" value="0.0" type="number">
+                                <label for="valor-servico-total">Valor Total</label>
+                                <input disabled="" class="form-control" step="0.01" name="valor-servico-total" value="0.0" type="number">
                             </div>
                         </div>
                     </div>

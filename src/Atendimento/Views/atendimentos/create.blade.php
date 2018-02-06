@@ -175,6 +175,12 @@
                 .on('select.editable-select', function (e, li) {
                     produtoFunction(   );                   
             });
+
+            $('#servico-select')
+                .editableSelect()
+                .on('select.editable-select', function (e, li) {
+                    servicoFunction(   );                   
+            });
            
              
 
@@ -212,46 +218,69 @@
                  //var max = parseFloat( produto.getAttribute('label') );
                // var max =  document.getElementsByClassName("es-visible")[0].dataset.maximo;
                // alert(max);
-
                // var max =  document.getElementsByClassName("es-visible")[0].getAttribute('label');
-               // alert(max);
-                
+               // alert(max);                
                 //var max = parseFloat( form.attr('label') );
                 //var max = parseFloat(  document.getElementsByClassName("es-visible")[0].attr('label') );
-
                 //var quantidade = parseInt( document.forms["form-produto"]["quantidade"].value );
-
                 //var max = parseFloat(  document.getElementsByClassName("es-visible")[0].attr('data-maximo') );
                 //var desconto_maximo = parseInt( form.attr('data-maximo') );
-
                 //document.forms["form-produto"]["desconto"].max = ( desconto_maximo * max / 100); 
-
                 //var max = parseFloat( form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].text );            
                 //var quantidade = parseInt(form.elements['quantidade'].value);
                 //var desconto_maximo =  parseInt(form.elements['produto_id'].options[form.elements['produto_id'].selectedIndex].dataset['maximo']);
                 //form.elements['desconto'].max = ( desconto_maximo * max / 100); 
             }
 
-            function servicoFunction(form) {
-                var max = parseFloat( form.elements['servico_id'].options[form.elements['servico_id'].selectedIndex].text );            
-                var quantidade = parseInt(form.elements['quantidade'].value);
+            function servicoFunction() {
+
+                var form = document.forms["form-servico"] ;
+                var servico = document.getElementById('div-form-servico-servico').getElementsByClassName("es-visible selected")[0] ;                 
+                var quantidade = parseInt( form["quantidade"].value );                
+                var desconto_maximo = parseInt(  servico.dataset.maximo );                
+                var valor = parseFloat(  servico.getAttribute('label') );
+                form["desconto"].max = ( desconto_maximo * valor / 100); 
+                form["acrescimo"].max = valor ;   
+                if( form["desconto"].value == ''){form["desconto"].value = 0.0;}                   
+                var desconto =  parseFloat( form["desconto"].value) ;                           
+                if(form["acrescimo"].value == ''){form["acrescimo"].value = 0.0;}  
+
+
+
+                var acrescimo = parseFloat(  form["acrescimo"].value );
+                var valor_unitario = valor - desconto + acrescimo ;  
+                var valor_total = valor_unitario * quantidade;          
+                form["valor-servico-unitario"].value = valor_unitario;
+                form["valor-servico-total"].value = valor_total;
+                //var max = parseFloat( form.elements['servico_id'].options[form.elements['servico_id'].selectedIndex].text );            
+                //var quantidade = parseInt(form.elements['quantidade'].value);
                 //alert(quantidade);
-                var desconto_maximo =  parseInt(form.elements['servico_id'].options[form.elements['servico_id'].selectedIndex].dataset['maximo']);
-                form.elements['desconto'].max = ( desconto_maximo * max / 100); 
-                form.elements['acrescimo'].max = max ;   
-                if(form.elements['desconto'].value == '')
-                    form.elements['desconto'].value = 0.0;
-                var desconto =  parseFloat( form.elements['desconto'].value) ;            
-                if(form.elements['acrescimo'].value == '')
-                    form.elements['acrescimo'].value = 0.0;
-                var acrescimo = parseFloat( form.elements['acrescimo'].value );
-                var valor_unitario = max - desconto + acrescimo ;  
-                var valor_total = valor_unitario * quantidade;           
-                form.elements['valor-produto-unitario'].value = valor_unitario;
-                form.elements['valor-produto-total'].value = valor_total;
+                //var desconto_maximo =  parseInt(form.elements['servico_id'].options[form.elements['servico_id'].selectedIndex].dataset['maximo']);
+                
+            
+                //form.elements['desconto'].max = ( desconto_maximo * max / 100); 
+               // form.elements['acrescimo'].max = max ;   
+                //if(form.elements['desconto'].value == '')
+                    //form.elements['desconto'].value = 0.0;
+                //var desconto =  parseFloat( form.elements['desconto'].value) ;            
+                //if(form.elements['acrescimo'].value == '')
+                    //form.elements['acrescimo'].value = 0.0;
+
+                //var acrescimo = parseFloat( form.elements['acrescimo'].value );
+                //var valor_unitario = max - desconto + acrescimo ;  
+                //var valor_total = valor_unitario * quantidade;           
+                //form.elements['valor-servico-unitario'].value = valor_unitario;
+                //form.elements['valor-produto-total'].value = valor_total;
                 //var max = val.options[val.selectedIndex].text;
                 //val.form.elements['desconto'].max = (4 * max / 5 ); 
             }
+
+
+
+
+
+
+
 
             function myFunction(val) {                            
                 if(val == 'credito'){

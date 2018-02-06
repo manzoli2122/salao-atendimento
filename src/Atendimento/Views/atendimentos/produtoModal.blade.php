@@ -15,8 +15,7 @@
                         <div class="col-md-6">
                             <div id="div-form-produto-produto" class="form-group" >
                                 <label  for="produto-select">Produto:</label>
-                                <select id="produto-select" class="form-control" name="produto-select" required onchange="produtoFunction()">
-                                        <option value="">Selecione o Produto</option>
+                                <select id="produto-select" class="form-control" name="produto-select" required onchange="produtoFunction()">                                       
                                         @foreach (Manzoli2122\Salao\Cadastro\Models\Produto::orderBy('nome', 'asc')->get() as $key )
                                         <option label="{{ $key->valor }}" data-maximo="{{$key->desconto_maximo}}"  value="{{ $key->id }}">{{ $key->nome }}  R${{ number_format($key->valor, 2 ,',', '') }}  </option>
                                         @endforeach
