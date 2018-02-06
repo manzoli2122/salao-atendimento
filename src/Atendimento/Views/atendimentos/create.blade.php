@@ -384,6 +384,35 @@
             function servicoFunction() {
  
                 var form = document.forms["form-servico"] ;
+                
+                var servico =  form.elements['servico-select'].options[form.elements['servico-select'].selectedIndex] ;
+
+                //document.getElementById('div-form-servico-servico').getElementsByClassName("es-visible selected")[0] ;                 
+                var quantidade = parseInt( form["quantidade"].value );                
+                var desconto_maximo = parseInt(  servico.dataset.maximo );                
+                var valor = parseFloat(  servico.getAttribute('label') );
+                form["desconto"].max = ( desconto_maximo * valor / 100); 
+                form["acrescimo"].max = valor ;   
+                form["servico_id"].value = servico.value ; 
+
+                if( form["desconto"].value == ''){form["desconto"].value = 0.0;}                   
+                var desconto =  parseFloat( form["desconto"].value) ;                           
+                if(form["acrescimo"].value == ''){form["acrescimo"].value = 0.0;}  
+
+
+
+                var acrescimo = parseFloat(  form["acrescimo"].value );
+                var valor_unitario = valor - desconto + acrescimo ;  
+                var valor_total = valor_unitario * quantidade;          
+                form["valor-servico-unitario"].value = valor_unitario;
+                form["valor-servico-total"].value = valor_total;
+
+
+
+
+
+                /*
+                var form = document.forms["form-servico"] ;
                 var servico = document.getElementById('div-form-servico-servico').getElementsByClassName("es-visible selected")[0] ;                 
                 var quantidade = parseInt( form["quantidade"].value );                
                 var desconto_maximo = parseInt(  servico.dataset.maximo );                
@@ -403,6 +432,14 @@
                 var valor_total = valor_unitario * quantidade;          
                 form["valor-servico-unitario"].value = valor_unitario;
                 form["valor-servico-total"].value = valor_total;
+
+
+
+
+                */
+
+
+
                 //var max = parseFloat( form.elements['servico_id'].options[form.elements['servico_id'].selectedIndex].text );            
                 //var quantidade = parseInt(form.elements['quantidade'].value);
                 //alert(quantidade);
