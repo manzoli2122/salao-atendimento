@@ -203,6 +203,7 @@
                 var quantidade = parseInt( form["quantidade"].value );                
                 var desconto_maximo = parseInt(  produto.dataset.maximo );                
                 var valor = parseFloat(  produto.getAttribute('label') );
+                form["produto_id"].value = produto.value ; 
                 form["desconto"].max = ( desconto_maximo * valor / 100); 
                 if( valor != 0.0 ){form["acrescimo"].max = valor ;}         
                 if( form["desconto"].value == ''){form["desconto"].value = 0.0;}                   
@@ -241,6 +242,8 @@
                 var valor = parseFloat(  servico.getAttribute('label') );
                 form["desconto"].max = ( desconto_maximo * valor / 100); 
                 form["acrescimo"].max = valor ;   
+                form["servico_id"].value = servico.value ; 
+
                 if( form["desconto"].value == ''){form["desconto"].value = 0.0;}                   
                 var desconto =  parseFloat( form["desconto"].value) ;                           
                 if(form["acrescimo"].value == ''){form["acrescimo"].value = 0.0;}  
