@@ -1,4 +1,4 @@
-<div class="modal fade" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="produtoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,8 +14,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div id="div-form-produto-produto" class="form-group" >
-                                <label id="editable-select2" for="produto">Produto:</label>
-                                <select id="editable-select" class="form-control" name="produto" required onchange="produtoFunction()">
+                                <label id="produto-select" for="produto">Produto:</label>
+                                <select id="produto-select" class="form-control" name="produto-select" required onchange="produtoFunction()">
                                         <option value="">Selecione o Produto</option>
                                         @foreach (Manzoli2122\Salao\Cadastro\Models\Produto::orderBy('nome', 'asc')->get() as $key )
                                         <option label="{{ $key->valor }}" data-maximo="{{$key->desconto_maximo}}"  value="{{ $key->id }}">{{ $key->nome }}  R${{ number_format($key->valor, 2 ,',', '') }}  </option>

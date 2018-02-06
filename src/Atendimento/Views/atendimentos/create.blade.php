@@ -172,7 +172,7 @@
             
             $('#editable-select')
                 .editableSelect()
-                .on('select.editable-select', function (e, li) {
+                .on('select.produto-select', function (e, li) {
                     produtoFunction(   );                   
             });
            
