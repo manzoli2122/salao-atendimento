@@ -198,16 +198,10 @@
                 var desconto_maximo = parseInt(  produto.dataset.maximo );                
                 var valor = parseFloat(  produto.getAttribute('label') );
                 form["desconto"].max = ( desconto_maximo * valor / 100); 
-                if( valor != 0.0 ){
-                    form["acrescimo"].max = valor ;
-                }         
-                if( form["desconto"].value == ''){
-                    form["desconto"].value = 0.0;
-                }                   
+                if( valor != 0.0 ){form["acrescimo"].max = valor ;}         
+                if( form["desconto"].value == ''){form["desconto"].value = 0.0;}                   
                 var desconto =  parseFloat( form["desconto"].value) ;                           
-                if(form["acrescimo"].value == ''){
-                    form["acrescimo"].value = 0.0;
-                }               
+                if(form["acrescimo"].value == ''){form["acrescimo"].value = 0.0;}               
                 var acrescimo = parseFloat(  form["acrescimo"].value );
                 var valor_unitario = valor - desconto + acrescimo ;  
                 var valor_total = valor_unitario * quantidade;          
