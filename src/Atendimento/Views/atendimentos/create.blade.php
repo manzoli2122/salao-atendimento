@@ -233,7 +233,7 @@
             }
 
             function servicoFunction() {
-
+ 
                 var form = document.forms["form-servico"] ;
                 var servico = document.getElementById('div-form-servico-servico').getElementsByClassName("es-visible selected")[0] ;                 
                 var quantidade = parseInt( form["quantidade"].value );                
