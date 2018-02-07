@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Adicionar Serviço</h4>
             </div>
             <div class="modal-body">                     
-                <form id="form-servico" name="form-servico" method="POST" action="{{route('atendimentos.adicionarServico')}}"  class="form form-search form-ds form-servico">
+                <form id="form-servico" name="form-servico" method="POST" action="{{route('atendimentos.adicionarServico')}}"  class="form form-search form-ds form-servico ui-front">
                     {{csrf_field()}}              
                     <input name="atendimento_id" value="{{ $atendimento->id }}" type="hidden">
                     

@@ -13,6 +13,7 @@
 
 .ui-autocomplete {
   z-index:2147483647;
+  position: fixed;
 }
 
 </style>
@@ -322,6 +323,7 @@
      });
   
      $( "#servico_id" ).combobox();
+     $( "#funcionario_id" ).combobox();
      //$( "#toggle" ).on( "click", function() {
     // $( "#categoria" ).toggle();
      //});
