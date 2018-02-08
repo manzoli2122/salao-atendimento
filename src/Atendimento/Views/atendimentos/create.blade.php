@@ -267,11 +267,14 @@
                 },
 
                 _servicoFunction: function( event, ui ) {
+                    console.log('iniciou servico');
                     var form = document.forms["form-servico"] ;                
                     var servico =  form["servico_id"].options[form["servico_id"].selectedIndex] ;
                     //document.getElementById('div-form-servico-servico').getElementsByClassName("es-visible selected")[0] ;                 
-                    var quantidade = parseInt( form["quantidade"].value );                
-                    var desconto_maximo = parseInt(  servico.dataset.maximo );                
+                    var quantidade = parseInt( form["quantidade"].value ); 
+                    console.log('quantidade ' + quantidade );               
+                    var desconto_maximo = parseInt(  servico.dataset.maximo ); 
+                    console.log('desconto_maximo ' + desconto_maximo );                    
                     var valor = parseFloat(  servico.getAttribute('label') );
                     form["desconto"].max = ( desconto_maximo * valor / 100); 
                     form["acrescimo"].max = valor ;   
