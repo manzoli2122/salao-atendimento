@@ -14,7 +14,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="funcionario_id">Funcionário:</label>
-                                <select class="form-control" name="funcionario_id" required>
+                                <select id="funcionario_id" class="form-control" name="funcionario_id" required>
                                     <option value="">Selecione o Funcionário</option>
                                     @foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
                                     <option value="{{ $key->id }}">  {{ $key->name }}  </option>
@@ -25,6 +25,7 @@
                             <div id="div-form-servico-servico" class="form-group">
                                 <label for="servico_id">Serviço:</label>
                                 <select id="servico_id" class="form-control" name="servico_id" required onchange="servicoFunction()">                                   
+                                    <option    value="">Selecione o Serviço</option>  
                                     @foreach (Manzoli2122\Salao\Cadastro\Models\Servico::ativo()->orderBy('nome', 'asc')->get() as $key )
                                     <option label="{{$key->valor}}" data-maximo="{{$key->desconto_maximo}}" value="{{$key->id}}">{{ $key->nome }} R$ {{number_format($key->valor, 2 ,',', '')}}</option>
                                     @endforeach
