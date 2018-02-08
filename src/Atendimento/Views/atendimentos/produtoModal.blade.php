@@ -9,8 +9,7 @@
                 <form id="form-produto" name="form-produto" class="form form-search form-ds form-produto ui-front" method="post" action="{{route('atendimentos.adicionarProduto')}}" >
                     {{csrf_field()}}
                     <input name="atendimento_id" value="{{$atendimento->id}}" type="hidden">
-                    <input name="cliente_id" value="{{$atendimento->cliente->id}}" type="hidden"> 
-                    
+                    <input name="cliente_id" value="{{$atendimento->cliente->id}}" type="hidden">                     
                     <div class="row">
                         <div class="col-md-6">
                             <div id="div-form-produto-produto" class="form-group" >
@@ -62,7 +61,3 @@
         </div>
     </div>
 </div>
-
-
-
-

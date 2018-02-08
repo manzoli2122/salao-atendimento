@@ -6,18 +6,27 @@
 
 @section( Config::get('app.templateMasterContent' , 'content')  )
  	
-	<div class="col-xs-12">
+	<!--div class="col-xs-12">
 		<div class="box">									
-			<div class="box-body table-responsive no-padding">
-				<table class="table table-hover table-striped">
+			<div class="box-body table-responsive no-padding"-->
+
+	<div class="col-xs-12">
+		<div class="box box-success">	
+			<div class="box-body">
+
+				<table class="table table-hover table-striped table-hover table-responsive">
 					<tr>
 						<th>Cliente</th>
-						<th>Valor</th>				
+						<th>Valor dos Serviços</th>
+						<th>Valor dos Produtos</th>	
+						<th>Valor</th>					
 						<th>Ações</th>
 					</tr>
 					@forelse($models as $model)				
 					<tr>
-						<td> {{ $model->cliente->name }}  </td>						
+						<td> {{ $model->cliente->name }}  </td>			
+						<td> R$ {{number_format($model->valorServicos(), 2 , ',' , '' )}} </td>
+						<td> R$ {{number_format($model->valorProdutos(), 2 , ',' , '' )}} </td>			
 						<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>
 						<td>
 							@permissao('atendimentos')								
