@@ -317,7 +317,7 @@
                 }
             });
   
-            $( "#servico_id" ).combobox();
+            $( "#produto_id" ).combobox();
             
         } );
      </script>
@@ -617,7 +617,7 @@
 
 
 
-                
+
             }
 
 
