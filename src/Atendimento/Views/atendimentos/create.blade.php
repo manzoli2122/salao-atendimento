@@ -247,11 +247,10 @@
                     var servico =  form["servico_id"].options[form["servico_id"].selectedIndex] ;                                 
                     var quantidade = parseInt( form["quantidade"].value );                              
                     var desconto_maximo = parseInt(  servico.dataset.maximo );                                        
-                    var valor = parseFloat(  servico.getAttribute('label') );
-                          
+                    var valor = parseFloat(  servico.getAttribute('label') );                          
                     form["desconto"].max = ( desconto_maximo * valor / 100); 
                     form["acrescimo"].max = valor ;   
-                    form["servico_id"].value = servico.value ; 
+                    //form["servico_id"].value = servico.value ; 
                     if( form["desconto"].value == ''){form["desconto"].value = 0.0;}                   
                     var desconto =  parseFloat( form["desconto"].value) ;                           
                     if(form["acrescimo"].value == ''){form["acrescimo"].value = 0.0;}
@@ -263,6 +262,19 @@
                     form["valor-servico-unitario"].value = valor_unitario;
                     form["valor-servico-total"].value = valor_total;
                 },
+
+                
+                _servicoClearFunction: function( event, ui ) {                   
+                    var form = document.forms["form-servico"] ;
+                    form["quantidade"].value = 1 ;                       
+                    form["desconto"].max = 0; 
+                    form["acrescimo"].max = 0 ;                      
+                    form["desconto"].value = 0.0;                           
+                    form["acrescimo"].value = 0.0;                            
+                    form["valor-servico-unitario"].value =  0.0 ;
+                    form["valor-servico-total"].value =  0.0 ;
+                },
+
 
                 _removeIfInvalid: function( event, ui ) {
                     // Selected an item, nothing to do
@@ -295,6 +307,8 @@
                         this.input.tooltip( "close" ).attr( "title", "" );
                     }, 2500 );
                     this.input.autocomplete( "instance" ).term = "";
+                    //limpa os campos 
+                    this._servicoClearFunction();
                 },
   
                 _destroy: function() {
