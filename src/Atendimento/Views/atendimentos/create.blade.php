@@ -180,13 +180,15 @@
         
 
     <script>
+        //--------------------------------------------------------------------------------------------------------------------------------------
+        //      COMBO BOX DO SERVICO
+        //--------------------------------------------------------------------------------------------------------------------------------------
+        
         $( function() {
             $.widget( "custom.combobox", {
                 
                 _create: function() {
-                    this.wrapper = $( "<span>" )
-                        .addClass( "custom-combobox" )
-                        .insertAfter( this.element );  
+                    this.wrapper = $( "<span>" ).addClass( "custom-combobox" ).insertAfter( this.element );  
                     this.element.hide();
                     this._createAutocomplete();
                     this._createShowAllButton();
@@ -195,59 +197,37 @@
                 _createAutocomplete: function() {
                     var selected = this.element.children( ":selected" ),
                     value = selected.val() ? selected.text() : "";
-                    this.input = $( "<input>" )
-                        .appendTo( this.wrapper )
-                        .val( value )
-                        .attr( "title", "" )
+                    this.input = $( "<input>" ).appendTo( this.wrapper ).val( value ).attr( "title", "" )
                         .attr( "style", "width: 90%;     display: inline;" )
                         .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left form-control" )
                         .autocomplete({
-                            delay: 0,
-                            minLength: 0,
-                            source: $.proxy( this, "_source" )
+                            delay: 0,      minLength: 0,      source: $.proxy( this, "_source" )
                         })
-                        .tooltip({
-                            classes: {
-                                "ui-tooltip": "ui-state-highlight"
-                            }
-                        });
+                        .tooltip({       classes: {"ui-tooltip": "ui-state-highlight"}        });
   
                     this._on( this.input, {
                         autocompleteselect: function( event, ui ) {
                             ui.item.option.selected = true;
-                            this._trigger( "select", event, {
-                                item: ui.item.option
-                            });
+                            this._trigger( "select", event, {item: ui.item.option});
                         },  
                         autocompletechange: "_removeIfInvalid"  
                     });
                 },
   
                 _createShowAllButton: function() {
-                    var input = this.input,
-                        wasOpen = false;
+                    var input = this.input,    wasOpen = false;
                     $( "<a>" )
-                        .attr( "tabIndex", -1 )
-                        .attr( "title", "Show All Items" )
-                        .tooltip()
-                        .appendTo( this.wrapper )
+                        .attr( "tabIndex", -1 ).attr( "title", "Show All Items" ).tooltip().appendTo( this.wrapper )
                         .button({
-                            icons: {
-                                primary: "ui-icon-triangle-1-s"
-                            },
+                            icons: {primary: "ui-icon-triangle-1-s"},
                             text: false
                         })
-                        .removeClass( "ui-corner-all" )
-                        .addClass( "custom-combobox-toggle ui-corner-right form-control" )
-                        .on( "mousedown", function() {
-                             wasOpen = input.autocomplete( "widget" ).is( ":visible" );
-                        })
+                        .removeClass( "ui-corner-all" ).addClass( "custom-combobox-toggle ui-corner-right form-control" )
+                        .on( "mousedown", function() {   wasOpen = input.autocomplete( "widget" ).is( ":visible" );     })
                         .on( "click", function() {
                             input.trigger( "focus" );  
                             // Close if already visible
-                            if ( wasOpen ) {
-                                return;
-                            }  
+                            if ( wasOpen ) {return;}  
                             // Pass empty string as value to search for, displaying all results
                             input.autocomplete( "search", "" );
                         });
@@ -258,37 +238,28 @@
                     response( this.element.children( "option" ).map(function() {
                         var text = $( this ).text();
                         if ( this.value && ( !request.term || matcher.test(text) ) )
-                            return {
-                                label: text,
-                                value: text,
-                                option: this
-                            };
+                            return {    label: text,      value: text,          option: this    };
                     }) );
                 },
 
-                _servicoFunction: function( event, ui ) {
-                    console.log('iniciou servico');
+                _servicoFunction: function( event, ui ) {                   
                     var form = document.forms["form-servico"] ;                
-                    var servico =  form["servico_id"].options[form["servico_id"].selectedIndex] ;
-                    //document.getElementById('div-form-servico-servico').getElementsByClassName("es-visible selected")[0] ;                 
-                    var quantidade = parseInt( form["quantidade"].value ); 
-                    console.log('quantidade ' + quantidade );               
-                    var desconto_maximo = parseInt(  servico.dataset.maximo ); 
-                    console.log('desconto_maximo ' + desconto_maximo );                    
+                    var servico =  form["servico_id"].options[form["servico_id"].selectedIndex] ;                                 
+                    var quantidade = parseInt( form["quantidade"].value );                              
+                    var desconto_maximo = parseInt(  servico.dataset.maximo );                                        
                     var valor = parseFloat(  servico.getAttribute('label') );
+                          
                     form["desconto"].max = ( desconto_maximo * valor / 100); 
                     form["acrescimo"].max = valor ;   
                     form["servico_id"].value = servico.value ; 
-
                     if( form["desconto"].value == ''){form["desconto"].value = 0.0;}                   
                     var desconto =  parseFloat( form["desconto"].value) ;                           
-                    if(form["acrescimo"].value == ''){form["acrescimo"].value = 0.0;}  
-
-
-
+                    if(form["acrescimo"].value == ''){form["acrescimo"].value = 0.0;}
                     var acrescimo = parseFloat(  form["acrescimo"].value );
                     var valor_unitario = valor - desconto + acrescimo ;  
-                    var valor_total = valor_unitario * quantidade;          
+                    var valor_total = valor_unitario * quantidade;  
+                    console.log('iniciou servico , quantidade: ' + quantidade + ', desconto_maximo ' + desconto_maximo 
+                    + ', valor: ' + valor + ', acrescimo: ' + acrescimo + ', valor_unitario: ' + valor_unitario + ', valor_total: ' + valor_total   );        
                     form["valor-servico-unitario"].value = valor_unitario;
                     form["valor-servico-total"].value = valor_total;
                 },
