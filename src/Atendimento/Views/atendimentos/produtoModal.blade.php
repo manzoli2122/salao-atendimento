@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Adicionar Produto</h4>                
             </div>
             <div class="modal-body">   
-                <form id="form-produto" name="form-produto" class="form form-search form-ds form-produto" method="post" action="{{route('atendimentos.adicionarProduto')}}" >
+                <form id="form-produto" name="form-produto" class="form form-search form-ds form-produto ui-front" method="post" action="{{route('atendimentos.adicionarProduto')}}" >
                     {{csrf_field()}}
                     <input name="atendimento_id" value="{{$atendimento->id}}" type="hidden">
                     <input name="cliente_id" value="{{$atendimento->cliente->id}}" type="hidden"> 
