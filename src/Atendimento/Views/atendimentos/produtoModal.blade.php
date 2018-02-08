@@ -10,12 +10,13 @@
                     {{csrf_field()}}
                     <input name="atendimento_id" value="{{$atendimento->id}}" type="hidden">
                     <input name="cliente_id" value="{{$atendimento->cliente->id}}" type="hidden"> 
-                    <input name="produto_id" value="" type="hidden"> 
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div id="div-form-produto-produto" class="form-group" >
-                                <label  for="produto-select">Produto:</label>
-                                <select id="produto-select" class="form-control" name="produto-select" required onchange="produtoFunction()">                                       
+                                <label  for="produto_id">Produto:</label>
+                                <select id="produto_id" class="form-control" name="produto_id" required > 
+                                        <option    value="">Selecione o Produto</option>                                      
                                         @foreach (Manzoli2122\Salao\Cadastro\Models\Produto::orderBy('nome', 'asc')->get() as $key )
                                         <option label="{{ $key->valor }}" data-maximo="{{$key->desconto_maximo}}"  value="{{ $key->id }}">{{ $key->nome }}  R${{ number_format($key->valor, 2 ,',', '') }}  </option>
                                         @endforeach
