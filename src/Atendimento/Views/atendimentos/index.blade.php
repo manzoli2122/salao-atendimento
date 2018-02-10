@@ -10,7 +10,7 @@
 		<div class="box">									
 			<div class="box-body table-responsive no-padding"-->
 
-	<div class="col-xs-12">
+	<!--div class="col-xs-12">
 		<div class="box box-success">	
 			<div class="box-body">
 
@@ -52,7 +52,7 @@
 				</table>
 			</div>					
 		</div>				
-	</div>
+	</div-->
 	@forelse($models as $model)	
 			@include('atendimento::atendimentos.modalAterarData')
 	@empty									
