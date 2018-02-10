@@ -12,10 +12,12 @@ class Caixa
 
     private $atendimento;
     private $pagamento;
+    private $atendimento_funcionario;
 
     public function __construct( ){
         $this->atendimento = new Atendimento ;  
         $this->pagamento  = new Pagamento ; 
+        $this->atendimento_funcionario = new AtendimentoFuncionario ; 
     }
 
     public function data(){
@@ -25,6 +27,11 @@ class Caixa
     public function atendimentos()
     {
         return $this->atendimento::whereDate('created_at', $this->data() )->get();        
+    }
+
+    public function atendimentosFuncionario($funcionarioId)
+    {
+        return $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->get();        
     }
 
 

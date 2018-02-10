@@ -72,7 +72,7 @@
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach			
 
-            <li><a href="#tab_2" data-toggle="tab">Serviços Realizados</a></li>
+            <!--li><a href="#tab_2" data-toggle="tab">Serviços Realizados</a></li-->
             
         </ul>
         <div class="tab-content">
@@ -85,7 +85,7 @@
 						<th>Valor Total</th>					
 					<th>Ações</th>
 					</tr>
-					@forelse($models as $model)				
+					@forelse($caixa->atendimentos as $model)				
 					<tr>
 						<td> {{ $model->cliente->name }}  </td>			
 						<td> R$ {{number_format($model->valorServicos(), 2 , ',' , '' )}} </td>
@@ -121,7 +121,7 @@
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
 				
-					
+
 					<table class="table table-hover table-striped table-hover table-responsive">
 							<tr>
 								<th>Cliente</th>
@@ -129,19 +129,15 @@
 								<th>Valor dos Produtos</th>	
 								<th>Valor Total</th>
 							</tr>
-							@forelse($models as $model1)							
-								@forelse($model1->servicos as $model)
-									<tr>
-										<td> {{ $model->cliente->name }}  </td>			
-										<td> {{ $model->funcionario->name }} </td>
-										<td> {{ $model->servico->nome }} </td>			
-										<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>								
-									</tr>
-								@empty					
-								@endforelse
-							
+							@forelse($caixa->atendimentosFuncionario($key->id) as $model)
+								<tr>
+									<td> {{ $model->cliente->name }}  </td>			
+									<td> {{ $model->funcionario->name }} </td>
+									<td> {{ $model->servico->nome }} </td>			
+									<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>								
+								</tr>
 							@empty					
-							@endforelse					
+							@endforelse										
 						</table>
 			</div>
 			@endforeach
@@ -157,7 +153,7 @@
 
 
             <!-- /.tab-pane -->
-            <div class="tab-pane" id="tab_2">	
+            <!--div class="tab-pane" id="tab_2">	
 					<table class="table table-hover table-striped table-hover table-responsive">
 							<tr>
 								<th>Cliente</th>
@@ -179,7 +175,7 @@
 							@empty					
 							@endforelse					
 						</table>
-			</div>
+			</div-->
 			
 
         <!-- /.tab-pane -->

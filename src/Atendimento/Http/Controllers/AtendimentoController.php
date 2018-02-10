@@ -9,6 +9,8 @@ use Manzoli2122\Salao\Atendimento\Models\AtendimentoFuncionario;
 use Manzoli2122\Salao\Atendimento\Models\ProdutosVendidos;
 use Manzoli2122\Salao\Atendimento\Models\Cliente;
 
+use Manzoli2122\Salao\Atendimento\Models\Caixa;
+
 use Manzoli2122\Salao\Atendimento\Models\Temp\Atendimento_temp;
 use Manzoli2122\Salao\Atendimento\Models\Temp\Pagamento_temp;
 use Manzoli2122\Salao\Atendimento\Models\Temp\AtendimentoFuncionario_temp;
@@ -67,8 +69,15 @@ class AtendimentoController extends Controller
 
     public function index()
     {       
-        $models = $this->model::whereDate('created_at', today() )->get();
-        return view("{$this->view}.index", compact('models'));
+        $caixa = new Caixa;
+        $caixa->data =  today() ; 
+        //$models = $this->model::whereDate('created_at', today() )->get();
+        
+        return view("{$this->view}.index", compact('caixa' ));
+
+
+        //$models = $this->model::whereDate('created_at', today() )->get();
+        //return view("{$this->view}.index", compact('models'));
     }
 
 
