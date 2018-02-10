@@ -60,7 +60,7 @@
 
 
 </div>
-<h2 class="page-header">AdminLTE Custom Tabs</h2>
+<!--h2 class="page-header">AdminLTE Custom Tabs</h2-->
 <div class="row">
 
 <div class="col-md-12">
@@ -111,9 +111,49 @@
 					@endforelse					
 				</table>
                 	
-            </div>
+			</div>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- /.tab-pane -->
-            <div class="tab-pane" id="tab_2"> teste
+            <div class="tab-pane" id="tab_2">
+				
+
+					<table class="table table-hover table-striped table-hover table-responsive">
+							<tr>
+								<th>Cliente</th>
+								<th>Valor dos Serviços</th>
+								<th>Valor dos Produtos</th>	
+								<th>Valor Total</th>
+							</tr>
+							@forelse($models as $model1)							
+								@forelse($model1->servicos as $model)
+									<tr>
+										<td> {{ $model->cliente->name }}  </td>			
+										<td> {{ $model->funcionario->name }} </td>
+										<td> {{ $model->servico->nome }} </td>			
+										<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>								
+									</tr>
+								@empty					
+								@endforelse
+							
+							@empty					
+							@endforelse					
+						</table>
+
+
             </div>
             <!-- /.tab-pane -->
             <div class="tab-pane" id="tab_3">
