@@ -95,7 +95,7 @@
 						</tr>
 					@empty					
 					@endforelse	
-					<tr>
+					<tr style="font-size: 18px;font-weight: bold;">
 						<td>   </td>			
 						<td>TOTAL  </td>
 						<td>{{ $caixa->atendimentosFuncionarioTotal($key->id) }}  </td>			
