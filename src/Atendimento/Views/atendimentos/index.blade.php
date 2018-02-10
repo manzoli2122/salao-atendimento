@@ -5,14 +5,11 @@
 @endsection
 
 @section( Config::get('app.templateMasterContent' , 'content')  )
- 	
-	
+ 		
 	@forelse($caixa->atendimentos() as $model)	
-			@include('atendimento::atendimentos.modalAterarData')
+		@include('atendimento::atendimentos.modalAterarData')
 	@empty									
 	@endforelse
-
-
 </div>
 <div class="row">
 
@@ -23,10 +20,7 @@
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
-			@endforeach			
-
-          
-            
+			@endforeach	
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab_1">
@@ -36,7 +30,7 @@
 						<th>Valor dos Serviços</th>
 						<th>Valor dos Produtos</th>	
 						<th>Valor Total</th>					
-					<th>Ações</th>
+						<th>Ações</th>
 					</tr>
 					@forelse($caixa->atendimentos() as $model)				
 					<tr>
@@ -51,8 +45,7 @@
 								 <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alterarDataModal{{$model->id}}" > 
 									Alterar Data
 								</a>							
-							@endpermissao																
-													
+							@endpermissao		
 							@permissao('atendimentos-soft-delete')			
 								<a class="btn btn-danger btn-sm"  href="javascript:void(0);" onclick="$(this).find('form').submit();" >
 									<form  method="post" action="{{route('atendimentos.destroySoft', $model->id)}}" onsubmit="return  ApagarAtendimento(this)">
@@ -65,49 +58,38 @@
 					</tr>
 					@empty					
 					@endforelse					
-				</table>
-                	
+				</table>                	
 			</div>
 			
-
-
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
-				
-
-					<table class="table table-hover table-striped table-hover table-responsive">
-							<tr>
-								<th>Cliente</th>
-								<th>Funcionário</th>
-								<th>Valor dos Produtos</th>	
-								<th>Valor Total</th>
-							</tr>
-							@forelse($caixa->atendimentosFuncionario($key->id) as $model)
-								<tr>
-									<td> {{ $model->cliente->name }}  </td>			
-									<td> {{ $model->funcionario->name }} </td>
-									<td> {{ $model->servico->nome }} </td>			
-									<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>								
-								</tr>
-							@empty					
-							@endforelse	
-							<tr>
-								<td>   </td>			
-								<td>  </td>
-								<td>TOTAL </td>			
-								<td> {{ $caixa->atendimentosFuncionarioTotal($key->id) }} </td>								
-							</tr>	
-															
-						</table>
+				<table class="table table-hover table-striped table-hover table-responsive">
+					<tr>
+						<th>SERVIÇO</th>
+						<th>CLIENTE</th>
+						<th>VALOR TOTAL</th>							
+						<th>VALOR LIQUIDO</th>
+					</tr>
+					@forelse($caixa->atendimentosFuncionario($key->id) as $model)
+						<tr>
+							<td> {{ $model->servico->nome }} </td>
+							<td> {{ $model->cliente->name }}  </td>		
+							<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>		
+							<td> R$ {{number_format($model->valorFuncioanrio , 2 , ',' , '' )}} </td>			
+						</tr>
+					@empty					
+					@endforelse	
+					<tr>
+						<td>   </td>			
+						<td>  </td>
+						<td>TOTAL </td>			
+						<td> {{ $caixa->atendimentosFuncionarioTotal($key->id) }} </td>								
+					</tr>														
+				</table>
 			</div>
 			@endforeach
-
-
-        <!-- /.tab-pane -->
         </div>
-    <!-- /.tab-content -->
     </div>
-<!-- nav-tabs-custom -->
 </div>
 
 
