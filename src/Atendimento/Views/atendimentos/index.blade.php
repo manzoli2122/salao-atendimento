@@ -75,7 +75,7 @@
 							<td> {{ $model->servico->nome }} </td>
 							<td> {{ $model->cliente->name }}  </td>		
 							<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>		
-							<td> R$ {{number_format($model->valorFuncioanrio , 2 , ',' , '' )}} </td>			
+							<td> R$ {{number_format($model->valorFuncioanrio() , 2 , ',' , '' )}} </td>			
 						</tr>
 					@empty					
 					@endforelse	
