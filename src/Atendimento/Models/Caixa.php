@@ -24,19 +24,20 @@ class Caixa
         return $this->data->format('Y-m-d');
     }
 
-    public function atendimentos()
-    {
+    public function atendimentos(){
         return $this->atendimento::whereDate('created_at', $this->data() )->get();        
     }
 
-    public function atendimentosFuncionario($funcionarioId)
-    {
+    public function atendimentosFuncionario($funcionarioId){
         return $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->get();        
     }
 
 
-    public function atendimentosFuncionarioTotal($funcionarioId)
-    {
+    public function atendimentosFuncionarioTotal($funcionarioId){
+        return 'R$' . number_format( $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->sum('valor'), 2 , ',' , '' ) ;          
+    }
+
+    public function atendimentosFuncionarioLiquido($funcionarioId){
         return 'R$' . number_format( $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->sum('valor'), 2 , ',' , '' ) ;          
     }
 
