@@ -38,7 +38,9 @@ class Caixa
     }
 
     public function atendimentosFuncionarioLiquido($funcionarioId){
-        return 'R$' . number_format( $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->sum('valor'), 2 , ',' , '' ) ;          
+        return 'R$' . number_format( 
+            $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->sum('valor / porcentagem_funcionario'),
+             2 , ',' , '' ) ;          
     }
 
 
