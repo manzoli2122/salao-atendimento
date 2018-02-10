@@ -67,7 +67,12 @@
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_1" data-toggle="tab">Atendimentos</a></li>
+			<li class="active"><a href="#tab_1" data-toggle="tab">Atendimentos</a></li>
+			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
+				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->name }}</a></li>
+			@endforeach
+			
+
             <li><a href="#tab_2" data-toggle="tab">Serviços Realizados</a></li>
             <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>            
             <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
@@ -115,26 +120,12 @@
 			
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- /.tab-pane -->
-            <div class="tab-pane" id="tab_2">
-				
-
+			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
+			<div class="tab-pane" id="#funcionario_{{$key->id}}">	
 					<table class="table table-hover table-striped table-hover table-responsive">
 							<tr>
 								<th>Cliente</th>
-								<th>Valor dos Serviços</th>
+								<th>Funcionário</th>
 								<th>Valor dos Produtos</th>	
 								<th>Valor Total</th>
 							</tr>
@@ -152,9 +143,45 @@
 							@empty					
 							@endforelse					
 						</table>
+			</div>
+			@endforeach
 
 
-            </div>
+
+
+
+
+
+
+
+
+
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="tab_2">	
+					<table class="table table-hover table-striped table-hover table-responsive">
+							<tr>
+								<th>Cliente</th>
+								<th>Funcionário</th>
+								<th>Valor dos Produtos</th>	
+								<th>Valor Total</th>
+							</tr>
+							@forelse($models as $model1)							
+								@forelse($model1->servicos as $model)
+									<tr>
+										<td> {{ $model->cliente->name }}  </td>			
+										<td> {{ $model->funcionario->name }} </td>
+										<td> {{ $model->servico->nome }} </td>			
+										<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>								
+									</tr>
+								@empty					
+								@endforelse
+							
+							@empty					
+							@endforelse					
+						</table>
+			</div>
+			
+
             <!-- /.tab-pane -->
             <div class="tab-pane" id="tab_3">
             	m passages, and more recently with desktop publishing software
