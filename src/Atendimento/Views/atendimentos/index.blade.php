@@ -10,6 +10,20 @@
 		@include('atendimento::atendimentos.modalAterarData')
 	@empty									
 	@endforelse
+
+	<p>
+			<form method="POST" action="{{route('atendimentos.pesquisar')}}" accept-charset="UTF-8">
+					{{csrf_field()}}
+					<div class="input-group input-group-sm" style="width: 250px; margin-left:auto;">
+						<input class="form-control" placeholder="Pesquisar" required="" name="data" type="date">
+						<div class="input-group-btn">
+							<button style="margin-right:10px;" class="btn btn-outline-success my-2 my-sm-0 " type="submit">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>	
+						</div>
+					</div>									
+				</form>
+	</p>
 </div>
 <div class="row">
 

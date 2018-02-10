@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+        
 
         Route::get('atendimentos/cancelar/{id}', 'AtendimentoController@cancelar')->name('atendimentos.cancelar');
         Route::post('atendimentos/finalizar/{id}', 'AtendimentoController@finalizar')->name('atendimentos.finalizar');
@@ -52,6 +52,7 @@ use Illuminate\Support\Facades\Route;
         Route::resource('atendimentos', 'AtendimentoController' , ['except' => [
             'create', 'store' , 'edit' , 'update' , 
         ]] ); 
+        Route::post('atendimentos/pesquisar', 'AtendimentoController@pesquisar')->name('atendimentos.pesquisar');  
     
 
 

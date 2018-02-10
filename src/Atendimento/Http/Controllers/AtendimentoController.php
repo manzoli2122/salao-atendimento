@@ -81,6 +81,19 @@ class AtendimentoController extends Controller
     }
 
 
+    public function pesquisar(Request $request)
+    {       
+        $dataForm = $request->except('_token');
+        $dataString = $dataForm['data'];
+        //$models = $this->model->whereDate('created_at', $dataString )->get();       
+        
+        $data = Carbon::createFromFormat('Y-m-d', $dataString);
+        $caixa = new Caixa;
+        $caixa->data = $data ; 
+      
+        return view("{$this->view}.index", compact( 'caixa'));
+    }
+
 
     
     public function show($id)
