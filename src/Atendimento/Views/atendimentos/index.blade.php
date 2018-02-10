@@ -119,7 +119,9 @@
 
 
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
-			<div class="tab-pane" id="#funcionario_{{$key->id}}">	
+			<div class="tab-pane" id="funcionario_{{$key->id}}">
+				
+					
 					<table class="table table-hover table-striped table-hover table-responsive">
 							<tr>
 								<th>Cliente</th>
