@@ -4,6 +4,7 @@ namespace Manzoli2122\Salao\Atendimento\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 
+use DB;
 
 class Caixa 
 {
@@ -38,9 +39,7 @@ class Caixa
     }
 
     public function atendimentosFuncionarioLiquido($funcionarioId){
-        return 'R$' . number_format( 
-            $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->sum('valor / porcentagem_funcionario'),
-             2 , ',' , '' ) ;          
+        return 'R$' . number_format( $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->sum( DB::raw('valor * porcentagem_funcionario / 100 ') ), 2 , ',' , '' ) ;          
     }
 
 
