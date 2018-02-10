@@ -19,7 +19,7 @@
 						<th>Cliente</th>
 						<th>Valor dos Serviços</th>
 						<th>Valor dos Produtos</th>	
-						<th>Valor</th>					
+						<th>Valor Total</th>					
 						<th>Ações</th>
 					</tr>
 					@forelse($models as $model)				
@@ -57,6 +57,58 @@
 			@include('atendimento::atendimentos.modalAterarData')
 	@empty									
 	@endforelse
+
+
+</div>
+<div class="row">
+
+<div class="col-md-6">
+    <!-- Custom Tabs -->
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_1" data-toggle="tab">Tab 1</a></li>
+            <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
+            <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  	Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                  	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                  	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                  	<li role="presentation" class="divider"></li>
+                  	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+            </li>
+            <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_1">
+                <b>How to use:</b>
+
+                <p>Exactly like the original bootstrap tabs except you should use
+                  the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>
+                	
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="tab_2"> teste
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="tab_3">
+            	m passages, and more recently with desktop publishing software
+                like Aldus PageMaker including versions of Lorem Ipsum.
+            </div>
+        <!-- /.tab-pane -->
+        </div>
+    <!-- /.tab-content -->
+    </div>
+<!-- nav-tabs-custom -->
+</div>
+
+
+
+
 @endsection
 		
 @push( Config::get('app.templateMasterScript' , 'script')  )
