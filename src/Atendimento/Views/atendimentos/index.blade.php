@@ -90,7 +90,14 @@
 									<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>								
 								</tr>
 							@empty					
-							@endforelse										
+							@endforelse	
+							<tr>
+								<td>   </td>			
+								<td>  </td>
+								<td>TOTAL </td>			
+								<td> {{ $caixa->atendimentosFuncionarioTotal($key->id) }} </td>								
+							</tr>	
+															
 						</table>
 			</div>
 			@endforeach

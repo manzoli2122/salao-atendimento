@@ -35,6 +35,15 @@ class Caixa
     }
 
 
+    public function atendimentosFuncionarioTotal($funcionarioId)
+    {
+        return 'R$' . number_format( $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->sum('valor'), 2 , ',' , '' ) ;          
+    }
+
+
+
+
+
     public function valor_atendimentos()
     {
         return 'R$' . number_format( $this->atendimento::whereDate('created_at',$this->data() )->sum('valor') , 2 , ',' , '' ) ;        
