@@ -7,7 +7,7 @@
 @section( Config::get('app.templateMasterContent' , 'content')  )
  	
 	
-	@forelse($$caixa->atendimentos as $model)	
+	@forelse($caixa->atendimentos as $model)	
 			@include('atendimento::atendimentos.modalAterarData')
 	@empty									
 	@endforelse
