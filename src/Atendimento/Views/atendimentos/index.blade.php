@@ -99,7 +99,7 @@
 						<td>   </td>			
 						<td>TOTAL  </td>
 						<td>{{ $caixa->atendimentosFuncionarioTotal($key->id) }}  </td>			
-						<td> {{ $caixa->atendimentosFuncionarioLiquido($key->id) }} </td>								
+						<td style="color:red"> {{ $caixa->atendimentosFuncionarioLiquido($key->id) }} </td>								
 					</tr>														
 				</table>
 			</div>
