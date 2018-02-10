@@ -69,13 +69,11 @@
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">Atendimentos</a></li>
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
-				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->name }}</a></li>
-			@endforeach
-			
+				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
+			@endforeach			
 
             <li><a href="#tab_2" data-toggle="tab">Serviços Realizados</a></li>
-            <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>            
-            <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+            
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab_1">
@@ -182,11 +180,6 @@
 			</div>
 			
 
-            <!-- /.tab-pane -->
-            <div class="tab-pane" id="tab_3">
-            	m passages, and more recently with desktop publishing software
-                like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
         <!-- /.tab-pane -->
         </div>
     <!-- /.tab-content -->
