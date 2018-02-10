@@ -13,7 +13,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="funcionario_id">Data:</label>                                
-                                <input name="data" value="{{$model->created_at}}" type="date" class="form-control">
+                                <input name="data" value="{{$model->created_at->format('Y-m-d')}}" type="date" class="form-control">
                             </div>
                         </div>
                     </div>

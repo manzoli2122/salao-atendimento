@@ -7,7 +7,7 @@
 @section( Config::get('app.templateMasterContent' , 'content')  )
  	
 	
-	@forelse($caixa->atendimentos as $model)	
+	@forelse($caixa->atendimentos() as $model)	
 			@include('atendimento::atendimentos.modalAterarData')
 	@empty									
 	@endforelse
@@ -20,7 +20,7 @@
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-			<li class="active"><a href="#tab_1" data-toggle="tab">Atendimentos</a></li>
+			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach			
@@ -38,7 +38,7 @@
 						<th>Valor Total</th>					
 					<th>Ações</th>
 					</tr>
-					@forelse($caixa->atendimentos as $model)				
+					@forelse($caixa->atendimentos() as $model)				
 					<tr>
 						<td> {{ $model->cliente->name }}  </td>			
 						<td> R$ {{number_format($model->valorServicos(), 2 , ',' , '' )}} </td>
