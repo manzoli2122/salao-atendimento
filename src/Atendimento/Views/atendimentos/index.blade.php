@@ -172,7 +172,7 @@
 				</div>
 
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-purple">
+					<div class="info-box bg-blue">
 						<span class="info-box-icon"><i class="fa  fa-bank"></i></span>
 						<div class="info-box-content">
 							<span class="info-box-text">TOTAL EM TRANSFERENCIA BANCÁRIA:</span>
@@ -184,7 +184,7 @@
 				</div>
 
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-purple">
+					<div class="info-box bg-orange">
 						<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
 						<div class="info-box-content">
 							<span class="info-box-text">TOTAL EM CHEQUE:</span>
@@ -195,28 +195,23 @@
 					</div>
 				</div>
 
-
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box bg-gray">
+						<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
+						<div class="info-box-content">
+							<span class="info-box-text">TOTAL FIADO: </span>
+							<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
+							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+							<span class="progress-description"></span>
+						</div>
+					</div>
+				</div>
 
 
 				
 
 
-				<table class="table table-hover table-striped">
-					<tr>
-						<th>Caixa</th>
-						<th>Valor</th>										
-					</tr>
-					
-					
-					<tr>
-						<td> TOTAL EM CHEQUE:  </td>						
-						<td>   </td>
-					</tr>
-					<tr>
-						<td> TOTAL FIADO:  </td>						
-						<td>  {{ $caixa->valor_Pagamento_fiado() }}  </td>
-					</tr>
-				</table>          	
+				      	
 			</div>
 			
 			
