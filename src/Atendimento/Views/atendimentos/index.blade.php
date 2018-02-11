@@ -34,6 +34,7 @@
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
+			<li class="active"><a href="#caixa" data-toggle="tab">CAIXA</a></li>
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach	
@@ -76,6 +77,45 @@
 					@endforelse					
 				</table>                	
 			</div>
+
+
+			<div class="tab-pane active" id="caixa">
+				<table class="table table-hover table-striped">
+					<tr>
+						<th>Caixa</th>
+						<th>Valor</th>										
+					</tr>
+					<tr>
+						<td> TOTAL EM DINHEIRO:  </td>						
+						<td>  {{ $caixa->valor_Pagamento_dinheiro() }}  </td>
+					</tr>
+					<tr>
+						<td> TOTAL EM PIC PAY:  </td>						
+						<td>  {{ $caixa->valor_Pagamento_pic_pay() }}  </td>
+					</tr>
+					<tr>
+						<td> TOTAL EM TRANSFERENCIA BANCÁRIA:  </td>						
+						<td>  {{ $caixa->valor_Pagamento_transferencia_bancaria() }}  </td>
+					</tr>
+					<tr>
+						<td> TOTAL EM CREDITO:  </td>						
+						<td>  {{ $caixa->valor_Pagamento_credito() }}  </td>
+					</tr>
+					<tr>
+						<td> TOTAL EM DEBITO:  </td>						
+						<td>  {{ $caixa->valor_Pagamento_debito() }}  </td>
+					</tr>
+					<tr>
+						<td> TOTAL EM CHEQUE:  </td>						
+						<td>  {{ $caixa->valor_Pagamento_cheque() }}  </td>
+					</tr>
+					<tr>
+						<td> TOTAL FIADO:  </td>						
+						<td>  {{ $caixa->valor_Pagamento_fiado() }}  </td>
+					</tr>
+				</table>          	
+			</div>
+			
 			
 			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
