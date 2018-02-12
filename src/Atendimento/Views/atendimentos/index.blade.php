@@ -59,7 +59,7 @@
 							@if($model->created_at->isToday())
 								@permissao('atendimentos')								
 									<a class="btn btn-success btn-sm" href='{{route("atendimentos.show", $model->id)}}'>
-										<i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>	
+										<i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>									
 									<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alterarDataModal{{$model->id}}" > 
 										Alterar Data
 									</a>							
@@ -71,6 +71,21 @@
 											<input name="_method" value="DELETE" type="hidden">                    
 										</form>  
 										<i class="fa fa-trash" aria-hidden="true"></i>Apagar</a>													
+								@endpermissao
+							@else
+								<a class="btn btn-success btn-sm" href='{{route("atendimentos.show", $model->id)}}'>
+									<i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>
+								@permissao('atendimentos-mega-power')
+									<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alterarDataModal{{$model->id}}" > 
+										Alterar Data
+									</a>
+									<a class="btn btn-danger btn-sm"  href="javascript:void(0);" onclick="$(this).find('form').submit();" >
+										<form  method="post" action="{{route('atendimentos.destroySoft', $model->id)}}" onsubmit="return  ApagarAtendimento(this)">
+											{{csrf_field()}}    
+											<input name="_method" value="DELETE" type="hidden">                    
+										</form>  
+										<i class="fa fa-trash" aria-hidden="true"></i>Apagar
+									</a>
 								@endpermissao
 							@endif											
 						</td>
