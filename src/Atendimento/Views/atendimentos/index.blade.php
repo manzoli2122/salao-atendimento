@@ -85,20 +85,15 @@
 							@endif											
 						</td>
 					</tr>
-
+					@empty					
+					@endforelse	
 					<tr>
 						<td> TOTAL </td>	
 						<td>  {{ $caixa->valor_servicos() }}   </td>	
 						<td>  {{ $caixa->valor_produtos() }}  </td>	
 						<td> {{ $caixa->valor_atendimentos() }}  </td>	
 						<td>   </td>	
-					</tr>
-
-
-
-
-					@empty					
-					@endforelse					
+					</tr>				
 				</table>                	
 			</div>
 
