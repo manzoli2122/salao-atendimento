@@ -87,11 +87,11 @@
 					</tr>
 					@empty					
 					@endforelse	
-					<tr>
+					<tr style="font-size: 18px;font-weight: bold;">
 						<td> TOTAL </td>	
 						<td>  {{ $caixa->valor_servicos() }}   </td>	
 						<td>  {{ $caixa->valor_produtos() }}  </td>	
-						<td> {{ $caixa->valor_atendimentos() }}  </td>	
+						<td>  {{ $caixa->valor_atendimentos() }}  </td>	
 						<td>   </td>	
 					</tr>				
 				</table>                	
