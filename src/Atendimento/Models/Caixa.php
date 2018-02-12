@@ -73,7 +73,7 @@ class Caixa
             $this->valor_dinheiro =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'dinheiro' )->sum('valor');
         }
         if(!$this->valor_dinheiro > 0 ) return 0;
-        return 'R$' . number_format($valor , 2 , ',' , '' ) ;        
+        return 'R$' . number_format( $this->valor_dinheiro , 2 , ',' , '' ) ;        
     }
     
     public function valor_Pagamento_pic_pay(){
@@ -81,7 +81,7 @@ class Caixa
             $this->valor_pic_pay = $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Pic Pay' )->sum('valor') ;
         } 
         if(!$this->valor_pic_pay > 0 ) return 0;
-        return 'R$' . number_format($valor , 2 , ',' , '' ) ; 
+        return 'R$' . number_format($this->valor_pic_pay , 2 , ',' , '' ) ; 
     }
 
 
@@ -90,7 +90,7 @@ class Caixa
             $this->valor_transferencia_bancaria =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Transferência Bancária' )->sum('valor') ;
         }
         if(!$this->valor_transferencia_bancaria > 0 ) return 0;
-        return 'R$' . number_format($valor , 2 , ',' , '' ) ;        
+        return 'R$' . number_format($this->valor_transferencia_bancaria , 2 , ',' , '' ) ;        
     }
 
 
