@@ -1,9 +1,9 @@
 <?php
 
 namespace Manzoli2122\Salao\Atendimento\Models;
+
 use Manzoli2122\Salao\Atendimento\Models\Funcionario;
 use Illuminate\Database\Eloquent\Builder;
-
 use DB;
 
 class Caixa 
@@ -20,6 +20,18 @@ class Caixa
         $this->pagamento  = new Pagamento ; 
         $this->atendimento_funcionario = new AtendimentoFuncionario ; 
     }
+
+
+    public static function funcionariosDoDia(){  
+        $data = $this->data();
+        if($data == '') return null;
+        return  Funcionario::whereIn('id', function($query2) use($data) { //} use ($user){
+                        $query2->distinct()->select("atendimento_funcionarios.funcionario_id");
+                        $query2->from("atendimento_funcionarios");
+                        $query2->whereDate('created_at', $data );         
+                })->get();         
+    }
+
 
     public function data(){
         return $this->data->format('Y-m-d');
@@ -51,11 +63,15 @@ class Caixa
     }
 
     public function valor_Pagamento_dinheiro(){
-        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'dinheiro' )->sum('valor') , 2 , ',' , '' ) ;        
+        $valor =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'dinheiro' )->sum('valor');
+        if(!$valor > 0 ) return 0;
+        return 'R$' . number_format($valor , 2 , ',' , '' ) ;        
     }
     
     public function valor_Pagamento_pic_pay(){
-        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Pic Pay' )->sum('valor') , 2 , ',' , '' ) ;        
+        $valor =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Pic Pay' )->sum('valor') ;
+        if(!$valor > 0 ) return 0;
+        return 'R$' . number_format($valor , 2 , ',' , '' ) ; 
     }
 
 

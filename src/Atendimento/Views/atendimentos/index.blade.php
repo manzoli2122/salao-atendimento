@@ -35,7 +35,7 @@
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
 			<li><a href="#caixa" data-toggle="tab">CAIXA</a></li>
-			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data() ) as $key )
+			@foreach ($caixa->funcionariosDoDia()  as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach	
         </ul>
@@ -83,7 +83,8 @@
 
 			<div class="tab-pane" id="caixa">
 				<div class="row">
-				<div class="col-md-3 col-sm-6 col-xs-12">
+				
+				<!--div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box">
 						<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>				  
 						<div class="info-box-content">
@@ -119,7 +120,7 @@
 							<span class="info-box-number">2,000</span>
 						</div>
 					</div>
-				</div>
+				</div-->
 
 
 
@@ -160,18 +161,19 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-purple">
-						<span class="info-box-icon"><i class="fa fa-paypal"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">TOTAL EM PIC PAY:</span>
-							<span class="info-box-number">{{ $caixa->valor_Pagamento_pic_pay() }}</span>
-							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							<span class="progress-description"></span>
+				@if( $caixa->valor_Pagamento_pic_pay() != '' )
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box bg-purple">
+							<span class="info-box-icon"><i class="fa fa-paypal"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">TOTAL EM PIC PAY:</span>
+								<span class="info-box-number">{{ $caixa->valor_Pagamento_pic_pay() }}</span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<span class="progress-description"></span>
+							</div>
 						</div>
 					</div>
-				</div>
+				@endif
 
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box bg-blue">
@@ -217,7 +219,7 @@
 			</div>
 			
 			
-			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data()) as $key )
+			@foreach ($caixa->funcionariosDoDia() as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
 				<table class="table table-hover table-striped table-hover table-responsive">
 					<tr>
