@@ -4,6 +4,10 @@
 	Cliente : <b> {{ $model->cliente->name}} </b>
 @endsection
 
+@section( Config::get('app.templateMasterContentTituloSmallRigth' , 'small-content-header-right')  )
+    Data : <b> {{ $model->created_at->format('d/m/Y')}} </b>
+@endsection
+
 @section( Config::get('app.templateMasterContent' , 'contentMaster')  )    
    
     <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px;">
