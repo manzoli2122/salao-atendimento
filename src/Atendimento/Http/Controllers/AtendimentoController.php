@@ -103,11 +103,11 @@ class AtendimentoController extends Controller
             return redirect()->route("{$this->route}.index")->withErrors(['message' => __('msg.erro_nao_encontrado', ['1' => $this->name ])]);
         } 
 
-        if( $model->created_at->isToday() )
+        //if( $model->created_at->isToday() )
             return view("{$this->view}.show", compact('model'));
 
 
-        return redirect()->route('atendimentos.index');
+       // return redirect()->route('atendimentos.index');
     }
    
 
