@@ -195,10 +195,9 @@
 						<div class="info-box bg-gray">
 							<span class="info-box-icon bg-orange"><i class="fa fa-sun-o"></i></span>
 							<div class="info-box-content">
-								<span class="info-box-text">CHEQUE:</span>
-								<span class="info-box-number">  {{ $caixa->valor_Pagamento_cheque() }}</span>
+								<span class="info-box-text" style="font-size:20px;" >CHEQUE:</span>
 								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
-								<span class="progress-description"></span>
+								<span class="info-box-number">  {{ $caixa->valor_Pagamento_cheque() }}</span>
 							</div>
 						</div>
 					</div>
@@ -208,10 +207,9 @@
 						<div class="info-box bg-gray">
 							<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
 							<div class="info-box-content">
-								<span class="info-box-text">FIADO: </span>
-								<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
+								<span class="info-box-text" style="font-size:20px;">FIADO: </span>
 								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
-								<span class="progress-description"></span>
+								<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
 							</div>
 						</div>
 					</div>
