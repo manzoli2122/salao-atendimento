@@ -1,7 +1,7 @@
 @extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 	
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )
-	Atendimentos do dia {{ $caixa->dat->format('d/m/Y')}} 
+	Atendimentos do dia {{ $caixa->data->format('d/m/Y')}} 
 @endsection
 
 @section( Config::get('app.templateMasterContentTituloSmallRigth' , 'small-content-header-right')  )
