@@ -147,7 +147,7 @@
 								<span class="info-box-text">TOTAL EM CREDITO:</span>
 								<span class="info-box-number">{{ $caixa->valor_Pagamento_credito() }}</span>
 								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							</div>
+							</div> 
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6 col-xs-12">
