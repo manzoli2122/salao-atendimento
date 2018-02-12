@@ -99,14 +99,7 @@
 			<div class="tab-pane" id="caixa">
 				<div class="row">
 				
-				<!--div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-						<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>				  
-						<div class="info-box-content">
-							<span class="info-box-text">CPU Traffic</span>
-							<span class="info-box-number">90<small>%</small></span>
-						</div>
-					</div>
+				<!--div class="col-md-3 col-sm-6 col-xs-12">					
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box">
@@ -118,15 +111,7 @@
 					</div>
 				</div>				 
 				<div class="clearfix visible-sm-block"></div>
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-							<span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">Sales</span>
-							<span class="info-box-number">760</span>
-						</div>
-					</div>
-				</div>
+				
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box">
 						<span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
@@ -140,42 +125,45 @@
 
 
 
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-yellow">
-						<span class="info-box-icon"><i class="fa fa-money"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">TOTAL EM DINHEIRO:</span>
-							<span class="info-box-number">{{ $caixa->valor_Pagamento_dinheiro() }} </span>
-							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							<span class="progress-description">  </span>
+				
+				@if( $caixa->valor_Pagamento_dinheiro() != '' )
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box bg-yellow">
+							<span class="info-box-icon"><i class="fa fa-money"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">TOTAL EM DINHEIRO:</span>
+								<span class="info-box-number">{{ $caixa->valor_Pagamento_dinheiro() }} </span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<span class="progress-description">  </span>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-red">
-						<span class="info-box-icon"><i class="fa fa-credit-card"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">TOTAL EM CREDITO:</span>
-							<span class="info-box-number">{{ $caixa->valor_Pagamento_credito() }}</span>
-							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							<span class="progress-description">	</span>
+				@endif
+				@if( $caixa->valor_Pagamento_credito() != '' )
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box bg-red">
+							<span class="info-box-icon"><i class="fa fa-credit-card"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">TOTAL EM CREDITO:</span>
+								<span class="info-box-number">{{ $caixa->valor_Pagamento_credito() }}</span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<span class="progress-description">	</span>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-green">
-						<span class="info-box-icon"><i class="fa fa-credit-card"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text"> TOTAL EM DEBITO:</span>
-							<span class="info-box-number">{{ $caixa->valor_Pagamento_debito() }}</span>
-							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							<span class="progress-description"></span>
+				@if( $caixa->valor_Pagamento_debito() != '' )
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box bg-green">
+							<span class="info-box-icon"><i class="fa fa-credit-card"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text"> TOTAL EM DEBITO:</span>
+								<span class="info-box-number">{{ $caixa->valor_Pagamento_debito() }}</span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<span class="progress-description"></span>
+							</div>
 						</div>
 					</div>
-				</div>
+				@endif
 				@if( $caixa->valor_Pagamento_pic_pay() != '' )
 					<div class="col-md-3 col-sm-6 col-xs-12">
 						<div class="info-box bg-purple">
@@ -188,45 +176,47 @@
 							</div>
 						</div>
 					</div>
+			
 				@endif
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-blue">
-						<span class="info-box-icon"><i class="fa  fa-bank"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">TOTAL EM TRANSFERENCIA BANCÁRIA:</span>
-							<span class="info-box-number"> {{ $caixa->valor_Pagamento_transferencia_bancaria() }}</span>
-							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							<span class="progress-description"></span>
+				@if( $caixa->valor_Pagamento_transferencia_bancaria() != '' )
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box bg-blue">
+							<span class="info-box-icon"><i class="fa  fa-bank"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">TOTAL EM TRANSFERENCIA BANCÁRIA:</span>
+								<span class="info-box-number"> {{ $caixa->valor_Pagamento_transferencia_bancaria() }}</span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<span class="progress-description"></span>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-orange">
-						<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">TOTAL EM CHEQUE:</span>
-							<span class="info-box-number">  {{ $caixa->valor_Pagamento_cheque() }}</span>
-							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							<span class="progress-description"></span>
+				@endif
+				@if( $caixa->valor_Pagamento_cheque() != '' )
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box bg-orange">
+							<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">TOTAL EM CHEQUE:</span>
+								<span class="info-box-number">  {{ $caixa->valor_Pagamento_cheque() }}</span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<span class="progress-description"></span>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-gray">
-						<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
-						<div class="info-box-content">
-							<span class="info-box-text">TOTAL FIADO: </span>
-							<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
-							<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
-							<span class="progress-description"></span>
+				@endif
+				@if( $caixa->valor_Pagamento_fiado() != '' )
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box bg-gray">
+							<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">TOTAL FIADO: </span>
+								<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<span class="progress-description"></span>
+							</div>
 						</div>
 					</div>
-				</div>
-
-
+				@endif
 				
 
 				</div>

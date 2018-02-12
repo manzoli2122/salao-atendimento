@@ -14,6 +14,10 @@ class Caixa
     private $valor_pic_pay = null ;
     private $valor_dinheiro = null;
     private $valor_transferencia_bancaria = null;
+    private $valor_credito = null ;
+    private $valor_debito  = null ;
+    private $valor_cheque  = null ;
+    private $valor_fiado = null ;
 
     private $atendimento;
     private $pagamento;
@@ -94,24 +98,44 @@ class Caixa
     }
 
 
+   
+
     public function valor_Pagamento_credito(){
-        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'credito' )->sum('valor') , 2 , ',' , '' ) ;        
+        if( $this->valor_credito === null){
+            $this->valor_credito =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'credito' )->sum('valor') ;
+        }
+        if(!$this->valor_credito > 0 ) return 0;
+        return 'R$' . number_format($this->valor_credito , 2 , ',' , '' ) ;        
     }
 
 
     public function valor_Pagamento_debito(){
-        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'debito' )->sum('valor') , 2 , ',' , '' ) ;        
+        if( $this->valor_debito === null){
+            $this->valor_debito =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'debito' )->sum('valor') ;
+        }
+        if(!$this->valor_debito > 0 ) return 0;
+        return 'R$' . number_format($this->valor_debito , 2 , ',' , '' ) ;  
+
+               
     }
 
 
     public function valor_Pagamento_cheque(){
-        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'cheque' )->sum('valor') , 2 , ',' , '' ) ;        
+        if( $this->valor_cheque === null){
+            $this->valor_cheque =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'cheque' )->sum('valor') ;
+        }
+        if(!$this->valor_cheque > 0 ) return 0;
+        return 'R$' . number_format($this->valor_cheque , 2 , ',' , '' ) ;        
     }
 
 
     
     public function valor_Pagamento_fiado(){
-        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'fiado' )->sum('valor') , 2 , ',' , '' ) ;        
+        if( $this->valor_fiado === null){
+            $this->valor_fiado =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'fiado' )->sum('valor') ;
+        }
+        if(!$this->valor_fiado > 0 ) return 0;
+        return 'R$' . number_format($this->valor_fiado , 2 , ',' , '' ) ;        
     }
 
 
