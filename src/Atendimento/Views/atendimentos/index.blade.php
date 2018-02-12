@@ -1,7 +1,7 @@
 @extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 	
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )
-	Atendimentos do dia {{ today()->format('d/m/Y')}} 
+	Atendimentos do dia {{ $caixa->dat->format('d/m/Y')}} 
 @endsection
 
 @section( Config::get('app.templateMasterContentTituloSmallRigth' , 'small-content-header-right')  )
@@ -35,7 +35,7 @@
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
 			<li><a href="#caixa" data-toggle="tab">CAIXA</a></li>
-			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data) as $key )
+			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data() ) as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach	
         </ul>
@@ -217,7 +217,7 @@
 			</div>
 			
 			
-			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data) as $key )
+			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data()) as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
 				<table class="table table-hover table-striped table-hover table-responsive">
 					<tr>
