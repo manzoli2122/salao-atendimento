@@ -106,14 +106,10 @@
 
             <form method="POST" action="{{route('atendimentos.pesquisar')}}" accept-charset="UTF-8">
                     {{csrf_field()}}
-                    <div class="input-group input-group-sm" style="width: 250px; margin-left:auto;">
-                        <input class="form-control" value="{{$model->created_at->format('Y-m-d')}}"  name="data" type="hidden">
-                        <div class="input-group-btn">
-                            <button style="margin-right:10px;" style="width:100%;" class="btn btn-warning btn-sm" type="submit">Voltar                                
-                            </button>	
-                        </div>
-                    </div>									
+                    <input class="form-control" value="{{$model->created_at->format('Y-m-d')}}"  name="data" type="hidden">
+                    <button style="margin-right:10px;" style="width:100%;" class="btn btn-warning btn-sm" type="submit">Voltar                                
+                    </button>	                       									
             </form>
-            <a class="btn btn-warning btn-sm" style="width:100%;" href="{{ URL::previous()}}">Voltar2</a>
+           
         </div>      
 @endsection

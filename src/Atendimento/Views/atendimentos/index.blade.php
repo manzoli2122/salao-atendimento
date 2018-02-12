@@ -38,11 +38,11 @@
             <div class="tab-pane active" id="tab_1">
 				<table class="table table-hover table-striped table-hover table-responsive">
 					<tr>
-						<th>Cliente</th>
-						<th>Valor dos Serviços</th>
-						<th>Valor dos Produtos</th>	
-						<th>Valor Total</th>					
-						<th>Ações</th>
+						<th>CLIENTES</th>
+						<th>SERVIÇOS</th>
+						<th>PRODUTOS</th>	
+						<th>VALOR TOTAL</th>					
+						<th>AÇÕES</th>
 					</tr>
 					@forelse($caixa->atendimentos() as $model)				
 					<tr>
