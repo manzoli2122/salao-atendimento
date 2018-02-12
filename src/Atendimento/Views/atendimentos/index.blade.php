@@ -96,131 +96,95 @@
 					</tr>				
 				</table>                	
 			</div>
-
-
 			<div class="tab-pane" id="caixa">
-				<div class="row">
-				
-				<!--div class="col-md-3 col-sm-6 col-xs-12">					
+				<div class="row">				
+					@if( $caixa->valor_Pagamento_dinheiro() != '' )
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-gray">
+								<span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style="font-size:20px;">DINHEIRO:</span>
+									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+									<span class="info-box-number">{{ $caixa->valor_Pagamento_dinheiro() }} </span>								
+									
+								</div>
+							</div>
+						</div>
+					@endif
+					@if( $caixa->valor_Pagamento_credito() != '' )					
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-gray">
+								<span class="info-box-icon bg-red"><i class="fa fa-credit-card"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style="font-size:20px;">CREDITO:</span>
+									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+									<span class="info-box-number">{{ $caixa->valor_Pagamento_credito() }}</span>
+								</div>
+							</div>
+						</div>
+					@endif
+					@if( $caixa->valor_Pagamento_debito() != '' )
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-gray">
+								<span class="info-box-icon bg-yellow"><i class="fa fa-credit-card"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style="font-size:20px;"> DEBITO:</span>
+									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+									<span class="info-box-number">{{ $caixa->valor_Pagamento_debito() }}</span>
+								</div>
+							</div>
+						</div>
+					@endif
+					@if( $caixa->valor_Pagamento_pic_pay() != '' )
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-gray">
+								<span class="info-box-icon bg-purple"><i class="fa fa-paypal"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style="font-size:20px;">PIC PAY:</span>
+									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+									<span class="info-box-number">{{ $caixa->valor_Pagamento_pic_pay() }}</span>
+								</div>
+							</div>
+						</div>			
+					@endif
+					@if( $caixa->valor_Pagamento_transferencia_bancaria() != '' )
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-gray">
+								<span class="info-box-icon bg-blue"><i class="fa fa-bank"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style="font-size:15px;">TRANSF. BANCÁRIA:</span>
+									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+									<span class="info-box-number"> {{ $caixa->valor_Pagamento_transferencia_bancaria() }}</span>
+								</div>
+							</div>
+						</div>
+					@endif
+					@if( $caixa->valor_Pagamento_cheque() != '' )
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-gray">
+								<span class="info-box-icon bg-orange"><i class="fa fa-sun-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style="font-size:20px;" >CHEQUE:</span>
+									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+									<span class="info-box-number">  {{ $caixa->valor_Pagamento_cheque() }}</span>
+								</div>
+							</div>
+						</div>
+					@endif
+					@if( $caixa->valor_Pagamento_fiado() != '' )
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-gray">
+								<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text" style="font-size:20px;">FIADO: </span>
+									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
+									<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
+								</div>
+							</div>
+						</div>
+					@endif	
 				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-						<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-				  		<div class="info-box-content">
-							<span class="info-box-text">Likes</span>
-							<span class="info-box-number">41,410</span>
-						</div>
-					</div>
-				</div>				 
-				<div class="clearfix visible-sm-block"></div>
-				
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box">
-						<span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
-				  		<div class="info-box-content">
-							<span class="info-box-text">New Members</span>
-							<span class="info-box-number">2,000</span>
-						</div>
-					</div>
-				</div-->
-
-
-
-
-				
-				@if( $caixa->valor_Pagamento_dinheiro() != '' )
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-gray">
-							<span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:20px;">DINHEIRO:</span>
-								<div class="progress"><div class="progress-bar" style="width: 0%"></div></div>
-								<span class="info-box-number">{{ $caixa->valor_Pagamento_dinheiro() }} </span>								
-								
-							</div>
-						</div>
-					</div>
-				@endif
-				@if( $caixa->valor_Pagamento_credito() != '' )					
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-gray">
-							<span class="info-box-icon bg-red"><i class="fa fa-credit-card"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:20px;">CREDITO:</span>
-								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
-								<span class="info-box-number">{{ $caixa->valor_Pagamento_credito() }}</span>
-							</div>
-						</div>
-					</div>
-				@endif
-				@if( $caixa->valor_Pagamento_debito() != '' )
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-gray">
-							<span class="info-box-icon bg-yellow"><i class="fa fa-credit-card"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:20px;"> DEBITO:</span>
-								<div class="progress"><div class="progress-bar" style="width: 0%"></div></div>
-								<span class="info-box-number">{{ $caixa->valor_Pagamento_debito() }}</span>
-							</div>
-						</div>
-					</div>
-				@endif
-				@if( $caixa->valor_Pagamento_pic_pay() != '' )
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-gray">
-							<span class="info-box-icon bg-purple"><i class="fa fa-paypal"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:20px;">PIC PAY:</span>
-								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
-								<span class="info-box-number">{{ $caixa->valor_Pagamento_pic_pay() }}</span>
-							</div>
-						</div>
-					</div>
-			
-				@endif
-				@if( $caixa->valor_Pagamento_transferencia_bancaria() != '' )
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-gray">
-							<span class="info-box-icon bg-blue"><i class="fa fa-bank"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:15px;">TRANSF. BANCÁRIA:</span>
-								<div class="progress"><div class="progress-bar" style="width: 0%"></div></div>
-								<span class="info-box-number"> {{ $caixa->valor_Pagamento_transferencia_bancaria() }}</span>
-							</div>
-						</div>
-					</div>
-				@endif
-				@if( $caixa->valor_Pagamento_cheque() != '' )
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-gray">
-							<span class="info-box-icon bg-orange"><i class="fa fa-sun-o"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:20px;" >CHEQUE:</span>
-								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
-								<span class="info-box-number">  {{ $caixa->valor_Pagamento_cheque() }}</span>
-							</div>
-						</div>
-					</div>
-				@endif
-				@if( $caixa->valor_Pagamento_fiado() != '' )
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-gray">
-							<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:20px;">FIADO: </span>
-								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
-								<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
-							</div>
-						</div>
-					</div>
-				@endif
-				
-
-				</div>
-				      	
 			</div>
-			
-			
 			@foreach ($caixa->funcionariosDoDia() as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
 				<table class="table table-hover table-striped table-hover table-responsive">
@@ -252,29 +216,26 @@
     </div>
 </div>
 
-
-
-
 @endsection
 		
 @push( Config::get('app.templateMasterScript' , 'script')  )
-        	<script>$(function(){setTimeout("$('.hide-msg').fadeOut();",5000)});</script>
-			<script>
-            function ApagarAtendimento(val) {
-                return  confirm('Deseja mesmo apagar o Atendimento?'  );                       
-            }
-		</script>
+    <script>$(function(){setTimeout("$('.hide-msg').fadeOut();",5000)});</script>
+	<script>
+        function ApagarAtendimento(val) {
+            return  confirm('Deseja mesmo apagar o Atendimento?'  );                       
+        }
+	</script>
 @endpush
 		
 @push( Config::get('app.templateMasterCss' , 'css')  )			
-			<style type="text/css">
-					.btn-sm{
-						padding: 1px 10px;
-					}
-					.pagination{
-						margin:0px;
-						display: unset;
-						font-size:12px;
-					}
-			</style>
+	<style type="text/css">
+		.btn-sm{
+			padding: 1px 10px;
+		}
+		.pagination{
+			margin:0px;
+			display: unset;
+			font-size:12px;
+		}
+	</style>
 @endpush
