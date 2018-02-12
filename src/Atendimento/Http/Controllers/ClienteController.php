@@ -109,7 +109,7 @@ class ClienteController extends StandardAtivoController
         return Datatables::of($models)                
         ->addColumn('action', function($linha) {        
             return                 
-                           '<a href="'.route("{$this->route}.atender", $linha->id).'" class="btn btn-success btn" style="margin-bottom:5px;" title="Atender"> <i class="fa fa-money fa-lg"></i>  </a> '
+                           '<a href="'.route("{$this->route}.atender", $linha->id).'" class="btn btn-success btn btn-sm" style="margin-bottom:5px;" title="Atender"> <i class="fa fa-money fa-lg"></i>  </a> '
                             
                                                        
                             . '<a href="'.route("{$this->route}.show", $linha->id).'" class="btn btn-primary btn btn-sm" style="margin-bottom:5px;" title="Visualizar" target="_blank" > <i class="fa fa-search fa-lg"></i> </a>'
