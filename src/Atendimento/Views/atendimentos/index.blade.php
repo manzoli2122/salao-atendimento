@@ -183,7 +183,7 @@
 						<div class="info-box bg-gray">
 							<span class="info-box-icon bg-blue"><i class="fa fa-bank"></i></span>
 							<div class="info-box-content">
-								<span class="info-box-text" style="font-size:20px;">TRANSF. BANCÁRIA:</span>
+								<span class="info-box-text" style="font-size:15px;">TRANSF. BANCÁRIA:</span>
 								<div class="progress"><div class="progress-bar" style="width: 0%"></div></div>
 								<span class="info-box-number"> {{ $caixa->valor_Pagamento_transferencia_bancaria() }}</span>
 							</div>
@@ -195,9 +195,9 @@
 						<div class="info-box bg-gray">
 							<span class="info-box-icon bg-orange"><i class="fa fa-sun-o"></i></span>
 							<div class="info-box-content">
-								<span class="info-box-text">TOTAL EM CHEQUE:</span>
+								<span class="info-box-text">CHEQUE:</span>
 								<span class="info-box-number">  {{ $caixa->valor_Pagamento_cheque() }}</span>
-								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
 								<span class="progress-description"></span>
 							</div>
 						</div>
@@ -208,9 +208,9 @@
 						<div class="info-box bg-gray">
 							<span class="info-box-icon"><i class="fa fa-sun-o"></i></span>
 							<div class="info-box-content">
-								<span class="info-box-text">TOTAL FIADO: </span>
+								<span class="info-box-text">FIADO: </span>
 								<span class="info-box-number">  {{ $caixa->valor_Pagamento_fiado() }} </span>
-								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+								<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
 								<span class="progress-description"></span>
 							</div>
 						</div>
