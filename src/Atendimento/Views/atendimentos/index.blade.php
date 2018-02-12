@@ -151,6 +151,7 @@
 							</div>
 						</div>
 					</div>
+				@endif
 				@if( $caixa->valor_Pagamento_debito() != '' )
 					<div class="col-md-3 col-sm-6 col-xs-12">
 						<div class="info-box bg-green">
