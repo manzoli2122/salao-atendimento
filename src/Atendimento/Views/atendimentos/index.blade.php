@@ -141,6 +141,16 @@
 				@endif
 				@if( $caixa->valor_Pagamento_credito() != '' )
 					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-red"><i class="fa fa-credit-card"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">TOTAL EM CREDITO:</span>
+								<span class="info-box-number">{{ $caixa->valor_Pagamento_credito() }}</span>
+								<div class="progress"><div class="progress-bar" style="width: 50%"></div></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12">
 						<div class="info-box bg-red">
 							<span class="info-box-icon"><i class="fa fa-credit-card"></i></span>
 							<div class="info-box-content">
