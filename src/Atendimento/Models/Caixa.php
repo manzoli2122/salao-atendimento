@@ -26,7 +26,7 @@ class Caixa
     }
 
 
-    public static function funcionariosDoDia(){  
+    public function funcionariosDoDia(){  
         $data = $this->data();
         if($data == '') return null;
         return  Funcionario::whereIn('id', function($query2) use($data) { //} use ($user){
