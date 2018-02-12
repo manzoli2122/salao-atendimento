@@ -18,19 +18,14 @@
 	</form>
 @endsection
 
-@section( Config::get('app.templateMasterContent' , 'content')  )
- 		
+@section( Config::get('app.templateMasterContent' , 'content')  ) 		
 	@forelse($caixa->atendimentos() as $model)	
 		@include('atendimento::atendimentos.modalAterarData')
 	@empty									
-	@endforelse
-
-	
+	@endforelse	
 </div>
 <div class="row">
-
 <div class="col-md-12">
-    <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
@@ -90,6 +85,18 @@
 							@endif											
 						</td>
 					</tr>
+
+					<tr>
+						<td> TOTAL </td>	
+						<td>  {{ $caixa->valor_servicos() }}   </td>	
+						<td>  {{ $caixa->valor_produtos()   </td>	
+						<td> {{ $caixa->valor_atendimentos() }}  </td>	
+						<td>   </td>	
+					</tr>
+
+
+
+
 					@empty					
 					@endforelse					
 				</table>                	

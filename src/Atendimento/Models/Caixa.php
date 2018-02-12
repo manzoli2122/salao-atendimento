@@ -22,11 +22,13 @@ class Caixa
     private $atendimento;
     private $pagamento;
     private $atendimento_funcionario;
+    private $produtos_vendidos;
 
     public function __construct( ){
         $this->atendimento = new Atendimento ;  
         $this->pagamento  = new Pagamento ; 
         $this->atendimento_funcionario = new AtendimentoFuncionario ; 
+        $this->produtos_vendidos = new ProdutosVendidos ;
     }
 
 
@@ -63,7 +65,13 @@ class Caixa
     }
 
 
+    public function valor_servicos(){
+        return 'R$' . number_format( $this->atendimento_funcionario::whereDate('created_at', $this->data() )->sum('valor'), 2 , ',' , '' ) ;          
+    }
 
+    public function valor_produtos(){
+        return 'R$' . number_format( $this->produtos_vendidos::whereDate('created_at', $this->data() )->sum('valor'), 2 , ',' , '' ) ;          
+    }
 
 
     public function valor_atendimentos(){
