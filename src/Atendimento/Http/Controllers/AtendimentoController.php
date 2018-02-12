@@ -119,7 +119,7 @@ class AtendimentoController extends Controller
             return redirect()->route("{$this->route}.index")->withErrors(['message' => __('msg.erro_nao_encontrado', ['1' => $this->name ])]);
         } 
 
-        if( $model->created_at->isToday() ){
+        //if( $model->created_at->isToday() ){
 
             $data = $request->input('data');  
             $data = $data . " 12:00:00";
@@ -144,7 +144,7 @@ class AtendimentoController extends Controller
             
             Log::write( $this->logCannel , $msg  );
             
-        }
+       // }
         
         return redirect()->route('atendimentos.index');
     }
