@@ -35,7 +35,7 @@
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
 			<li><a href="#caixa" data-toggle="tab">CAIXA</a></li>
-			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
+			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data) as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach	
         </ul>
@@ -56,21 +56,23 @@
 						<td> R$ {{number_format($model->valorProdutos(), 2 , ',' , '' )}} </td>			
 						<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>
 						<td>
-							@permissao('atendimentos')								
-								<a class="btn btn-success btn-sm" href='{{route("atendimentos.show", $model->id)}}'>
-									<i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>	
-								 <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alterarDataModal{{$model->id}}" > 
-									Alterar Data
-								</a>							
-							@endpermissao		
-							@permissao('atendimentos-soft-delete')			
-								<a class="btn btn-danger btn-sm"  href="javascript:void(0);" onclick="$(this).find('form').submit();" >
-									<form  method="post" action="{{route('atendimentos.destroySoft', $model->id)}}" onsubmit="return  ApagarAtendimento(this)">
-										{{csrf_field()}}    
-										<input name="_method" value="DELETE" type="hidden">                    
-									</form>  
-									<i class="fa fa-trash" aria-hidden="true"></i>Apagar</a>													
-							@endpermissao											
+							@if($model->created_at->isToday())
+								@permissao('atendimentos')								
+									<a class="btn btn-success btn-sm" href='{{route("atendimentos.show", $model->id)}}'>
+										<i class="fa fa-eye" aria-hidden="true"></i>Exibir</a>	
+									<a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#alterarDataModal{{$model->id}}" > 
+										Alterar Data
+									</a>							
+								@endpermissao		
+								@permissao('atendimentos-soft-delete')			
+									<a class="btn btn-danger btn-sm"  href="javascript:void(0);" onclick="$(this).find('form').submit();" >
+										<form  method="post" action="{{route('atendimentos.destroySoft', $model->id)}}" onsubmit="return  ApagarAtendimento(this)">
+											{{csrf_field()}}    
+											<input name="_method" value="DELETE" type="hidden">                    
+										</form>  
+										<i class="fa fa-trash" aria-hidden="true"></i>Apagar</a>													
+								@endpermissao
+							@endif											
 						</td>
 					</tr>
 					@empty					
@@ -80,7 +82,7 @@
 
 
 			<div class="tab-pane" id="caixa">
-
+				<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box">
 						<span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>				  
@@ -210,12 +212,12 @@
 
 				
 
-
+				</div>
 				      	
 			</div>
 			
 			
-			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
+			@foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionariosDoDia($caixa->data) as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
 				<table class="table table-hover table-striped table-hover table-responsive">
 					<tr>

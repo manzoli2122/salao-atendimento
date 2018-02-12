@@ -1,7 +1,7 @@
 <?php
 
 namespace Manzoli2122\Salao\Atendimento\Models;
-
+use Manzoli2122\Salao\Atendimento\Models\Funcionario;
 use Illuminate\Database\Eloquent\Builder;
 
 use DB;
@@ -46,49 +46,41 @@ class Caixa
 
 
 
-    public function valor_atendimentos()
-    {
+    public function valor_atendimentos(){
         return 'R$' . number_format( $this->atendimento::whereDate('created_at',$this->data() )->sum('valor') , 2 , ',' , '' ) ;        
     }
 
-    public function valor_Pagamento_dinheiro()
-    {
+    public function valor_Pagamento_dinheiro(){
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'dinheiro' )->sum('valor') , 2 , ',' , '' ) ;        
     }
     
-    public function valor_Pagamento_pic_pay()
-    {
+    public function valor_Pagamento_pic_pay(){
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Pic Pay' )->sum('valor') , 2 , ',' , '' ) ;        
     }
 
 
-    public function valor_Pagamento_transferencia_bancaria()
-    {
+    public function valor_Pagamento_transferencia_bancaria(){
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Transferência Bancária' )->sum('valor') , 2 , ',' , '' ) ;        
     }
 
 
-    public function valor_Pagamento_credito()
-    {
+    public function valor_Pagamento_credito(){
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'credito' )->sum('valor') , 2 , ',' , '' ) ;        
     }
 
 
-    public function valor_Pagamento_debito()
-    {
+    public function valor_Pagamento_debito(){
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'debito' )->sum('valor') , 2 , ',' , '' ) ;        
     }
 
 
-    public function valor_Pagamento_cheque()
-    {
+    public function valor_Pagamento_cheque(){
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'cheque' )->sum('valor') , 2 , ',' , '' ) ;        
     }
 
 
     
-    public function valor_Pagamento_fiado()
-    {
+    public function valor_Pagamento_fiado(){
         return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'fiado' )->sum('valor') , 2 , ',' , '' ) ;        
     }
 

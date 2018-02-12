@@ -42,6 +42,14 @@ class Funcionario extends Model
 
 
 
+    public static function funcionariosDoDia($data){  
+        if($data == '') return null;
+        return  Funcionario::whereIn('id', function($query2) use($data) { //} use ($user){
+                        $query2->distinct()->select("atendimento_funcionarios.funcionario_id");
+                        $query2->from("atendimento_funcionarios");
+                        $query2->whereDate('created_at', $data );         
+                })->get();         
+    }
 
     
 }
