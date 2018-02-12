@@ -11,6 +11,10 @@ class Caixa
     
     public $data;
 
+    private $valor_pic_pay = null ;
+    private $valor_dinheiro = null;
+    private $valor_transferencia_bancaria = null;
+
     private $atendimento;
     private $pagamento;
     private $atendimento_funcionario;
@@ -62,21 +66,31 @@ class Caixa
         return 'R$' . number_format( $this->atendimento::whereDate('created_at',$this->data() )->sum('valor') , 2 , ',' , '' ) ;        
     }
 
+    
+
     public function valor_Pagamento_dinheiro(){
-        $valor =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'dinheiro' )->sum('valor');
-        if(!$valor > 0 ) return 0;
+        if( $this->valor_dinheiro === null){
+            $this->valor_dinheiro =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'dinheiro' )->sum('valor');
+        }
+        if(!$this->valor_dinheiro > 0 ) return 0;
         return 'R$' . number_format($valor , 2 , ',' , '' ) ;        
     }
     
     public function valor_Pagamento_pic_pay(){
-        $valor =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Pic Pay' )->sum('valor') ;
-        if(!$valor > 0 ) return 0;
+        if( $this->valor_pic_pay === null){
+            $this->valor_pic_pay = $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Pic Pay' )->sum('valor') ;
+        } 
+        if(!$this->valor_pic_pay > 0 ) return 0;
         return 'R$' . number_format($valor , 2 , ',' , '' ) ; 
     }
 
 
     public function valor_Pagamento_transferencia_bancaria(){
-        return 'R$' . number_format( $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Transferência Bancária' )->sum('valor') , 2 , ',' , '' ) ;        
+        if( $this->valor_transferencia_bancaria === null){
+            $this->valor_transferencia_bancaria =  $this->pagamento::whereDate('created_at',$this->data() )->where('formaPagamento', 'Transferência Bancária' )->sum('valor') ;
+        }
+        if(!$this->valor_transferencia_bancaria > 0 ) return 0;
+        return 'R$' . number_format($valor , 2 , ',' , '' ) ;        
     }
 
 
