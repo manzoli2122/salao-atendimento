@@ -103,6 +103,17 @@
             @empty
             @endforelse            
             <h3 style="text-align:right;">Total R$ {{number_format($model->valor, 2 ,',', '') }} </h3>
-            <a class="btn btn-warning btn-sm" style="width:100%;" href="{{ URL::previous()}}">Voltar</a>
+
+            <form method="POST" action="{{route('atendimentos.pesquisar')}}" accept-charset="UTF-8">
+                    {{csrf_field()}}
+                    <div class="input-group input-group-sm" style="width: 250px; margin-left:auto;">
+                        <input class="form-control" value="{{$model->created_at}}"  name="data" type="hidden">
+                        <div class="input-group-btn">
+                            <button style="margin-right:10px;" style="width:100%;" class="btn btn-warning btn-sm" type="submit">Voltar                                
+                            </button>	
+                        </div>
+                    </div>									
+            </form>
+            <a class="btn btn-warning btn-sm" style="width:100%;" href="{{ URL::previous()}}">Voltar2</a>
         </div>      
 @endsection
