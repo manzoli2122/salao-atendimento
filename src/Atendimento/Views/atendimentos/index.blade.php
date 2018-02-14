@@ -5,7 +5,7 @@
 @endsection
 
 @section( Config::get('app.templateMasterContentTituloSmallRigth' , 'small-content-header-right')  )
-	Buscar por Data:
+	
 	<form method="POST" action="{{route('atendimentos.pesquisar')}}" accept-charset="UTF-8">
 		{{csrf_field()}}
 		<div class="input-group input-group-sm" style="width: 250px; margin-left:auto;">
@@ -18,6 +18,9 @@
 			</div>
 		</div>									
 	</form>
+</small>
+<small style="float: right;padding-top: 7px;">
+	Buscar por Data:
 @endsection
 
 @section( Config::get('app.templateMasterContent' , 'content')  ) 		
