@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div id="div-form-produto-produto" class="form-group" >
-                                <label  for="produto_id">Produto:</label>
+                                <label  for="produto_id" style="display: block;" >Produto:</label>
                                 <select id="produto_id" class="form-control" name="produto_id" required > 
                                         <option    value="">Selecione o Produto</option>                                      
                                         @foreach (Manzoli2122\Salao\Cadastro\Models\Produto::orderBy('nome', 'asc')->get() as $key )

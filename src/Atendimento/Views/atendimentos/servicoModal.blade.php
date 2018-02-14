@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="funcionario_id">Funcionário:</label>
+                                <label for="funcionario_id" style="display: block;">Funcionário:</label>
                                 <select id="funcionario_id" class="form-control" name="funcionario_id" required>
                                     <option value="">Selecione o Funcionário</option>
                                     @foreach (Manzoli2122\Salao\Atendimento\Models\Funcionario::funcionarios() as $key )
@@ -23,7 +23,7 @@
                             </div>
 
                             <div id="div-form-servico-servico" class="form-group">
-                                <label for="servico_id">Serviço:</label>
+                                <label for="servico_id" style="display: block;">Serviço:</label>
                                 <select id="servico_id" class="form-control" name="servico_id" required >                                   
                                     <option    value="">Selecione o Serviço</option>  
                                     @foreach (Manzoli2122\Salao\Cadastro\Models\Servico::ativo()->orderBy('nome', 'asc')->get() as $key )
