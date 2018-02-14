@@ -114,7 +114,7 @@
 					@if( $caixa->valor_Pagamento_credito() != '' )					
 						<div class="col-md-3 col-sm-6 col-xs-12">
 							<div class="info-box bg-gray">
-								<span class="info-box-icon bg-red"><i class="fa fa-credit-card"></i></span>
+								<span class="info-box-icon bg-red"><i class="fa fa-cc-visa"></i></span>
 								<div class="info-box-content">
 									<span class="info-box-text" style="font-size:20px;">CREDITO:</span>
 									<div class="progress"><div class="progress-bar" style="width: 100%"></div></div>
