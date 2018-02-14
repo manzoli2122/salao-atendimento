@@ -67,7 +67,7 @@ class Cliente extends Model
 
     public function atendimentosLast()
     {        
-        return $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Atendimento', 'cliente_id')->orderBy('created_at', 'desc')->take(5);
+        return $this->hasMany('Manzoli2122\Salao\Atendimento\Models\Atendimento', 'cliente_id')->orderBy('created_at', 'desc')->take(6);
     }
 
 

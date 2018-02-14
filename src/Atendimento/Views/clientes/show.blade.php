@@ -38,7 +38,7 @@
             </div> 
 
             <div class="box-header">			
-				<h2>Atendimentos</h2>
+				<h2>Últimos Atendimentos</h2>
         	</div>           		
 			
         </div>
