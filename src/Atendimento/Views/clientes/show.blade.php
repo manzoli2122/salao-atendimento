@@ -46,7 +46,7 @@
 
         <div class="box-footer" style="background:#ecf0f5">
                 <section class="row text-center dados">            
-                        @forelse($model->atendimentos as $atendimento)
+                        @forelse($model->atendimentosLast as $atendimento)
                             <div class="col-12 col-sm-4 servicos" style="margin-bottom:10px; ">
                                 <div class="row">        
                                     <div class="col-md-12">
@@ -80,7 +80,7 @@
     </div>
 </div>
 
-@forelse($model->atendimentos as $atendimento)
+@forelse($model->atendimentosLast as $atendimento)
 	@include('atendimento::clientes.atendimentoModal')				
 @empty
 @endforelse
