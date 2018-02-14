@@ -1,7 +1,7 @@
 @extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  ) 			
-	Cliente : <b> {{ $model->cliente->name}} </b>
+	Cliente : {{ $model->cliente->name}} 
 @endsection
 
 @section( Config::get('app.templateMasterContentTituloSmallRigth' , 'small-content-header-right')  )
@@ -111,7 +111,7 @@
             <form method="POST" action="{{route('atendimentos.pesquisar')}}" accept-charset="UTF-8">
                     {{csrf_field()}}
                     <input class="form-control" value="{{$model->created_at->format('Y-m-d')}}"  name="data" type="hidden">
-                    <button style="margin-right:10px;" style="width:100%;" class="btn btn-warning btn-sm" type="submit">Voltar                                
+                    <button style="margin-right:10px;" style="width:100% ; " class="btn btn-warning btn-sm" type="submit">Voltar                                
                     </button>	                       									
             </form>
            
