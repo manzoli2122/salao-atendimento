@@ -2,7 +2,6 @@
 
 namespace Manzoli2122\Salao\Atendimento\Http\Controllers;
 
-
 use Manzoli2122\Salao\Atendimento\Models\Atendimento;
 use Manzoli2122\Salao\Atendimento\Models\Pagamento;
 use Manzoli2122\Salao\Atendimento\Models\AtendimentoFuncionario;
@@ -19,7 +18,6 @@ use Manzoli2122\Salao\Atendimento\Models\Temp\ProdutosVendidos_temp;
 use Manzoli2122\Salao\Cadastro\Http\Controllers\Padroes\Controller ;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-//use Mail;
 use ChannelLog as Log;
 use Session;
 
@@ -67,47 +65,30 @@ class AtendimentoController extends Controller
     }
     
 
-    public function index()
-    {       
+    public function index(){       
         $caixa = new Caixa;
         $caixa->data =  today() ; 
-        //$models = $this->model::whereDate('created_at', today() )->get();
-        
-        return view("{$this->view}.index", compact('caixa' ));
-
-
-        //$models = $this->model::whereDate('created_at', today() )->get();
-        //return view("{$this->view}.index", compact('models'));
+        return view("{$this->view}.index", compact('caixa'));
     }
 
 
-    public function pesquisar(Request $request)
-    {       
+    public function pesquisar(Request $request){       
         $dataForm = $request->except('_token');
         $dataString = $dataForm['data'];
-        //$models = $this->model->whereDate('created_at', $dataString )->get();       
-        
         $data = Carbon::createFromFormat('Y-m-d', $dataString);
         $caixa = new Caixa;
         $caixa->data = $data ; 
-      
-        return view("{$this->view}.index", compact( 'caixa'));
+        return view("{$this->view}.index", compact('caixa'));
     }
 
 
     
-    public function show($id)
-    {
+    public function show($id){
         $model = $this->model->find($id);
         if(!$model){
             return redirect()->route("{$this->route}.index")->withErrors(['message' => __('msg.erro_nao_encontrado', ['1' => $this->name ])]);
         } 
-
-        //if( $model->created_at->isToday() )
-            return view("{$this->view}.show", compact('model'));
-
-
-       // return redirect()->route('atendimentos.index');
+        return view("{$this->view}.show", compact('model'));
     }
    
 
