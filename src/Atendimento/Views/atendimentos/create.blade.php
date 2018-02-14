@@ -198,7 +198,7 @@
                     var selected = this.element.children( ":selected" ),
                     value = selected.val() ? selected.text() : "";
                     this.input = $( "<input>" ).appendTo( this.wrapper ).val( value ).attr( "title", "" )
-                        .attr( "style", "width: 90%;     display: inline;" )
+                        .attr( "style", "width: 85%;     display: inline;" )
                         .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left form-control" )
                         .autocomplete({
                             delay: 0,      minLength: 0,      source: $.proxy( this, "_source" )
@@ -386,7 +386,7 @@
                     var selected = this.element.children( ":selected" ),
                     value = selected.val() ? selected.text() : "";
                     this.input = $( "<input>" ).appendTo( this.wrapper ).val( value ).attr( "title", "" )
-                        .attr( "style", "width: 90%;     display: inline;" )
+                        .attr( "style", "width: 85%;     display: inline;" )
                         .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left form-control" )
                         .autocomplete({
                             delay: 0,      minLength: 0,      source: $.proxy( this, "_source" )
@@ -735,7 +735,7 @@
                         .appendTo( this.wrapper )
                         .val( value )
                         .attr( "title", "" )
-                        .attr( "style", "width: 90%;     display: inline;" )
+                        .attr( "style", "width: 85%;     display: inline;" )
                         .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left form-control" )
                         .autocomplete({
                             delay: 0,
