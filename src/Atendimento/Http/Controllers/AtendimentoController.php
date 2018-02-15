@@ -92,8 +92,7 @@ class AtendimentoController extends Controller
     }
    
 
-    public function alterarData(Request $request , $id)
-    {
+    public function alterarData(Request $request , $id){
         $model = $this->model->find($id);
         
         if(!$model){
