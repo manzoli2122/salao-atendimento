@@ -124,22 +124,22 @@ class AtendimentoController extends Controller
 
     
 
-
-    public function destroySoft($id)
-    {
-        $model = $this->model->find($id);
-        
+    //--------------------------------------------------------------------------------------------------------------------------
+    // FIX-ME NÃO ESTA EM AJAX ...............
+    // CASO TENHA ALGUM PAGAMENTO FIADO QUITADO EM OUTRO ATENDIMENTO NÃO EXCLUI .
+    // CASO TENHA PAGAMENTOS FIADOS DE OUTROS ATENDIMENTOS QUITADOS AQUI, VOLTA A FICAR FIADO
+    //--------------------------------------------------------------------------------------------------------------------------
+    public function destroySoft($id) {
+        $model = $this->model->find($id);        
         if($model->pagamentosFiadosQuitados()->count() != 0  ){
             return redirect()->route("{$this->route}.index");    
-        }        
-
+        }       
         foreach($model->pagamentosQuitadosAqui as $pagamentoQuitados){
             $pagamentoQuitados->restore();
             $pagamentoQuitados->atendimento_da_quitacao()->dissociate();
             $pagamentoQuitados->save();
             $model->atualizarValor();
-        }       
-        
+        }              
         foreach($model->servicos as $servico){
             $servico->delete();
         }
@@ -149,11 +149,8 @@ class AtendimentoController extends Controller
         foreach($model->produtos as $produto){
             $produto->delete();
         }
-
         $delete = $model->delete();
-
         if($delete){
-
             $msg2 =  "DELETEs - " . $this->name . ' apagado(a) com sucesso !! ' . $model . ' responsavel: ' . session('users') ;
             Log::write( $this->logCannel , $msg2  ); 
 
@@ -169,8 +166,7 @@ class AtendimentoController extends Controller
 
 
     
-    public function create_temp($id)
-    {
+    public function create_temp($id){
         $atendimento = new Atendimento_temp;
         $cliente = Cliente::find($id);
         $atendimento->valor = 0.0;        
@@ -181,16 +177,14 @@ class AtendimentoController extends Controller
 
 
 
-    public function adicionarItens_temp($id)
-    {
+    public function adicionarItens_temp($id){
         $atendimento = $this->model_temp->find($id);
         $atendimento->atualizarValor();       
         return view("{$this->view}.create", compact('atendimento'));
     }
 
 
-    public function finalizar($id)
-    {
+    public function finalizar($id){
         $atendimento_old = $this->model_temp->find($id);        
         $atendimento = $this->model->create( $atendimento_old->toArray() );
 
@@ -229,8 +223,6 @@ class AtendimentoController extends Controller
             $this->pagamento->create( $array );
         }
 
-
-
         foreach($atendimento_old->produtos as $produto){
             $array = $produto->toArray();
             unset($array['id']);
@@ -241,45 +233,29 @@ class AtendimentoController extends Controller
             $this->produtosVendidos->create( $array );
         }
 
-
-
         $atendimento_old->delete();
         
         $atendimento->atualizarValor();
 
-
         $msg =  "CREATEs - " . $this->name . ' Cadastrado(a) com sucesso !! ' . $atendimento . ' responsavel: ' . session('users') ;
         Log::write( $this->logCannel , $msg  );
         
-
-
         //$msg = "Atendimento criado por " . session('users');
-      //  Mail::raw( $msg , function($message){
-            
+      //  Mail::raw( $msg , function($message){            
         //    $message->from('manzoli.elisandra@gmail.com', 'Salao Espaco Vip');
-
           //  $message->to('manzoli2122@gmail.com')->subject('Cadastro de atendimento');
-
         //});
-
-
-       
         return  redirect()->route("{$this->route}.index");
         
-       
-
     }
 
 
 
-    public function cancelar($id)
-    {
+    public function cancelar($id){
         $atendimento_old = $this->model_temp->find($id); 
         $clienteId = $atendimento_old->cliente_id ;    
         $atendimento_old->delete();
-
         return redirect()->route("{$this->route}.index");
-
     }
 
 
@@ -288,12 +264,9 @@ class AtendimentoController extends Controller
 
  
 
-    public function adicionarServico(Request $request)
-    {
-        //$this->validate($request , $this->model->rules());
+    public function adicionarServico(Request $request){
         $dataForm = $request->all();              
-        $insert = $this->atendimentoFuncionario_temp->create($dataForm); 
-        
+        $insert = $this->atendimentoFuncionario_temp->create($dataForm);        
         if($insert){
             $insert->atendimento->atualizarValor();
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])   ;
@@ -301,12 +274,10 @@ class AtendimentoController extends Controller
         else {
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')])  ;
         }
-
     }
 
 
-    public function removerServico($id)
-    {
+    public function removerServico($id){
         $servico = $this->atendimentoFuncionario_temp->find($id); 
         $atendimento = $this->model_temp->find($servico->atendimento_id);
         $delete = $servico->delete();
@@ -317,25 +288,21 @@ class AtendimentoController extends Controller
         else {
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
-
     }
 
     
 
 
-    public function adicionarPagamento(Request $request)
-    {        
+    public function adicionarPagamento(Request $request) {        
         $dataForm = $request->all();          
         if($dataForm['operadora_id'] ==null){
             unset($dataForm['operadora_id']);
         }
         if($dataForm['parcelas'] ==null){
             unset($dataForm['parcelas']);
-        }        
-        //dd($dataForm);
+        } 
         $insert = $this->pagamento_temp->create($dataForm);         
         if($insert){
-            //$insert->atendimento->atualizarValor();
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')]);
         }
         else {
@@ -344,8 +311,7 @@ class AtendimentoController extends Controller
     }
 
 
-    public function removerPagamento($id)
-    {
+    public function removerPagamento($id){
         $pagamento = $this->pagamento_temp->find($id); 
         $atendimento = $this->model_temp->find($pagamento->atendimento_id);
         $delete = $pagamento->delete();
@@ -356,7 +322,6 @@ class AtendimentoController extends Controller
         else {
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
-
     }
 
     
@@ -366,13 +331,9 @@ class AtendimentoController extends Controller
 
     
 
-    public function adicionarProduto(Request $request)
-    {
-        //$this->validate($request , $this->model->rules());
-        $dataForm = $request->all();  
-               
-        $insert = $this->produtosVendidos_temp->create($dataForm); 
-        
+    public function adicionarProduto(Request $request) {
+        $dataForm = $request->all();                 
+        $insert = $this->produtosVendidos_temp->create($dataForm);
         if($insert){
             $insert->atendimento->atualizarValor();
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')]);
@@ -380,12 +341,10 @@ class AtendimentoController extends Controller
         else {
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $request->input('atendimento_id')]);
         }
-
     }
 
 
-    public function removerProduto($id)
-    {
+    public function removerProduto($id) {
         $produto = $this->produtosVendidos_temp->find($id); 
         $atendimento = $this->model_temp->find($produto->atendimento_id);
         $delete = $produto->delete();
@@ -396,11 +355,6 @@ class AtendimentoController extends Controller
         else {
             return redirect()->route("{$this->route}.adicionarItens" , ['id' => $atendimento->id ]);
         }
-
     }
-
-    
-
-
 
 }

@@ -36,8 +36,7 @@ class ClienteController extends StandardAtivoController
 
    
    
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $this->validate($request , $this->model->rules());
         $dataForm = $request->all();              
         $dataForm['password'] = bcrypt("senha123"); 
@@ -66,8 +65,7 @@ class ClienteController extends StandardAtivoController
 
 
 
-    public function update( Request $request, $id)
-    {
+    public function update( Request $request, $id){
         $this->validate($request , $this->model->rules($id));        
         $dataForm = $request->all();                      
         $model = $this->model->ativo()->find($id); 
