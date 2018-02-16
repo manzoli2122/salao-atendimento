@@ -22,11 +22,18 @@
 @push( Config::get('app.templateMasterCss' , 'css')  )			
 	<style type="text/css">
 		.btn-group-sm>.btn, .btn-sm {
-			/*padding: 5px 10px;
+			/*
 				line-height: 1.5;
 			border-radius: 3px;
 			*/
-			font-size: 9px;		
+			padding: 3px 10px;
+			font-size: 15px;		
+		}
+		.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+			padding: 5px;
+			/*line-height: 1.42857143;
+			vertical-align: top;
+			border-top: 1px solid #ddd; */
 		}
 	</style>
 @endpush
