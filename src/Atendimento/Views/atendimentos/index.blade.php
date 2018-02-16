@@ -1,7 +1,7 @@
 @extends( Config::get('app.templateMaster' , 'templates.templateMaster')  )
 	
 @section( Config::get('app.templateMasterContentTitulo' , 'titulo-page')  )
-	Atendimentos do dia {{ $caixa->data->format('d/m/Y')}} 
+	Relatório do dia {{ $caixa->data->format('d/m/Y')}} 
 @endsection
 
 @section( Config::get('app.templateMasterContentTituloSmallRigth' , 'small-content-header-right')  )
@@ -35,6 +35,7 @@
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
 			<li><a href="#caixa" data-toggle="tab">CAIXA</a></li>
+			<li><a href="#despesa" data-toggle="tab">DESPESA</a></li>
 			@foreach ($caixa->funcionariosDoDia()  as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach	
@@ -190,6 +191,36 @@
 					@endif	
 				</div>
 			</div>
+
+			<div class="tab-pane active" id="despesa">
+				<table class="table table-hover table-striped table-hover table-responsive">
+					<tr>
+						<th>TIPO</th>
+						<th>CATEGORIA</th>
+						<th>DESCRIÇÃO</th>	
+						<th>VALOR</th>					
+						
+					</tr>
+					@forelse($caixa->despesas() as $model)				
+					<tr>
+						<td> {{ $model->tipo }}  </td>			
+						<td> {{ $model->categoria }} </td>
+						<td> {{ $model->descricao }} </td>			
+						<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>
+						
+					</tr>
+					@empty					
+					@endforelse	
+					<tr style="font-size: 18px;font-weight: bold;">
+						<td> TOTAL </td>	
+						<td>     </td>	
+						<td>   </td>	
+						<td>  {{ $caixa->valor_atendimentos() }}  </td>	
+							
+					</tr>				
+				</table>                	
+			</div>
+
 			@foreach ($caixa->funcionariosDoDia() as $key )
 			<div class="tab-pane" id="funcionario_{{$key->id}}">
 				<table class="table table-hover table-striped table-hover table-responsive">

@@ -86,12 +86,9 @@ class Cliente extends Model
 
     
     
-    public function getDatatable()
-    {
-
+    public function getDatatable() {
         $teste =DB::table('users')
-        ->where('ativo', 1)
-       
+        ->where('ativo', 1)       
         ->groupBy('id' , 'name')
 
         ->leftJoin('pagamentos', function ($join) {
@@ -99,18 +96,12 @@ class Cliente extends Model
                  ->where('pagamentos.formaPagamento', '=', 'fiado')
                  ->whereNull('pagamentos.deleted_at');
         })
-
         
         ->select('users.id', 'users.name', DB::raw(  "  concat('R$ ', ROUND  ( SUM( pagamentos.valor) , 2 ) ) as valor" )  )
         ;
-
-
-        
-
         return $teste;
 
-        //return $this->ativo()->select(['id', 'name',   ]);     
-        
+        //return $this->ativo()->select(['id', 'name',   ]);           
         //Manzoli2122\Salao\Atendimento\Models\Pagamento::where("cliente_id", $linha->id )->where("formaPagamento", "fiado" )->count() > 0 
     }
 

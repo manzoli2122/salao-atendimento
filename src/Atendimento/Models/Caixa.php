@@ -5,7 +5,7 @@ namespace Manzoli2122\Salao\Atendimento\Models;
 use Manzoli2122\Salao\Atendimento\Models\Funcionario;
 use Illuminate\Database\Eloquent\Builder;
 use DB;
-
+use Manzoli2122\Salao\Despesas\Models\Despesa;
 class Caixa 
 {
     
@@ -21,12 +21,14 @@ class Caixa
 
     private $atendimento;
     private $pagamento;
+    private $despesa;
     private $atendimento_funcionario;
     private $produtos_vendidos;
 
     public function __construct( ){
         $this->atendimento = new Atendimento ;  
         $this->pagamento  = new Pagamento ; 
+        $this->despesa  = new Despesa ; 
         $this->atendimento_funcionario = new AtendimentoFuncionario ; 
         $this->produtos_vendidos = new ProdutosVendidos ;
     }
@@ -50,6 +52,12 @@ class Caixa
     public function atendimentos(){
         return $this->atendimento::whereDate('created_at', $this->data() )->get();        
     }
+
+
+    public function despesas(){
+        return $this->despesa::whereDate('created_at', $this->data() )->get();        
+    }
+
 
     public function atendimentosFuncionario($funcionarioId){
         return $this->atendimento_funcionario::whereDate('created_at', $this->data() )->where('funcionario_id',$funcionarioId )->get();        
