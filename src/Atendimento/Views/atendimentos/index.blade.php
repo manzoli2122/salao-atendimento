@@ -35,7 +35,7 @@
         <ul class="nav nav-tabs">
 			<li class="active"><a href="#tab_1" data-toggle="tab">ATENDIMENTOS</a></li>
 			<li><a href="#caixa" data-toggle="tab">CAIXA</a></li>
-			<li><a href="#despesa" data-toggle="tab">DESPESA</a></li>
+			<li><a href="#despesa" data-toggle="tab">DESPESAS</a></li>
 			@foreach ($caixa->funcionariosDoDia()  as $key )
 				<li><a href="#funcionario_{{$key->id}}" data-toggle="tab"> {{ $key->apelido }}</a></li>
 			@endforeach	
@@ -196,7 +196,7 @@
 				<table class="table table-hover table-striped table-hover table-responsive">
 					<tr>
 						<th>TIPO</th>
-						<th>CATEGORIA</th>
+						<th>DESTINAÇÃO</th>
 						<th>DESCRIÇÃO</th>	
 						<th>VALOR</th>					
 						
@@ -204,7 +204,7 @@
 					@forelse($caixa->despesas() as $model)				
 					<tr>
 						<td> {{ $model->tipo }}  </td>			
-						<td> {{ $model->categoria }} </td>
+						<td> {{ $model->destinacao() }} </td>
 						<td> {{ $model->descricao }} </td>			
 						<td> R$ {{number_format($model->valor, 2 , ',' , '' )}} </td>
 						
