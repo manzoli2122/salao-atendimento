@@ -192,7 +192,7 @@
 				</div>
 			</div>
 
-			<div class="tab-pane active" id="despesa">
+			<div class="tab-pane" id="despesa">
 				<table class="table table-hover table-striped table-hover table-responsive">
 					<tr>
 						<th>TIPO</th>
