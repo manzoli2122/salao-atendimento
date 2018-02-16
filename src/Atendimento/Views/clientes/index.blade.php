@@ -18,6 +18,20 @@
 	@endpermissao
 @endsection
 
+
+@push( Config::get('app.templateMasterCss' , 'css')  )			
+	<style type="text/css">
+		.btn-group-sm>.btn, .btn-sm {
+			/*padding: 5px 10px;
+				line-height: 1.5;
+			border-radius: 3px;
+			*/
+			font-size: 9px;		
+		}
+	</style>
+@endpush
+
+
 @section( Config::get('app.templateMasterContent' , 'content')  )
 
 <div class="col-xs-12">
