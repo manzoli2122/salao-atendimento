@@ -35,6 +35,9 @@
 			vertical-align: top;
 			border-top: 1px solid #ddd; */
 		}
+		label {			
+			 margin-bottom: 1px; 
+		}
 	</style>
 @endpush
 
@@ -43,7 +46,7 @@
 
 <div class="col-xs-12">
     <div class="box box-success">	
-        <div class="box-body">
+        <div class="box-body" style="padding-top: 3px;">
             <table class="table table-bordered table-striped table-hover table-responsive" id="datatable">
                 <thead>
                     <tr>						
