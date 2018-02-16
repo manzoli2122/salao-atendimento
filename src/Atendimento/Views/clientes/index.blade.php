@@ -22,18 +22,11 @@
 @push( Config::get('app.templateMasterCss' , 'css')  )			
 	<style type="text/css">
 		.btn-group-sm>.btn, .btn-sm {
-			/*
-				line-height: 1.5;
-			border-radius: 3px;
-			*/
 			padding: 1px 10px;
 			font-size: 15px;		
 		}
 		.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 			padding: 3px;
-			/*line-height: 1.42857143;
-			vertical-align: top;
-			border-top: 1px solid #ddd; */
 		}
 		label {			
 			 margin-bottom: 1px; 
@@ -46,7 +39,7 @@
 
 <div class="col-xs-12">
     <div class="box box-success">	
-        <div class="box-body" style="padding-top: 3px;">
+        <div class="box-body" style="padding-top: 3px; padding-bottom: 3px;">
             <table class="table table-bordered table-striped table-hover table-responsive" id="datatable">
                 <thead>
                     <tr>						
