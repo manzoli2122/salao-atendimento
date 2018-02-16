@@ -26,7 +26,7 @@
 			font-size: 15px;		
 		}
 		.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-			padding: 3px;
+			padding: 4.8px;
 		}
 		label {			
 			 margin-bottom: 1px; 
@@ -39,7 +39,7 @@
 
 <div class="col-xs-12">
     <div class="box box-success">	
-        <div class="box-body" style="padding-top: 3px; padding-bottom: 3px;">
+        <div class="box-body" style="padding-top: 5px; padding-bottom: 3px;">
             <table class="table table-bordered table-striped table-hover table-responsive" id="datatable">
                 <thead>
                     <tr>						
