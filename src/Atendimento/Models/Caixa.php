@@ -5,7 +5,9 @@ namespace Manzoli2122\Salao\Atendimento\Models;
 use Manzoli2122\Salao\Atendimento\Models\Funcionario;
 use Illuminate\Database\Eloquent\Builder;
 use DB;
+// AQUI USA DEPENDENCIA CRUZADA
 use Manzoli2122\Salao\Despesas\Models\Despesa;
+
 class Caixa 
 {
     
@@ -28,7 +30,7 @@ class Caixa
     public function __construct( ){
         $this->atendimento = new Atendimento ;  
         $this->pagamento  = new Pagamento ; 
-        $this->despesa  = new Despesa ; 
+        $this->despesa  = new Despesa ; // AQUI USA DEPENDENCIA CRUZADA
         $this->atendimento_funcionario = new AtendimentoFuncionario ; 
         $this->produtos_vendidos = new ProdutosVendidos ;
     }
@@ -53,10 +55,15 @@ class Caixa
         return $this->atendimento::whereDate('created_at', $this->data() )->get();        
     }
 
-
+    // AQUI USA DEPENDENCIA CRUZADA
     public function despesas(){
         return $this->despesa::whereDate('created_at', $this->data() )->get();        
     }
+    // AQUI USA DEPENDENCIA CRUZADA
+    public function valor_despesas(){
+        return 'R$' . number_format( $this->despesa::whereDate('created_at', $this->data() )->sum('valor'), 2 , ',' , '' ) ;          
+    }
+
 
 
     public function atendimentosFuncionario($funcionarioId){

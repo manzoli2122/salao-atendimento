@@ -215,7 +215,7 @@
 						<td> TOTAL </td>	
 						<td>     </td>	
 						<td>   </td>	
-						<td>  {{ $caixa->valor_atendimentos() }}  </td>	
+						<td>  {{ $caixa->valor_despesas() }}  </td>	
 							
 					</tr>				
 				</table>                	
