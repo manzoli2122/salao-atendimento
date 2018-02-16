@@ -20,6 +20,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use ChannelLog as Log;
 use Session;
+use Auth;
 
 class AtendimentoController extends Controller
 {
@@ -93,39 +94,30 @@ class AtendimentoController extends Controller
    
 
     public function alterarData(Request $request , $id){
-        $model = $this->model->find($id);
-        
+        $model = $this->model->find($id);        
         if(!$model){
             return redirect()->route("{$this->route}.index")->withErrors(['message' => __('msg.erro_nao_encontrado', ['1' => $this->name ])]);
         } 
-
-        //if( $model->created_at->isToday() ){
-
+        if( $model->created_at->isToday() or Auth::user()->hasPerfil('Admin') ){
             $data = $request->input('data');  
             $data = $data . " 12:00:00";
-            $msg =  "ATENDIMENTO NÚMERO (ID) ". $model->id  .   " - ALTERAÇÃO DE DATA - DE " . $model->created_at . " PARA " . $data  . ' responsavel: ' . session('users') ;
-            
+            $msg =  "ATENDIMENTO NÚMERO (ID) ". $model->id  .   " - ALTERAÇÃO DE DATA - DE " . $model->created_at . " PARA " . $data  . ' responsavel: ' . session('users') ;  
             foreach($model->servicos as $servico){
                 $servico->created_at = $data;
                 $servico->save();
             }
             foreach($model->pagamentos as $pagamento){
                 $pagamento->created_at = $data;
-                $pagamento->save();
-                
+                $pagamento->save();                
             }
             foreach($model->produtos as $produto){
                 $produto->created_at = $data;
                 $produto->save();            
             } 
-            $model->created_at = $data;
-    
-            $model->save();  
-            
-            Log::write( $this->logCannel , $msg  );
-            
-       // }
-        
+            $model->created_at = $data;    
+            $model->save();              
+            Log::write( $this->logCannel , $msg  );            
+        }        
         return redirect()->route('atendimentos.index');
     }
 
