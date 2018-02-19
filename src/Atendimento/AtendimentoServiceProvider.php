@@ -17,7 +17,8 @@ class AtendimentoServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/config.php' =>  config_path('atendimento.php'), 
         ], 'atendimento_config');
-        $this->mapWebRoutes();     
+        $this->mapWebRoutes();   
+        $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');  
         $this->loadViewsFrom(__DIR__.'/Views', 'atendimento');
     }
 
